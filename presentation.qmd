@@ -21,8 +21,15 @@ execute:
 #| include: false
 
 # Load packages here
-pacman::p_load(tidymodels,
-               tidyverse)
+#pacman::p_load(tidymodels,
+#               tidyverse)
+
+install.packages(c("tidyverse", "tidymodels"),
+  repos = "http://cran.us.r-project.org"
+)
+library(tidyverse)
+library(tidymodels)
+
 
 ```
 

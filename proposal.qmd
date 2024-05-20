@@ -1,11 +1,11 @@
 ---
-title: "Proposal title"
+title: "Trash Wheel Collection Comparison"
 subtitle: "Proposal"
-author: 
-  - name: "Team Name"
+author:
+  - name: "Daniel Wiesner"
     affiliations:
       - name: "School of Information, University of Arizona"
-description: "Project description"
+description: "A comparison of the different categories of trash collected by four trash collection wheels in the Baltimore Harbor."
 format:
   html:
     code-tools: true
@@ -18,10 +18,18 @@ execute:
   warning: false
 ---
 
+## Install and Load Packages
+
 ```{r}
 #| label: load-pkgs
 #| message: false
+
+install.packages(c("tidyverse", "dplyr", "readr", "tidytuesdayR"),
+  repos = "http://cran.us.r-project.org"
+)
 library(tidyverse)
+library(dplyr)
+library(readr)
 ```
 
 ## Dataset
@@ -29,16 +37,94 @@ library(tidyverse)
 ```{r}
 #| label: load-dataset
 #| message: false
+
+rm(list=ls())
+
+tuesdata <- tidytuesdayR::tt_load('2024-03-05')
+
+trash_data <- tuesdata$trashwheel
+
 ```
 
-A brief description of your dataset including its provenance, dimensions, etc. as well as the reason why you chose this dataset.
+I have chosen the Trash Wheel Collection Dataset. This dataset provides information about four trash collection wheels around the Harbor of Baltimore, Maryland. The trash category counts are based on averages of periodic manual counts of each category of trash on the wheel's conveyor paddles.
 
-Make sure to load the data and use inline code for some of this information.
+Much of this data is quantitative, providing the counts of the various categories of trash for each collection wheel at each manual check, labeled by date and dumpster load which is a separate count for each wheel.
 
-## Questions
+I chose this dataset because I am generally interested in waste reduction programs and strategies and would like to evaluate the potential for data collection to improve these strategies and inform public policy on the best ways to combat pollution.
 
-The two questions you want to answer.
+I felt that there was potential for the results of this analysis, when combined with information about institutions and businesses located in the areas of the trash collection wheels, to provide actionable information about where different litter might be coming from and why so that systems can be put in place to mitigate further littering in those areas.
 
-## Analysis plan
+## Field Names
 
--   A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).
+```{r}
+colnames(trash_data)
+```
+
+## Record Examples
+
+```{r}
+head(trash_data) # first 6 records
+```
+
+## First Records for Each Wheel
+
+```{r}
+trash_data %>%
+  filter(Dumpster == 1) %>% # all dumpster 1 records
+  select(Name, Year)
+```
+
+Looking at Dumpster load 1 for each of the four collection wheels we can see that Mister Trash Wheel began operation in 2014, Professor Trash Wheel in 2017, Captain Trash Wheel in 2018, and Gwynnda Trash Wheel in 2021. Because of this, it would be unwise to compare overall results between the wheels due to their differences in operation time.
+
+## Average Paddle Checks per Day
+
+```{r}
+trash_data %>% 
+  group_by(Name, Date) %>%
+  summarize(count = n()) %>% # paddle checks per day per wheel
+  group_by(Name) %>%
+  summarize(avg_checks = mean(count)) # avg paddle checks per day per wheel
+```
+
+Looking at the average number of times the paddles were checked per day for each collection wheel, we also see that Captain and Professor were checked less on average than Gwynnda and Mister. This supports a stance against direct quantitative comparison.
+
+## Question
+
+Is there a significant difference between the proportions of trash categories between the four collection wheels during the same time period?
+
+## Analysis Plan
+
+Because the wheels have been operating for different amounts of time, I feel it is likely misguided to compare averages of their entire history so I instead plan to focus primarily on the time period for which they have all been operational (since 2021).
+
+I may choose to run further analyses to see if there are significant differences in trash category frequencies over time for each wheel.
+
+#### Variables Involved:
+
+For time-frames, I plan to focus primarily on years but because all four of the wheels have only been operational for a few years, I may choose to focus more granularly on months.
+
+Initially, I plan to look at all trash category fields to get an idea of the overall trends, then will likely focus on the top 3 to 5 most common for each trash wheel for the final visualization.
+
+I will likely not find a use for Weight, Volume, or HomesPowered.
+
+ID, Name, and Dumpster will be used as grouping fields and Name will be used in the final visualization.
+
+#### External Data:
+
+If I choose to run further analyses, I may bring in data about businesses around the areas in which each wheel is located to see if there is correlation between those businesses' products and the common types of trash collected by the wheels in those areas.
+
+Otherwise, I do not see external data being needed.
+
+### Plan of Attack:
+
+| Task Name | Status | Due | Priority | Summary |
+|:---------:|:------:|:---:|:--------:|:-------:|
+|           |        |     |          |         |
+|           |        |     |          |         |
+|           |        |     |          |         |
+|           |        |     |          |         |
+|           |        |     |          |         |
+|           |        |     |          |         |
+|           |        |     |          |         |
+|           |        |     |          |         |
+|           |        |     |          |         |
+|           |        |     |          |         |

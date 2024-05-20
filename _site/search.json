@@ -2,16 +2,16 @@
   {
     "objectID": "proposal.html",
     "href": "proposal.html",
-    "title": "Proposal title",
+    "title": "Trash Wheel Collection Comparison",
     "section": "",
-    "text": "library(tidyverse)"
+    "text": "install.packages(c(\"tidyverse\", \"dplyr\", \"readr\", \"tidytuesdayR\"),\n  repos = \"http://cran.us.r-project.org\"\n)\n\npackage 'tidyverse' successfully unpacked and MD5 sums checked\npackage 'dplyr' successfully unpacked and MD5 sums checked\npackage 'readr' successfully unpacked and MD5 sums checked\npackage 'tidytuesdayR' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\wiesn\\AppData\\Local\\Temp\\RtmpCImREH\\downloaded_packages\n\nlibrary(tidyverse)\nlibrary(dplyr)\nlibrary(readr)"
   },
   {
     "objectID": "proposal.html#dataset",
     "href": "proposal.html#dataset",
-    "title": "Proposal title",
+    "title": "Trash Wheel Collection Comparison",
     "section": "Dataset",
-    "text": "Dataset\nA brief description of your dataset including its provenance, dimensions, etc. as well as the reason why you chose this dataset.\nMake sure to load the data and use inline code for some of this information."
+    "text": "Dataset\n\nrm(list=ls())\n\ntuesdata &lt;- tidytuesdayR::tt_load('2024-03-05')\n\n\n    Downloading file 1 of 1: `trashwheel.csv`\n\ntrash_data &lt;- tuesdata$trashwheel\n\nI have chosen the Trash Wheel Collection Dataset. This dataset provides information about four trash collection wheels around the Harbor of Baltimore, Maryland. The trash category counts are based on averages of periodic manual counts of each category of trash on the wheel’s conveyor paddles.\nMuch of this data is quantitative, providing the counts of the various categories of trash for each collection wheel at each manual check, labeled by date and dumpster load which is a separate count for each wheel.\nI chose this dataset because I am generally interested in waste reduction programs and strategies and would like to evaluate the potential for data collection to improve these strategies and inform public policy on the best ways to combat pollution.\nI felt that there was potential for the results of this analysis, when combined with information about institutions and businesses located in the areas of the trash collection wheels, to provide actionable information about where different litter might be coming from and why so that systems can be put in place to mitigate further littering in those areas."
   },
   {
     "objectID": "proposal.html#questions",
@@ -23,9 +23,9 @@
   {
     "objectID": "proposal.html#analysis-plan",
     "href": "proposal.html#analysis-plan",
-    "title": "Proposal title",
-    "section": "Analysis plan",
-    "text": "Analysis plan\n\nA plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any)."
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Analysis Plan",
+    "text": "Analysis Plan\nBecause the wheels have been operating for different amounts of time, I feel it is likely misguided to compare averages of their entire history so I instead plan to focus primarily on the time period for which they have all been operational (since 2021).\nI may choose to run further analyses to see if there are significant differences in trash category frequencies over time for each wheel.\n\nVariables Involved:\nFor time-frames, I plan to focus primarily on years but because all four of the wheels have only been operational for a few years, I may choose to focus more granularly on months.\nInitially, I plan to look at all trash category fields to get an idea of the overall trends, then will likely focus on the top 3 to 5 most common for each trash wheel for the final visualization.\nI will likely not find a use for Weight, Volume, or HomesPowered.\nID, Name, and Dumpster will be used as grouping fields and Name will be used in the final visualization.\n\n\nExternal Data:\nIf I choose to run further analyses, I may bring in data about businesses around the areas in which each wheel is located to see if there is correlation between those businesses’ products and the common types of trash collected by the wheels in those areas.\nOtherwise, I do not see external data being needed.\n\n\nPlan of Attack:\n\n\n\nTask Name\nStatus\nDue\nPriority\nSummary"
   },
   {
     "objectID": "index.html",
@@ -45,36 +45,36 @@
     "objectID": "presentation.html#quarto",
     "href": "presentation.html#quarto",
     "title": "Project title",
-    "section": "Quarto",
-    "text": "Quarto\n\nThe presentation is created using the Quarto CLI\n## sets the start of a new slide"
+    "section": "",
+    "text": "The presentation is created using the Quarto CLI\n## sets the start of a new slide"
   },
   {
     "objectID": "presentation.html#layouts",
     "href": "presentation.html#layouts",
     "title": "Project title",
-    "section": "Layouts",
-    "text": "Layouts\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis\n\nAnd add footnotes"
+    "section": "",
+    "text": "You can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis"
   },
   {
     "objectID": "presentation.html#code",
     "href": "presentation.html#code",
     "title": "Project title",
-    "section": "Code",
-    "text": "Code\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic       p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;\n1 (Intercept)   25.3      3.08        8.22 0.00000000358\n2 speed         -0.116    0.0642     -1.81 0.0806       \n\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0983        0.0682  5.82      3.27  0.0806     1  -101.  207.  212.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
+    "section": "",
+    "text": "# A tibble: 2 × 5\n  term        estimate std.error statistic       p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;\n1 (Intercept)   25.3      3.08        8.22 0.00000000358\n2 speed         -0.116    0.0642     -1.81 0.0806       \n\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0983        0.0682  5.82      3.27  0.0806     1  -101.  207.  212.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
   },
   {
     "objectID": "presentation.html#plots",
     "href": "presentation.html#plots",
     "title": "Project title",
-    "section": "Plots",
-    "text": "Plots"
+    "section": "",
+    "text": "Warning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
   },
   {
     "objectID": "presentation.html#plot-and-text",
     "href": "presentation.html#plot-and-text",
     "title": "Project title",
-    "section": "Plot and text",
-    "text": "Plot and text\n\n\n\nSome text\ngoes here"
+    "section": "",
+    "text": "Some text\ngoes here"
   },
   {
     "objectID": "presentation.html#tables",
@@ -88,7 +88,7 @@
     "href": "presentation.html#images",
     "title": "Project title",
     "section": "Images",
-    "text": "Images\n\nImage credit: Danielle Navarro, Percolate."
+    "text": "Images\n\n\n\nImage credit: Danielle Navarro, Percolate."
   },
   {
     "objectID": "presentation.html#math-expressions",
@@ -110,5 +110,61 @@
     "title": "About",
     "section": "",
     "text": "This project was developed by [Team Name] For INFO 526 - Data Analysis and Visualization at the University of Arizona, taught by Dr. Greg Chism. The team is comprised of the following team members.\n\nTeam member 1: One sentence description of Team member 1 (e.g., year, major, etc.).\nTeam member 2: One sentence description of Team member 2 (e.g., year, major, etc.).\nTeam member 3: One sentence description of Team member 3 (e.g., year, major, etc.).\nTeam member 4: One sentence description of Team member 4 (e.g., year, major, etc.)."
+  },
+  {
+    "objectID": "proposal.html#field-names",
+    "href": "proposal.html#field-names",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Field Names",
+    "text": "Field Names\n\ncolnames(trash_data)\n\n [1] \"ID\"             \"Name\"           \"Dumpster\"       \"Month\"         \n [5] \"Year\"           \"Date\"           \"Weight\"         \"Volume\"        \n [9] \"PlasticBottles\" \"Polystyrene\"    \"CigaretteButts\" \"GlassBottles\"  \n[13] \"PlasticBags\"    \"Wrappers\"       \"SportsBalls\"    \"HomesPowered\""
+  },
+  {
+    "objectID": "proposal.html#record-examples",
+    "href": "proposal.html#record-examples",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Record Examples",
+    "text": "Record Examples\n\nhead(trash_data) # first 6 records\n\n# A tibble: 6 × 16\n  ID     Name            Dumpster Month  Year Date  Weight Volume PlasticBottles\n  &lt;chr&gt;  &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;          &lt;dbl&gt;\n1 mister Mister Trash W…        1 May    2014 5/16…   4.31     18           1450\n2 mister Mister Trash W…        2 May    2014 5/16…   2.74     13           1120\n3 mister Mister Trash W…        3 May    2014 5/16…   3.45     15           2450\n4 mister Mister Trash W…        4 May    2014 5/17…   3.1      15           2380\n5 mister Mister Trash W…        5 May    2014 5/17…   4.06     18            980\n6 mister Mister Trash W…        6 May    2014 5/20…   2.71     13           1430\n# ℹ 7 more variables: Polystyrene &lt;dbl&gt;, CigaretteButts &lt;dbl&gt;,\n#   GlassBottles &lt;dbl&gt;, PlasticBags &lt;dbl&gt;, Wrappers &lt;dbl&gt;, SportsBalls &lt;dbl&gt;,\n#   HomesPowered &lt;dbl&gt;"
+  },
+  {
+    "objectID": "proposal.html#first-records-for-each-wheel",
+    "href": "proposal.html#first-records-for-each-wheel",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "First Records for Each Wheel",
+    "text": "First Records for Each Wheel\n\ntrash_data %&gt;%\n  filter(Dumpster == 1) %&gt;% # all dumpster 1 records\n  select(Name, Year)\n\n# A tibble: 4 × 2\n  Name                   Year\n  &lt;chr&gt;                 &lt;dbl&gt;\n1 Mister Trash Wheel     2014\n2 Professor Trash Wheel  2017\n3 Captain Trash Wheel    2018\n4 Gwynnda Trash Wheel    2021\n\n\nLooking at Dumpster load 1 for each of the four collection wheels we can see that Mister Trash Wheel began operation in 2014, Professor Trash Wheel in 2017, Captain Trash Wheel in 2018, and Gwynnda Trash Wheel in 2021. Because of this, it would be unwise to compare overall results between the wheels due to their differences in operation time."
+  },
+  {
+    "objectID": "proposal.html#average-paddle-checks-per-day",
+    "href": "proposal.html#average-paddle-checks-per-day",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Average Paddle Checks per Day",
+    "text": "Average Paddle Checks per Day\n\ntrash_data %&gt;% \n  group_by(Name, Date) %&gt;%\n  summarize(count = n()) %&gt;% # paddle checks per day per wheel\n  group_by(Name) %&gt;%\n  summarize(avg_checks = mean(count)) # avg paddle checks per day per wheel\n\n# A tibble: 4 × 2\n  Name                  avg_checks\n  &lt;chr&gt;                      &lt;dbl&gt;\n1 Captain Trash Wheel         1   \n2 Gwynnda Trash Wheel         1.65\n3 Mister Trash Wheel          1.66\n4 Professor Trash Wheel       1.02\n\n\nLooking at the average number of times the paddles were checked per day for each collection wheel, we also see that Captain and Professor were checked less on average than Gwynnda and Mister. This supports a stance against direct quantitative comparison."
+  },
+  {
+    "objectID": "proposal.html#question",
+    "href": "proposal.html#question",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Question",
+    "text": "Question\nIs there a significant difference between the proportions of trash categories between the four collection wheels during the same time period?"
+  },
+  {
+    "objectID": "presentation.html",
+    "href": "presentation.html",
+    "title": "Project title",
+    "section": "",
+    "text": "The presentation is created using the Quarto CLI\n## sets the start of a new slide\n\n\n\n\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis\n\n\n\n\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic       p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;\n1 (Intercept)   25.3      3.08        8.22 0.00000000358\n2 speed         -0.116    0.0642     -1.81 0.0806       \n\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0983        0.0682  5.82      3.27  0.0806     1  -101.  207.  212.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;\n\n\n\n\n\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\n\n\nSome text\ngoes here"
+  },
+  {
+    "objectID": "presentation.html#footnotes",
+    "href": "presentation.html#footnotes",
+    "title": "Project title",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nAnd add footnotes↩︎"
+  },
+  {
+    "objectID": "proposal.html#install-and-load-packages",
+    "href": "proposal.html#install-and-load-packages",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "",
+    "text": "install.packages(c(\"tidyverse\", \"dplyr\", \"readr\", \"tidytuesdayR\"),\n  repos = \"http://cran.us.r-project.org\"\n)\n\npackage 'tidyverse' successfully unpacked and MD5 sums checked\npackage 'dplyr' successfully unpacked and MD5 sums checked\npackage 'readr' successfully unpacked and MD5 sums checked\npackage 'tidytuesdayR' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\wiesn\\AppData\\Local\\Temp\\RtmpCImREH\\downloaded_packages\n\nlibrary(tidyverse)\nlibrary(dplyr)\nlibrary(readr)"
   }
 ]

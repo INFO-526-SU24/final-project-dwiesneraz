@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Team Name">
-<meta name="description" content="Project description">
+<meta name="author" content="Daniel Wiesner">
+<meta name="description" content="A comparison of the different categories of trash collected by four trash collection wheels in the Baltimore Harbor.">
 
-<title>Project Title - Proposal title</title>
+<title>Project Title - Trash Wheel Collection Comparison</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -4537,9 +4537,17 @@ vertical-align: -.125em;
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#dataset" id="toc-dataset" class="nav-link active" data-scroll-target="#dataset">Dataset</a></li>
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
-  <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan">Analysis plan</a></li>
+  <li><a href="#install-and-load-packages" id="toc-install-and-load-packages" class="nav-link active" data-scroll-target="#install-and-load-packages">Install and Load Packages</a></li>
+  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset">Dataset</a></li>
+  <li><a href="#field-names" id="toc-field-names" class="nav-link" data-scroll-target="#field-names">Field Names</a></li>
+  <li><a href="#record-examples" id="toc-record-examples" class="nav-link" data-scroll-target="#record-examples">Record Examples</a></li>
+  <li><a href="#first-records-for-each-wheel" id="toc-first-records-for-each-wheel" class="nav-link" data-scroll-target="#first-records-for-each-wheel">First Records for Each Wheel</a></li>
+  <li><a href="#average-paddle-checks-per-day" id="toc-average-paddle-checks-per-day" class="nav-link" data-scroll-target="#average-paddle-checks-per-day">Average Paddle Checks per Day</a></li>
+  <li><a href="#question" id="toc-question" class="nav-link" data-scroll-target="#question">Question</a></li>
+  <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan">Analysis Plan</a>
+  <ul class="collapse">
+  <li><a href="#plan-of-attack" id="toc-plan-of-attack" class="nav-link" data-scroll-target="#plan-of-attack">Plan of Attack:</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -4548,13 +4556,13 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Proposal title</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Trash Wheel Collection Comparison</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 <p class="subtitle lead">Proposal</p>
 </div>
 
 <div>
   <div class="description">
-    Project description
+    A comparison of the different categories of trash collected by four trash collection wheels in the Baltimore Harbor.
   </div>
 </div>
 
@@ -4563,7 +4571,7 @@ vertical-align: -.125em;
   <div class="quarto-title-meta-heading">Affiliation</div>
   
     <div class="quarto-title-meta-contents">
-    <p class="author">Team Name </p>
+    <p class="author">Daniel Wiesner </p>
   </div>
     <div class="quarto-title-meta-contents">
         <p class="affiliation">
@@ -4582,27 +4590,223 @@ vertical-align: -.125em;
 
 </header>
 
+<section id="install-and-load-packages" class="level2">
+<h2 class="anchored" data-anchor-id="install-and-load-packages">Install and Load Packages</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;readr&quot;</span>, <span class="st">&quot;tidytuesdayR&quot;</span>),</span>
+<span id="cb1-2"><a href="#cb1-2"></a>  <span class="at">repos =</span> <span class="st">&quot;http://cran.us.r-project.org&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>package &#39;tidyverse&#39; successfully unpacked and MD5 sums checked
+package &#39;dplyr&#39; successfully unpacked and MD5 sums checked
+package &#39;readr&#39; successfully unpacked and MD5 sums checked
+package &#39;tidytuesdayR&#39; successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+    C:\Users\wiesn\AppData\Local\Temp\RtmpCImREH\downloaded_packages</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">library</span>(readr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 <section id="dataset" class="level2">
 <h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
-<p>A brief description of your dataset including its provenance, dimensions, etc. as well as the reason why you chose this dataset.</p>
-<p>Make sure to load the data and use inline code for some of this information.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a>tuesdata <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="st">&#39;2024-03-05&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Downloading file 1 of 1: `trashwheel.csv`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>trash_data <span class="ot">&lt;-</span> tuesdata<span class="sc">$</span>trashwheel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>I have chosen the Trash Wheel Collection Dataset. This dataset provides information about four trash collection wheels around the Harbor of Baltimore, Maryland. The trash category counts are based on averages of periodic manual counts of each category of trash on the wheel’s conveyor paddles.</p>
+<p>Much of this data is quantitative, providing the counts of the various categories of trash for each collection wheel at each manual check, labeled by date and dumpster load which is a separate count for each wheel.</p>
+<p>I chose this dataset because I am generally interested in waste reduction programs and strategies and would like to evaluate the potential for data collection to improve these strategies and inform public policy on the best ways to combat pollution.</p>
+<p>I felt that there was potential for the results of this analysis, when combined with information about institutions and businesses located in the areas of the trash collection wheels, to provide actionable information about where different litter might be coming from and why so that systems can be put in place to mitigate further littering in those areas.</p>
 </section>
-<section id="questions" class="level2">
-<h2 class="anchored" data-anchor-id="questions">Questions</h2>
-<p>The two questions you want to answer.</p>
+<section id="field-names" class="level2">
+<h2 class="anchored" data-anchor-id="field-names">Field Names</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">colnames</span>(trash_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] &quot;ID&quot;             &quot;Name&quot;           &quot;Dumpster&quot;       &quot;Month&quot;         
+ [5] &quot;Year&quot;           &quot;Date&quot;           &quot;Weight&quot;         &quot;Volume&quot;        
+ [9] &quot;PlasticBottles&quot; &quot;Polystyrene&quot;    &quot;CigaretteButts&quot; &quot;GlassBottles&quot;  
+[13] &quot;PlasticBags&quot;    &quot;Wrappers&quot;       &quot;SportsBalls&quot;    &quot;HomesPowered&quot;  </code></pre>
+</div>
+</div>
+</section>
+<section id="record-examples" class="level2">
+<h2 class="anchored" data-anchor-id="record-examples">Record Examples</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">head</span>(trash_data) <span class="co"># first 6 records</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 16
+  ID     Name            Dumpster Month  Year Date  Weight Volume PlasticBottles
+  &lt;chr&gt;  &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;          &lt;dbl&gt;
+1 mister Mister Trash W…        1 May    2014 5/16…   4.31     18           1450
+2 mister Mister Trash W…        2 May    2014 5/16…   2.74     13           1120
+3 mister Mister Trash W…        3 May    2014 5/16…   3.45     15           2450
+4 mister Mister Trash W…        4 May    2014 5/17…   3.1      15           2380
+5 mister Mister Trash W…        5 May    2014 5/17…   4.06     18            980
+6 mister Mister Trash W…        6 May    2014 5/20…   2.71     13           1430
+# ℹ 7 more variables: Polystyrene &lt;dbl&gt;, CigaretteButts &lt;dbl&gt;,
+#   GlassBottles &lt;dbl&gt;, PlasticBags &lt;dbl&gt;, Wrappers &lt;dbl&gt;, SportsBalls &lt;dbl&gt;,
+#   HomesPowered &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="first-records-for-each-wheel" class="level2">
+<h2 class="anchored" data-anchor-id="first-records-for-each-wheel">First Records for Each Wheel</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>trash_data <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">filter</span>(Dumpster <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co"># all dumpster 1 records</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">select</span>(Name, Year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  Name                   Year
+  &lt;chr&gt;                 &lt;dbl&gt;
+1 Mister Trash Wheel     2014
+2 Professor Trash Wheel  2017
+3 Captain Trash Wheel    2018
+4 Gwynnda Trash Wheel    2021</code></pre>
+</div>
+</div>
+<p>Looking at Dumpster load 1 for each of the four collection wheels we can see that Mister Trash Wheel began operation in 2014, Professor Trash Wheel in 2017, Captain Trash Wheel in 2018, and Gwynnda Trash Wheel in 2021. Because of this, it would be unwise to compare overall results between the wheels due to their differences in operation time.</p>
+</section>
+<section id="average-paddle-checks-per-day" class="level2">
+<h2 class="anchored" data-anchor-id="average-paddle-checks-per-day">Average Paddle Checks per Day</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>trash_data <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">group_by</span>(Name, Date) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> <span class="co"># paddle checks per day per wheel</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">group_by</span>(Name) <span class="sc">%&gt;%</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">summarize</span>(<span class="at">avg_checks =</span> <span class="fu">mean</span>(count)) <span class="co"># avg paddle checks per day per wheel</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  Name                  avg_checks
+  &lt;chr&gt;                      &lt;dbl&gt;
+1 Captain Trash Wheel         1   
+2 Gwynnda Trash Wheel         1.65
+3 Mister Trash Wheel          1.66
+4 Professor Trash Wheel       1.02</code></pre>
+</div>
+</div>
+<p>Looking at the average number of times the paddles were checked per day for each collection wheel, we also see that Captain and Professor were checked less on average than Gwynnda and Mister. This supports a stance against direct quantitative comparison.</p>
+</section>
+<section id="question" class="level2">
+<h2 class="anchored" data-anchor-id="question">Question</h2>
+<p>Is there a significant difference between the proportions of trash categories between the four collection wheels during the same time period?</p>
 </section>
 <section id="analysis-plan" class="level2">
-<h2 class="anchored" data-anchor-id="analysis-plan">Analysis plan</h2>
-<ul>
-<li>A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).</li>
-</ul>
+<h2 class="anchored" data-anchor-id="analysis-plan">Analysis Plan</h2>
+<p>Because the wheels have been operating for different amounts of time, I feel it is likely misguided to compare averages of their entire history so I instead plan to focus primarily on the time period for which they have all been operational (since 2021).</p>
+<p>I may choose to run further analyses to see if there are significant differences in trash category frequencies over time for each wheel.</p>
+<section id="variables-involved" class="level4">
+<h4 class="anchored" data-anchor-id="variables-involved">Variables Involved:</h4>
+<p>For time-frames, I plan to focus primarily on years but because all four of the wheels have only been operational for a few years, I may choose to focus more granularly on months.</p>
+<p>Initially, I plan to look at all trash category fields to get an idea of the overall trends, then will likely focus on the top 3 to 5 most common for each trash wheel for the final visualization.</p>
+<p>I will likely not find a use for Weight, Volume, or HomesPowered.</p>
+<p>ID, Name, and Dumpster will be used as grouping fields and Name will be used in the final visualization.</p>
+</section>
+<section id="external-data" class="level4">
+<h4 class="anchored" data-anchor-id="external-data">External Data:</h4>
+<p>If I choose to run further analyses, I may bring in data about businesses around the areas in which each wheel is located to see if there is correlation between those businesses’ products and the common types of trash collected by the wheels in those areas.</p>
+<p>Otherwise, I do not see external data being needed.</p>
+</section>
+<section id="plan-of-attack" class="level3">
+<h3 class="anchored" data-anchor-id="plan-of-attack">Plan of Attack:</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Task Name</th>
+<th style="text-align: center;">Status</th>
+<th style="text-align: center;">Due</th>
+<th style="text-align: center;">Priority</th>
+<th style="text-align: center;">Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
 
 
 <!-- -->
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -5070,50 +5274,136 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">---</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="an">title:</span><span class="co"> &quot;Proposal title&quot;</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="an">subtitle:</span><span class="co"> &quot;Proposal&quot;</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="an">author:</span><span class="co"> </span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="co">  - name: &quot;Team Name&quot;</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="co">    affiliations:</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="co">      - name: &quot;School of Information, University of Arizona&quot;</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="an">description:</span><span class="co"> &quot;Project description&quot;</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="an">format:</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="co">  html:</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="co">    code-tools: true</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="co">    code-overflow: wrap</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a><span class="co">    code-line-numbers: true</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="co">    embed-resources: true</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="an">editor:</span><span class="co"> visual</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="an">code-annotations:</span><span class="co"> hover</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="an">execute:</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="co">  warning: false</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a><span class="co">---</span></span>
-<span id="cb2-20"><a href="#cb2-20"></a></span>
-<span id="cb2-23"><a href="#cb2-23"></a><span class="in">```{r}</span></span>
-<span id="cb2-24"><a href="#cb2-24"></a><span class="co">#| label: load-pkgs</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a><span class="co">#| message: false</span></span>
-<span id="cb2-26"><a href="#cb2-26"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb2-27"><a href="#cb2-27"></a><span class="in">```</span></span>
-<span id="cb2-28"><a href="#cb2-28"></a></span>
-<span id="cb2-29"><a href="#cb2-29"></a><span class="fu">## Dataset</span></span>
-<span id="cb2-30"><a href="#cb2-30"></a></span>
-<span id="cb2-33"><a href="#cb2-33"></a><span class="in">```{r}</span></span>
-<span id="cb2-34"><a href="#cb2-34"></a><span class="co">#| label: load-dataset</span></span>
-<span id="cb2-35"><a href="#cb2-35"></a><span class="co">#| message: false</span></span>
-<span id="cb2-36"><a href="#cb2-36"></a><span class="in">```</span></span>
-<span id="cb2-37"><a href="#cb2-37"></a></span>
-<span id="cb2-38"><a href="#cb2-38"></a>A brief description of your dataset including its provenance, dimensions, etc. as well as the reason why you chose this dataset.</span>
-<span id="cb2-39"><a href="#cb2-39"></a></span>
-<span id="cb2-40"><a href="#cb2-40"></a>Make sure to load the data and use inline code for some of this information.</span>
-<span id="cb2-41"><a href="#cb2-41"></a></span>
-<span id="cb2-42"><a href="#cb2-42"></a><span class="fu">## Questions</span></span>
-<span id="cb2-43"><a href="#cb2-43"></a></span>
-<span id="cb2-44"><a href="#cb2-44"></a>The two questions you want to answer.</span>
-<span id="cb2-45"><a href="#cb2-45"></a></span>
-<span id="cb2-46"><a href="#cb2-46"></a><span class="fu">## Analysis plan</span></span>
-<span id="cb2-47"><a href="#cb2-47"></a></span>
-<span id="cb2-48"><a href="#cb2-48"></a><span class="ss">-   </span>A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).</span>
+<div class="sourceCode" id="cb15" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">---</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="an">title:</span><span class="co"> &quot;Trash Wheel Collection Comparison&quot;</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="an">subtitle:</span><span class="co"> &quot;Proposal&quot;</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="an">author:</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="co">  - name: &quot;Daniel Wiesner&quot;</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a><span class="co">    affiliations:</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a><span class="co">      - name: &quot;School of Information, University of Arizona&quot;</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="an">description:</span><span class="co"> &quot;A comparison of the different categories of trash collected by four trash collection wheels in the Baltimore Harbor.&quot;</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a><span class="an">format:</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a><span class="co">  html:</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a><span class="co">    code-tools: true</span></span>
+<span id="cb15-12"><a href="#cb15-12"></a><span class="co">    code-overflow: wrap</span></span>
+<span id="cb15-13"><a href="#cb15-13"></a><span class="co">    code-line-numbers: true</span></span>
+<span id="cb15-14"><a href="#cb15-14"></a><span class="co">    embed-resources: true</span></span>
+<span id="cb15-15"><a href="#cb15-15"></a><span class="an">editor:</span><span class="co"> visual</span></span>
+<span id="cb15-16"><a href="#cb15-16"></a><span class="an">code-annotations:</span><span class="co"> hover</span></span>
+<span id="cb15-17"><a href="#cb15-17"></a><span class="an">execute:</span></span>
+<span id="cb15-18"><a href="#cb15-18"></a><span class="co">  warning: false</span></span>
+<span id="cb15-19"><a href="#cb15-19"></a><span class="co">---</span></span>
+<span id="cb15-20"><a href="#cb15-20"></a></span>
+<span id="cb15-21"><a href="#cb15-21"></a><span class="fu">## Install and Load Packages</span></span>
+<span id="cb15-22"><a href="#cb15-22"></a></span>
+<span id="cb15-25"><a href="#cb15-25"></a><span class="in">```{r}</span></span>
+<span id="cb15-26"><a href="#cb15-26"></a><span class="co">#| label: load-pkgs</span></span>
+<span id="cb15-27"><a href="#cb15-27"></a><span class="co">#| message: false</span></span>
+<span id="cb15-28"><a href="#cb15-28"></a></span>
+<span id="cb15-29"><a href="#cb15-29"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;readr&quot;</span>, <span class="st">&quot;tidytuesdayR&quot;</span>),</span>
+<span id="cb15-30"><a href="#cb15-30"></a>  <span class="at">repos =</span> <span class="st">&quot;http://cran.us.r-project.org&quot;</span></span>
+<span id="cb15-31"><a href="#cb15-31"></a>)</span>
+<span id="cb15-32"><a href="#cb15-32"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb15-33"><a href="#cb15-33"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb15-34"><a href="#cb15-34"></a><span class="fu">library</span>(readr)</span>
+<span id="cb15-35"><a href="#cb15-35"></a><span class="in">```</span></span>
+<span id="cb15-36"><a href="#cb15-36"></a></span>
+<span id="cb15-37"><a href="#cb15-37"></a><span class="fu">## Dataset</span></span>
+<span id="cb15-38"><a href="#cb15-38"></a></span>
+<span id="cb15-41"><a href="#cb15-41"></a><span class="in">```{r}</span></span>
+<span id="cb15-42"><a href="#cb15-42"></a><span class="co">#| label: load-dataset</span></span>
+<span id="cb15-43"><a href="#cb15-43"></a><span class="co">#| message: false</span></span>
+<span id="cb15-44"><a href="#cb15-44"></a></span>
+<span id="cb15-45"><a href="#cb15-45"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb15-46"><a href="#cb15-46"></a></span>
+<span id="cb15-47"><a href="#cb15-47"></a>tuesdata <span class="ot">&lt;-</span> tidytuesdayR<span class="sc">::</span><span class="fu">tt_load</span>(<span class="st">&#39;2024-03-05&#39;</span>)</span>
+<span id="cb15-48"><a href="#cb15-48"></a></span>
+<span id="cb15-49"><a href="#cb15-49"></a>trash_data <span class="ot">&lt;-</span> tuesdata<span class="sc">$</span>trashwheel</span>
+<span id="cb15-50"><a href="#cb15-50"></a></span>
+<span id="cb15-51"><a href="#cb15-51"></a><span class="in">```</span></span>
+<span id="cb15-52"><a href="#cb15-52"></a></span>
+<span id="cb15-53"><a href="#cb15-53"></a>I have chosen the Trash Wheel Collection Dataset. This dataset provides information about four trash collection wheels around the Harbor of Baltimore, Maryland. The trash category counts are based on averages of periodic manual counts of each category of trash on the wheel&#39;s conveyor paddles.</span>
+<span id="cb15-54"><a href="#cb15-54"></a></span>
+<span id="cb15-55"><a href="#cb15-55"></a>Much of this data is quantitative, providing the counts of the various categories of trash for each collection wheel at each manual check, labeled by date and dumpster load which is a separate count for each wheel.</span>
+<span id="cb15-56"><a href="#cb15-56"></a></span>
+<span id="cb15-57"><a href="#cb15-57"></a>I chose this dataset because I am generally interested in waste reduction programs and strategies and would like to evaluate the potential for data collection to improve these strategies and inform public policy on the best ways to combat pollution.</span>
+<span id="cb15-58"><a href="#cb15-58"></a></span>
+<span id="cb15-59"><a href="#cb15-59"></a>I felt that there was potential for the results of this analysis, when combined with information about institutions and businesses located in the areas of the trash collection wheels, to provide actionable information about where different litter might be coming from and why so that systems can be put in place to mitigate further littering in those areas.</span>
+<span id="cb15-60"><a href="#cb15-60"></a></span>
+<span id="cb15-61"><a href="#cb15-61"></a><span class="fu">## Field Names</span></span>
+<span id="cb15-62"><a href="#cb15-62"></a></span>
+<span id="cb15-65"><a href="#cb15-65"></a><span class="in">```{r}</span></span>
+<span id="cb15-66"><a href="#cb15-66"></a><span class="fu">colnames</span>(trash_data)</span>
+<span id="cb15-67"><a href="#cb15-67"></a><span class="in">```</span></span>
+<span id="cb15-68"><a href="#cb15-68"></a></span>
+<span id="cb15-69"><a href="#cb15-69"></a><span class="fu">## Record Examples</span></span>
+<span id="cb15-70"><a href="#cb15-70"></a></span>
+<span id="cb15-73"><a href="#cb15-73"></a><span class="in">```{r}</span></span>
+<span id="cb15-74"><a href="#cb15-74"></a><span class="fu">head</span>(trash_data) <span class="co"># first 6 records</span></span>
+<span id="cb15-75"><a href="#cb15-75"></a><span class="in">```</span></span>
+<span id="cb15-76"><a href="#cb15-76"></a></span>
+<span id="cb15-77"><a href="#cb15-77"></a><span class="fu">## First Records for Each Wheel</span></span>
+<span id="cb15-78"><a href="#cb15-78"></a></span>
+<span id="cb15-81"><a href="#cb15-81"></a><span class="in">```{r}</span></span>
+<span id="cb15-82"><a href="#cb15-82"></a>trash_data <span class="sc">%&gt;%</span></span>
+<span id="cb15-83"><a href="#cb15-83"></a>  <span class="fu">filter</span>(Dumpster <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co"># all dumpster 1 records</span></span>
+<span id="cb15-84"><a href="#cb15-84"></a>  <span class="fu">select</span>(Name, Year)</span>
+<span id="cb15-85"><a href="#cb15-85"></a><span class="in">```</span></span>
+<span id="cb15-86"><a href="#cb15-86"></a></span>
+<span id="cb15-87"><a href="#cb15-87"></a>Looking at Dumpster load 1 for each of the four collection wheels we can see that Mister Trash Wheel began operation in 2014, Professor Trash Wheel in 2017, Captain Trash Wheel in 2018, and Gwynnda Trash Wheel in 2021. Because of this, it would be unwise to compare overall results between the wheels due to their differences in operation time.</span>
+<span id="cb15-88"><a href="#cb15-88"></a></span>
+<span id="cb15-89"><a href="#cb15-89"></a><span class="fu">## Average Paddle Checks per Day</span></span>
+<span id="cb15-90"><a href="#cb15-90"></a></span>
+<span id="cb15-93"><a href="#cb15-93"></a><span class="in">```{r}</span></span>
+<span id="cb15-94"><a href="#cb15-94"></a>trash_data <span class="sc">%&gt;%</span> </span>
+<span id="cb15-95"><a href="#cb15-95"></a>  <span class="fu">group_by</span>(Name, Date) <span class="sc">%&gt;%</span></span>
+<span id="cb15-96"><a href="#cb15-96"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> <span class="co"># paddle checks per day per wheel</span></span>
+<span id="cb15-97"><a href="#cb15-97"></a>  <span class="fu">group_by</span>(Name) <span class="sc">%&gt;%</span></span>
+<span id="cb15-98"><a href="#cb15-98"></a>  <span class="fu">summarize</span>(<span class="at">avg_checks =</span> <span class="fu">mean</span>(count)) <span class="co"># avg paddle checks per day per wheel</span></span>
+<span id="cb15-99"><a href="#cb15-99"></a><span class="in">```</span></span>
+<span id="cb15-100"><a href="#cb15-100"></a></span>
+<span id="cb15-101"><a href="#cb15-101"></a>Looking at the average number of times the paddles were checked per day for each collection wheel, we also see that Captain and Professor were checked less on average than Gwynnda and Mister. This supports a stance against direct quantitative comparison.</span>
+<span id="cb15-102"><a href="#cb15-102"></a></span>
+<span id="cb15-103"><a href="#cb15-103"></a><span class="fu">## Question</span></span>
+<span id="cb15-104"><a href="#cb15-104"></a></span>
+<span id="cb15-105"><a href="#cb15-105"></a>Is there a significant difference between the proportions of trash categories between the four collection wheels during the same time period?</span>
+<span id="cb15-106"><a href="#cb15-106"></a></span>
+<span id="cb15-107"><a href="#cb15-107"></a><span class="fu">## Analysis Plan</span></span>
+<span id="cb15-108"><a href="#cb15-108"></a></span>
+<span id="cb15-109"><a href="#cb15-109"></a>Because the wheels have been operating for different amounts of time, I feel it is likely misguided to compare averages of their entire history so I instead plan to focus primarily on the time period for which they have all been operational (since 2021).</span>
+<span id="cb15-110"><a href="#cb15-110"></a></span>
+<span id="cb15-111"><a href="#cb15-111"></a>I may choose to run further analyses to see if there are significant differences in trash category frequencies over time for each wheel.</span>
+<span id="cb15-112"><a href="#cb15-112"></a></span>
+<span id="cb15-113"><a href="#cb15-113"></a><span class="fu">#### Variables Involved:</span></span>
+<span id="cb15-114"><a href="#cb15-114"></a></span>
+<span id="cb15-115"><a href="#cb15-115"></a>For time-frames, I plan to focus primarily on years but because all four of the wheels have only been operational for a few years, I may choose to focus more granularly on months.</span>
+<span id="cb15-116"><a href="#cb15-116"></a></span>
+<span id="cb15-117"><a href="#cb15-117"></a>Initially, I plan to look at all trash category fields to get an idea of the overall trends, then will likely focus on the top 3 to 5 most common for each trash wheel for the final visualization.</span>
+<span id="cb15-118"><a href="#cb15-118"></a></span>
+<span id="cb15-119"><a href="#cb15-119"></a>I will likely not find a use for Weight, Volume, or HomesPowered.</span>
+<span id="cb15-120"><a href="#cb15-120"></a></span>
+<span id="cb15-121"><a href="#cb15-121"></a>ID, Name, and Dumpster will be used as grouping fields and Name will be used in the final visualization.</span>
+<span id="cb15-122"><a href="#cb15-122"></a></span>
+<span id="cb15-123"><a href="#cb15-123"></a><span class="fu">#### External Data:</span></span>
+<span id="cb15-124"><a href="#cb15-124"></a></span>
+<span id="cb15-125"><a href="#cb15-125"></a>If I choose to run further analyses, I may bring in data about businesses around the areas in which each wheel is located to see if there is correlation between those businesses&#39; products and the common types of trash collected by the wheels in those areas.</span>
+<span id="cb15-126"><a href="#cb15-126"></a></span>
+<span id="cb15-127"><a href="#cb15-127"></a>Otherwise, I do not see external data being needed.</span>
+<span id="cb15-128"><a href="#cb15-128"></a></span>
+<span id="cb15-129"><a href="#cb15-129"></a><span class="fu">### Plan of Attack:</span></span>
+<span id="cb15-130"><a href="#cb15-130"></a></span>
+<span id="cb15-131"><a href="#cb15-131"></a>| Task Name | Status | Due | Priority | Summary |</span>
+<span id="cb15-132"><a href="#cb15-132"></a>|:---------:|:------:|:---:|:--------:|:-------:|</span>
+<span id="cb15-133"><a href="#cb15-133"></a>|           |        |     |          |         |</span>
+<span id="cb15-134"><a href="#cb15-134"></a>|           |        |     |          |         |</span>
+<span id="cb15-135"><a href="#cb15-135"></a>|           |        |     |          |         |</span>
+<span id="cb15-136"><a href="#cb15-136"></a>|           |        |     |          |         |</span>
+<span id="cb15-137"><a href="#cb15-137"></a>|           |        |     |          |         |</span>
+<span id="cb15-138"><a href="#cb15-138"></a>|           |        |     |          |         |</span>
+<span id="cb15-139"><a href="#cb15-139"></a>|           |        |     |          |         |</span>
+<span id="cb15-140"><a href="#cb15-140"></a>|           |        |     |          |         |</span>
+<span id="cb15-141"><a href="#cb15-141"></a>|           |        |     |          |         |</span>
+<span id="cb15-142"><a href="#cb15-142"></a>|           |        |     |          |         |</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
