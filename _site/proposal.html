@@ -4603,7 +4603,7 @@ package &#39;readr&#39; successfully unpacked and MD5 sums checked
 package &#39;tidytuesdayR&#39; successfully unpacked and MD5 sums checked
 
 The downloaded binary packages are in
-    C:\Users\wiesn\AppData\Local\Temp\RtmpCImREH\downloaded_packages</code></pre>
+    C:\Users\wiesn\AppData\Local\Temp\RtmpS2MK4J\downloaded_packages</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="fu">library</span>(dplyr)</span>
@@ -4703,23 +4703,38 @@ The downloaded binary packages are in
 </section>
 <section id="analysis-plan" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-plan">Analysis Plan</h2>
-<p>Because the wheels have been operating for different amounts of time, I feel it is likely misguided to compare averages of their entire history so I instead plan to focus primarily on the time period for which they have all been operational (since 2021).</p>
-<p>I may choose to run further analyses to see if there are significant differences in trash category frequencies over time for each wheel.</p>
+<p>Because the wheels have been operating for different amounts of time, I feel it is likely misguided to compare averages of their entire history so I instead plan to focus primarily on the time period for which they have all been operational (since 2021) and to only compare their relative proportions between the different trash categories.</p>
+<section id="plot-1" class="level4">
+<h4 class="anchored" data-anchor-id="plot-1">Plot 1:</h4>
+<p>Comparing proportions of the different trash categories between the wheels for the time in which they have all been operational (since 2021).</p>
+</section>
+<section id="plot-2" class="level4">
+<h4 class="anchored" data-anchor-id="plot-2">Plot 2:</h4>
+<p>Comparing if and how the trash category proportions have changed over time.</p>
+</section>
 <section id="variables-involved" class="level4">
 <h4 class="anchored" data-anchor-id="variables-involved">Variables Involved:</h4>
-<p>For time-frames, I plan to focus primarily on years but because all four of the wheels have only been operational for a few years, I may choose to focus more granularly on months.</p>
-<p>Initially, I plan to look at all trash category fields to get an idea of the overall trends, then will likely focus on the top 3 to 5 most common for each trash wheel for the final visualization.</p>
+<p>For time-frames, I plan to focus primarily on years but because all four of the wheels have only been operational for a few years, I may choose to focus more granularly on months in the first plot.</p>
+<p>Initially, I plan to look at all trash category fields to get an idea of the overall trends, then will likely focus on the top 3 to 5 most common for each trash wheel for the final visualizations.</p>
 <p>I will likely not find a use for Weight, Volume, or HomesPowered.</p>
-<p>ID, Name, and Dumpster will be used as grouping fields and Name will be used in the final visualization.</p>
+<p>ID, Name, and Dumpster will be used as grouping fields and Name will likely be used in the final visualizations.</p>
 </section>
 <section id="external-data" class="level4">
 <h4 class="anchored" data-anchor-id="external-data">External Data:</h4>
+<p>I may choose to visualize Plot 1 onto a map of the harbor, which I will pull from outside resources.</p>
 <p>If I choose to run further analyses, I may bring in data about businesses around the areas in which each wheel is located to see if there is correlation between those businesses’ products and the common types of trash collected by the wheels in those areas.</p>
-<p>Otherwise, I do not see external data being needed.</p>
+<p>Further analyses may also lead me to look for information about water currents in the harbor to try to locate littering “hot spots”.</p>
 </section>
 <section id="plan-of-attack" class="level3">
 <h3 class="anchored" data-anchor-id="plan-of-attack">Plan of Attack:</h3>
 <table class="table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 34%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: center;">Task Name</th>
@@ -4731,32 +4746,46 @@ The downloaded binary packages are in
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: center;">Get Proportions</td>
+<td style="text-align: center;">incomplete</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">high</td>
+<td style="text-align: center;">Get the proportions of each trash category from each wheel over all records since 2021</td>
 </tr>
 <tr class="even">
+<td style="text-align: center;">Decide Categories</td>
+<td style="text-align: center;">incomplete</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">moderate</td>
+<td style="text-align: center;">Decide how many top categories to focus on. This will depend on how they differ between the wheels. May use all categories.</td>
 </tr>
 <tr class="odd">
+<td style="text-align: center;">Decide Timeframe</td>
+<td style="text-align: center;">incomplete</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">high</td>
+<td style="text-align: center;">Decide on a specific timeframe for Plot 2 (could be all years of operation for each wheel)</td>
 </tr>
 <tr class="even">
+<td style="text-align: center;">Get Proportion Changes</td>
+<td style="text-align: center;">incomplete</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">moderate</td>
+<td style="text-align: center;">Get and organize the changes in proportions for each wheel over the chosen timeframe.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Experiment with Formats</td>
+<td style="text-align: center;">incomplete</td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;">low</td>
+<td style="text-align: center;">Experiment with different visualization formats and styles to see which conveys the information best.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">External Information</td>
+<td style="text-align: center;">incomplete</td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">low</td>
+<td style="text-align: center;">Search for external information to see if there is enough available to tackle the further analyses. Ex: harbor map, water currents, establishments in the area, etc.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;"></td>
@@ -5370,40 +5399,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb15-106"><a href="#cb15-106"></a></span>
 <span id="cb15-107"><a href="#cb15-107"></a><span class="fu">## Analysis Plan</span></span>
 <span id="cb15-108"><a href="#cb15-108"></a></span>
-<span id="cb15-109"><a href="#cb15-109"></a>Because the wheels have been operating for different amounts of time, I feel it is likely misguided to compare averages of their entire history so I instead plan to focus primarily on the time period for which they have all been operational (since 2021).</span>
+<span id="cb15-109"><a href="#cb15-109"></a>Because the wheels have been operating for different amounts of time, I feel it is likely misguided to compare averages of their entire history so I instead plan to focus primarily on the time period for which they have all been operational (since 2021) and to only compare their relative proportions between the different trash categories.</span>
 <span id="cb15-110"><a href="#cb15-110"></a></span>
-<span id="cb15-111"><a href="#cb15-111"></a>I may choose to run further analyses to see if there are significant differences in trash category frequencies over time for each wheel.</span>
+<span id="cb15-111"><a href="#cb15-111"></a><span class="fu">#### Plot 1:</span></span>
 <span id="cb15-112"><a href="#cb15-112"></a></span>
-<span id="cb15-113"><a href="#cb15-113"></a><span class="fu">#### Variables Involved:</span></span>
+<span id="cb15-113"><a href="#cb15-113"></a>Comparing proportions of the different trash categories between the wheels for the time in which they have all been operational (since 2021).</span>
 <span id="cb15-114"><a href="#cb15-114"></a></span>
-<span id="cb15-115"><a href="#cb15-115"></a>For time-frames, I plan to focus primarily on years but because all four of the wheels have only been operational for a few years, I may choose to focus more granularly on months.</span>
+<span id="cb15-115"><a href="#cb15-115"></a><span class="fu">#### Plot 2:</span></span>
 <span id="cb15-116"><a href="#cb15-116"></a></span>
-<span id="cb15-117"><a href="#cb15-117"></a>Initially, I plan to look at all trash category fields to get an idea of the overall trends, then will likely focus on the top 3 to 5 most common for each trash wheel for the final visualization.</span>
+<span id="cb15-117"><a href="#cb15-117"></a>Comparing if and how the trash category proportions have changed over time.</span>
 <span id="cb15-118"><a href="#cb15-118"></a></span>
-<span id="cb15-119"><a href="#cb15-119"></a>I will likely not find a use for Weight, Volume, or HomesPowered.</span>
+<span id="cb15-119"><a href="#cb15-119"></a><span class="fu">#### Variables Involved:</span></span>
 <span id="cb15-120"><a href="#cb15-120"></a></span>
-<span id="cb15-121"><a href="#cb15-121"></a>ID, Name, and Dumpster will be used as grouping fields and Name will be used in the final visualization.</span>
+<span id="cb15-121"><a href="#cb15-121"></a>For time-frames, I plan to focus primarily on years but because all four of the wheels have only been operational for a few years, I may choose to focus more granularly on months in the first plot.</span>
 <span id="cb15-122"><a href="#cb15-122"></a></span>
-<span id="cb15-123"><a href="#cb15-123"></a><span class="fu">#### External Data:</span></span>
+<span id="cb15-123"><a href="#cb15-123"></a>Initially, I plan to look at all trash category fields to get an idea of the overall trends, then will likely focus on the top 3 to 5 most common for each trash wheel for the final visualizations.</span>
 <span id="cb15-124"><a href="#cb15-124"></a></span>
-<span id="cb15-125"><a href="#cb15-125"></a>If I choose to run further analyses, I may bring in data about businesses around the areas in which each wheel is located to see if there is correlation between those businesses&#39; products and the common types of trash collected by the wheels in those areas.</span>
+<span id="cb15-125"><a href="#cb15-125"></a>I will likely not find a use for Weight, Volume, or HomesPowered.</span>
 <span id="cb15-126"><a href="#cb15-126"></a></span>
-<span id="cb15-127"><a href="#cb15-127"></a>Otherwise, I do not see external data being needed.</span>
+<span id="cb15-127"><a href="#cb15-127"></a>ID, Name, and Dumpster will be used as grouping fields and Name will likely be used in the final visualizations.</span>
 <span id="cb15-128"><a href="#cb15-128"></a></span>
-<span id="cb15-129"><a href="#cb15-129"></a><span class="fu">### Plan of Attack:</span></span>
+<span id="cb15-129"><a href="#cb15-129"></a><span class="fu">#### External Data:</span></span>
 <span id="cb15-130"><a href="#cb15-130"></a></span>
-<span id="cb15-131"><a href="#cb15-131"></a>| Task Name | Status | Due | Priority | Summary |</span>
-<span id="cb15-132"><a href="#cb15-132"></a>|:---------:|:------:|:---:|:--------:|:-------:|</span>
-<span id="cb15-133"><a href="#cb15-133"></a>|           |        |     |          |         |</span>
-<span id="cb15-134"><a href="#cb15-134"></a>|           |        |     |          |         |</span>
-<span id="cb15-135"><a href="#cb15-135"></a>|           |        |     |          |         |</span>
-<span id="cb15-136"><a href="#cb15-136"></a>|           |        |     |          |         |</span>
-<span id="cb15-137"><a href="#cb15-137"></a>|           |        |     |          |         |</span>
-<span id="cb15-138"><a href="#cb15-138"></a>|           |        |     |          |         |</span>
-<span id="cb15-139"><a href="#cb15-139"></a>|           |        |     |          |         |</span>
-<span id="cb15-140"><a href="#cb15-140"></a>|           |        |     |          |         |</span>
-<span id="cb15-141"><a href="#cb15-141"></a>|           |        |     |          |         |</span>
-<span id="cb15-142"><a href="#cb15-142"></a>|           |        |     |          |         |</span>
+<span id="cb15-131"><a href="#cb15-131"></a>I may choose to visualize Plot 1 onto a map of the harbor, which I will pull from outside resources.</span>
+<span id="cb15-132"><a href="#cb15-132"></a></span>
+<span id="cb15-133"><a href="#cb15-133"></a>If I choose to run further analyses, I may bring in data about businesses around the areas in which each wheel is located to see if there is correlation between those businesses&#39; products and the common types of trash collected by the wheels in those areas.</span>
+<span id="cb15-134"><a href="#cb15-134"></a></span>
+<span id="cb15-135"><a href="#cb15-135"></a>Further analyses may also lead me to look for information about water currents in the harbor to try to locate littering &quot;hot spots&quot;.</span>
+<span id="cb15-136"><a href="#cb15-136"></a></span>
+<span id="cb15-137"><a href="#cb15-137"></a><span class="fu">### Plan of Attack:</span></span>
+<span id="cb15-138"><a href="#cb15-138"></a></span>
+<span id="cb15-139"><a href="#cb15-139"></a>|        Task Name        |   Status   | Due | Priority |                                                                               Summary                                                                                |</span>
+<span id="cb15-140"><a href="#cb15-140"></a>|:----------:|:----------:|:----------:|:----------:|:-----------------------:|</span>
+<span id="cb15-141"><a href="#cb15-141"></a>|     Get Proportions     | incomplete |     |   high   |                                        Get the proportions of each trash category from each wheel over all records since 2021                                        |</span>
+<span id="cb15-142"><a href="#cb15-142"></a>|    Decide Categories    | incomplete |     | moderate |                     Decide how many top categories to focus on. This will depend on how they differ between the wheels. May use all categories.                      |</span>
+<span id="cb15-143"><a href="#cb15-143"></a>|    Decide Timeframe     | incomplete |     |   high   |                                      Decide on a specific timeframe for Plot 2 (could be all years of operation for each wheel)                                      |</span>
+<span id="cb15-144"><a href="#cb15-144"></a>| Get Proportion Changes  | incomplete |     | moderate |                                        Get and organize the changes in proportions for each wheel over the chosen timeframe.                                         |</span>
+<span id="cb15-145"><a href="#cb15-145"></a>| Experiment with Formats | incomplete |     |   low    |                                Experiment with different visualization formats and styles to see which conveys the information best.                                 |</span>
+<span id="cb15-146"><a href="#cb15-146"></a>|  External Information   | incomplete |     |   low    | Search for external information to see if there is enough available to tackle the further analyses. Ex: harbor map, water currents, establishments in the area, etc. |</span>
+<span id="cb15-147"><a href="#cb15-147"></a>|                         |            |     |          |                                                                                                                                                                      |</span>
+<span id="cb15-148"><a href="#cb15-148"></a>|                         |            |     |          |                                                                                                                                                                      |</span>
+<span id="cb15-149"><a href="#cb15-149"></a>|                         |            |     |          |                                                                                                                                                                      |</span>
+<span id="cb15-150"><a href="#cb15-150"></a>|                         |            |     |          |                                                                                                                                                                      |</span>
+<span id="cb15-151"><a href="#cb15-151"></a>|                         |            |     |          |                                                                                                                                                                      |</span>
+<span id="cb15-152"><a href="#cb15-152"></a>|                         |            |     |          |                                                                                                                                                                      |</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

@@ -94,37 +94,47 @@ Is there a significant difference between the proportions of trash categories be
 
 ## Analysis Plan
 
-Because the wheels have been operating for different amounts of time, I feel it is likely misguided to compare averages of their entire history so I instead plan to focus primarily on the time period for which they have all been operational (since 2021).
+Because the wheels have been operating for different amounts of time, I feel it is likely misguided to compare averages of their entire history so I instead plan to focus primarily on the time period for which they have all been operational (since 2021) and to only compare their relative proportions between the different trash categories.
 
-I may choose to run further analyses to see if there are significant differences in trash category frequencies over time for each wheel.
+#### Plot 1:
+
+Comparing proportions of the different trash categories between the wheels for the time in which they have all been operational (since 2021).
+
+#### Plot 2:
+
+Comparing if and how the trash category proportions have changed over time.
 
 #### Variables Involved:
 
-For time-frames, I plan to focus primarily on years but because all four of the wheels have only been operational for a few years, I may choose to focus more granularly on months.
+For time-frames, I plan to focus primarily on years but because all four of the wheels have only been operational for a few years, I may choose to focus more granularly on months in the first plot.
 
-Initially, I plan to look at all trash category fields to get an idea of the overall trends, then will likely focus on the top 3 to 5 most common for each trash wheel for the final visualization.
+Initially, I plan to look at all trash category fields to get an idea of the overall trends, then will likely focus on the top 3 to 5 most common for each trash wheel for the final visualizations.
 
 I will likely not find a use for Weight, Volume, or HomesPowered.
 
-ID, Name, and Dumpster will be used as grouping fields and Name will be used in the final visualization.
+ID, Name, and Dumpster will be used as grouping fields and Name will likely be used in the final visualizations.
 
 #### External Data:
 
+I may choose to visualize Plot 1 onto a map of the harbor, which I will pull from outside resources.
+
 If I choose to run further analyses, I may bring in data about businesses around the areas in which each wheel is located to see if there is correlation between those businesses' products and the common types of trash collected by the wheels in those areas.
 
-Otherwise, I do not see external data being needed.
+Further analyses may also lead me to look for information about water currents in the harbor to try to locate littering "hot spots".
 
 ### Plan of Attack:
 
-| Task Name | Status | Due | Priority | Summary |
-|:---------:|:------:|:---:|:--------:|:-------:|
-|           |        |     |          |         |
-|           |        |     |          |         |
-|           |        |     |          |         |
-|           |        |     |          |         |
-|           |        |     |          |         |
-|           |        |     |          |         |
-|           |        |     |          |         |
-|           |        |     |          |         |
-|           |        |     |          |         |
-|           |        |     |          |         |
+|        Task Name        |   Status   | Due | Priority |                                                                               Summary                                                                                |
+|:----------:|:----------:|:----------:|:----------:|:-----------------------:|
+|     Get Proportions     | incomplete |     |   high   |                                        Get the proportions of each trash category from each wheel over all records since 2021                                        |
+|    Decide Categories    | incomplete |     | moderate |                     Decide how many top categories to focus on. This will depend on how they differ between the wheels. May use all categories.                      |
+|    Decide Timeframe     | incomplete |     |   high   |                                      Decide on a specific timeframe for Plot 2 (could be all years of operation for each wheel)                                      |
+| Get Proportion Changes  | incomplete |     | moderate |                                        Get and organize the changes in proportions for each wheel over the chosen timeframe.                                         |
+| Experiment with Formats | incomplete |     |   low    |                                Experiment with different visualization formats and styles to see which conveys the information best.                                 |
+|  External Information   | incomplete |     |   low    | Search for external information to see if there is enough available to tackle the further analyses. Ex: harbor map, water currents, establishments in the area, etc. |
+|                         |            |     |          |                                                                                                                                                                      |
+|                         |            |     |          |                                                                                                                                                                      |
+|                         |            |     |          |                                                                                                                                                                      |
+|                         |            |     |          |                                                                                                                                                                      |
+|                         |            |     |          |                                                                                                                                                                      |
+|                         |            |     |          |                                                                                                                                                                      |
