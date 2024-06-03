@@ -16,13 +16,14 @@ editor: visual
 code-annotations: hover
 execute:
   warning: false
+  message: false
 ---
 
-## Install and Load Packages
+## Setup
 
 ```{r setup}
-#| label: load-pkgs
-#| message: false
+
+# install and load packages
 
 if (!require("pacman")) 
   install.packages("pacman")
@@ -30,16 +31,7 @@ if (!require("pacman"))
 pacman::p_load(tidyverse, readr, dplyr, 
                tidytuesdayR, ggplot2) 
 
-
-```
-
-## Dataset
-
-```{r}
-#| label: load-dataset
-#| message: false
-
-rm(list=ls())
+# Load dataset
 
 tuesdata <- tidytuesdayR::tt_load('2024-03-05')
 
@@ -47,27 +39,25 @@ trash_data <- tuesdata$trashwheel
 
 ```
 
-I have chosen the Trash Wheel Collection Dataset. This dataset provides information about four trash collection wheels around the Harbor of Baltimore, Maryland. The trash category counts are based on averages of periodic manual counts of each category of trash on the wheel's conveyor paddles.
+## Dataset
+
+I have chosen the Trash Wheel Collection Dataset. This dataset provides information about four trash collection wheels around the Harbor of Baltimore, Maryland. The trash category counts are extrapolated from samples from periodic manual counts of each category of trash on the wheel's conveyor paddles.
 
 Much of this data is quantitative, providing the counts of the various categories of trash for each collection wheel at each manual check, labeled by date and dumpster load which is a separate count for each wheel.
 
-I chose this dataset because I am generally interested in waste reduction programs and strategies and would like to evaluate the potential for data collection to improve these strategies and inform public policy on the best ways to combat pollution.
-
-I felt that there was potential for the results of this analysis, when combined with information about institutions and businesses located in the areas of the trash collection wheels, to provide actionable information about where different litter might be coming from and why so that systems can be put in place to mitigate further littering in those areas.
-
-## Field Names
+#### Field Names
 
 ```{r}
 colnames(trash_data)
 ```
 
-## Record Examples
+#### Record Examples
 
 ```{r}
 head(trash_data) # first 6 records
 ```
 
-## First Records for Each Wheel
+#### First Records for Each Wheel
 
 ```{r}
 trash_data %>%
@@ -77,7 +67,7 @@ trash_data %>%
 
 Looking at Dumpster load 1 for each of the four collection wheels we can see that Mister Trash Wheel began operation in 2014, Professor Trash Wheel in 2017, Captain Trash Wheel in 2018, and Gwynnda Trash Wheel in 2021. Because of this, it would be unwise to compare overall results between the wheels due to their differences in operation time.
 
-## Average Paddle Checks per Day
+#### Average Paddle Checks per Day
 
 ```{r}
 trash_data %>% 
@@ -89,63 +79,79 @@ trash_data %>%
 
 Looking at the average number of times the paddles were checked per day for each collection wheel, we also see that Captain and Professor were checked less on average than Gwynnda and Mister. This supports a stance against direct quantitative comparison.
 
+## Motivation
+
+I chose this dataset because I am generally interested in waste reduction programs and strategies and would like to evaluate the potential for data collection to improve these strategies and inform public policy on the best ways to combat pollution.
+
+I felt that there was potential for the results of this analysis, when combined with information about institutions and businesses located in the areas of the trash collection wheels, to provide actionable information about where different litter might be coming from and why so that systems can be put in place to mitigate further littering in those areas.
+
 ## Question
 
-Is there a significant difference between the proportions of trash categories between the four collection wheels during the same time period?
+How do the proportions of trash categories differ between the four collection wheels during the same time period?
 
 ## Analysis Plan
 
 Because the wheels have been operating for different amounts of time, I feel it is likely misguided to compare averages of their entire history so I instead plan to focus primarily on the time period for which they have all been operational (since 2021) and to only compare their relative proportions between the different trash categories.
 
-#### Plot 1:
+#### Plot 1
 
 Comparing proportions of the different trash categories between the wheels for the time in which they have all been operational (since 2021).
 
-#### Plot 2:
+#### Plot 2
 
 Comparing if and how the trash category proportions have changed over time.
 
-#### Statistical Tests:
+#### Statistical Tests
 
-I plan to back up my visualizations with an Analysis of Variance test on volume or counts of trash categories between the wheels to give a better idea of how significantly the wheels differ in performance primarily based on their location.
+I plan to back up my visualizations with an Analysis of Variance (ANOVA) test on volume or counts of trash categories between the wheels to give a better idea of how significantly the wheels differ in performance primarily based on their location.
 
-#### Variables Involved:
+#### Hypotheses I am Considering
+
+1 - [Quantity of Trash]{.underline}
+
+-   **Null Hypothesis:** Each wheel collects the same average volume of trash per day.
+
+-   **Alternative Hypothesis:** One or more wheels collect a unique average volume of trash per day.
+
+2 - [Category Counts]{.underline}
+
+-   **Null Hypothesis:** Each wheel collects the same average count of (one top category) per day.
+
+-   **Alternative Hypothesis:** One or more wheels collect a unique average count of (one top category) per day.
+
+#### Variables Involved
 
 For time-frames, I plan to focus primarily on years but because all four of the wheels have only been operational for a few years, I may choose to focus more granularly on months in the first plot.
 
 Initially, I plan to look at all trash category fields to get an idea of the overall trends, then will likely focus on the top 3 to 5 most common for each trash wheel for the final visualizations.
 
-I may use Weight and Volume for my ANOVA testing.
+I plan to use Weight or Volume for my ANOVA testing.
 
 I do not plan to use HomesPowered.
 
 ID, Name, and Dumpster will be used as grouping fields and Name will likely be used in the final visualizations.
 
-#### External Data:
+#### External Data
 
 I plan to try to map the most common trash categories for each wheel for Plot 1 onto a map of the harbor, which I will pull from outside resources.
 
 Plot 2 will most likely be mapped onto some sort of time-line once I decide on the period and how much information I plan to include on it per wheel.
 
-If I choose to run further analyses, I may bring in data about businesses around the areas in which each wheel is located to see if there is correlation between those businesses' products and the common types of trash collected by the wheels in those areas.
+## Plan of Attack
 
-Further analyses may also lead me to look for information about water currents in the harbor to try to locate littering "hot spots".
+\*All tasks subject to change / modification as they are undertaken.
 
-### Plan of Attack:
-
-|           Task Name           |   Status   | Due | Priority |                                                                               Summary                                                                                |
-|:-----------------------------:|:----------:|:---:|:--------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|        Get Proportions        | incomplete |     |   high   |                                        Get the proportions of each trash category from each wheel over all records since 2021                                        |
-|       Decide Categories       | incomplete |     | moderate |                     Decide how many top categories to focus on. This will depend on how they differ between the wheels. May use all categories.                      |
-|       Decide Timeframe        | incomplete |     |   high   |                                      Decide on a specific timeframe for Plot 2 (could be all years of operation for each wheel)                                      |
-|    Get Proportion Changes     | incomplete |     | moderate |                                        Get and organize the changes in proportions for each wheel over the chosen timeframe.                                         |
-|         Perform ANOVA         | incomplete |     |   low    |                        Perform an analysis of variance in the mean counts / proportions of the trash categories to back up the visualization.                        |
-|    Experiment with Formats    | incomplete |     |   low    |                                Experiment with different visualization formats and styles to see which conveys the information best.                                 |
-| Choose Formats for Plot 1 & 2 | incomplete |     |   low    |                                                  Choose best available visualization styles for both plots 1 and 2                                                   |
-|     External Information      | incomplete |     |   low    | Search for external information to see if there is enough available to tackle the further analyses. Ex: harbor map, water currents, establishments in the area, etc. |
-|                               |            |     |          |                                                                                                                                                                      |
-|                               |            |     |          |                                                                                                                                                                      |
-|                               |            |     |          |                                                                                                                                                                      |
-|                               |            |     |          |                                                                                                                                                                      |
-|                               |            |     |          |                                                                                                                                                                      |
-|                               |            |     |          |                                                                                                                                                                      |
+|           Task Name           |   Status   | Due  | Priority |                                                           Summary                                                           |
+|:-----------------------------:|:----------:|:----:|:--------:|:---------------------------------------------------------------------------------------------------------------------------:|
+|        Get Proportions        | incomplete | 6/05 |   high   |                   Get the proportions of each trash category from each wheel over all records since 2021                    |
+|       Decide Categories       | incomplete | 6/05 |   high   | Decide how many top categories to focus on. This will depend on how they differ between the wheels. May use all categories. |
+|       Decide Timeframe        | incomplete | 6/05 |   high   |                 Decide on a specific timeframe for Plot 2 (could be all years of operation for each wheel)                  |
+|    Get Proportion Changes     | incomplete | 6/07 | moderate |                    Get and organize the changes in proportions for each wheel over the chosen timeframe.                    |
+|         Perform ANOVA         | incomplete | 6/09 |   low    |                                 Perform an analysis of variance for the chosen hypotheses.                                  |
+|    Experiment with Formats    | incomplete | 6/10 |   low    |            Experiment with different visualization formats and styles to see which conveys the information best.            |
+| Choose Formats for Plot 1 & 2 | incomplete | 6/10 |   low    |                             Choose best available visualization styles for both plots 1 and 2.                              |
+|     External Information      | incomplete | 6/11 |   low    |              Get harbor map and experiment with coordinate positions for displaying data in the proper areas.               |
+|        Finalize Plot 1        | incomplete | 6/12 |   low    |                                 Put all information together and finalize the visualization                                 |
+|        Finalize Plot 2        | incomplete | 6/13 |   low    |                                 Put all information together and finalize the visualization                                 |
+|           Write-up            | incomplete | 6/16 |   low    |                                                    Put together write-up                                                    |
+|         Presentation          | incomplete | 6/20 |   low    |                                                plan and record presentation                                                 |
