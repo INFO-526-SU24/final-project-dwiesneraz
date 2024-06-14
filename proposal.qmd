@@ -29,7 +29,7 @@ if (!require("pacman"))
   install.packages("pacman")
 
 pacman::p_load(tidyverse, readr, dplyr, 
-               tidytuesdayR, ggplot2) 
+               tidytuesdayR, ggplot2, psych) 
 
 # Load dataset
 
@@ -45,10 +45,45 @@ I have chosen the Trash Wheel Collection Dataset. This dataset provides informat
 
 Much of this data is quantitative, providing the counts of the various categories of trash for each collection wheel at each manual check, labeled by date and dumpster load which is a separate count for each wheel.
 
-#### Field Names
+#### Field Names & Types
 
 ```{r}
-colnames(trash_data)
+glimpse(trash_data)
+```
+
+`ID` - Shortened name of the trash collection wheel.
+
+`Name` - Full name of the trash collection wheel.
+
+`Dumpster` - Number of dumpster load that the record counts were extrapolated from (counted independently for each wheel).
+
+`Month` - Written out month of record.
+
+`Year` - Written out year of record.
+
+`Date` - Full date in `m/dd/yyyy` format.
+
+`Weight` - Weight in tons.
+
+`Volume` - Volume in cubic yards.
+
+`PlasticBottles .. SportsBalls` - Number of each of the seven categories of trash respectively.
+
+`HomesPowered` - Number of homes powered by burning of the trash (\~500 kilowatts per ton of trash).
+
+#### Dimensions
+
+```{r}
+dim(trash_data)
+```
+
+#### Description of Numeric Fields
+
+```{r}
+trash_data %>%
+  select(-c(ID, Name, Dumpster, 
+            Month, Year, Date)) %>%
+  describe()
 ```
 
 #### Record Examples
@@ -142,7 +177,7 @@ Plot 2 will most likely be mapped onto some sort of time-line once I decide on t
 \*All tasks subject to change / modification as they are undertaken.
 
 |           Task Name           |   Status   | Due  | Priority |                                                           Summary                                                           |
-|:-----------------------------:|:----------:|:----:|:--------:|:---------------------------------------------------------------------------------------------------------------------------:|
+|:---------:|:---------:|:---------:|:---------:|:--------------------------:|
 |        Get Proportions        | incomplete | 6/05 |   high   |                   Get the proportions of each trash category from each wheel over all records since 2021                    |
 |       Decide Categories       | incomplete | 6/05 |   high   | Decide how many top categories to focus on. This will depend on how they differ between the wheels. May use all categories. |
 |       Decide Timeframe        | incomplete | 6/05 |   high   |                 Decide on a specific timeframe for Plot 2 (could be all years of operation for each wheel)                  |
