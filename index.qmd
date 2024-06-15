@@ -1,11 +1,11 @@
 ---
-title: "Project Title"
+title: "Trash Wheel Collection Comparison"
 subtitle: "INFO 526 - Summer 2024 - Final Project"
 author: 
-  - name: "Team name"
+  - name: "Daniel Wiesner"
     affiliations:
       - name: "School of Information, University of Arizona"
-description: "Project description"
+description: "A comparison of the different categories of trash collected by four trash collection wheels in the Baltimore Harbor."
 format:
    html:
     code-tools: true
@@ -13,6 +13,7 @@ format:
     embed-resources: true
 editor: visual
 execute:
+  message: false
   warning: false
   echo: false
 ---
@@ -20,3 +21,101 @@ execute:
 ## Abstract
 
 Add project abstract here.
+
+```{r setup}
+
+# install and load packages
+
+if (!require("pacman")) 
+  install.packages("pacman")
+
+pacman::p_load(tidyverse, 
+               readr, 
+               dplyr, 
+               tidytuesdayR, 
+               ggplot2, 
+               psych,
+               patchwork,
+               RColorBrewer, 
+               scales, 
+               grid, 
+               gridExtra, 
+               geomtextpath, 
+               ggrepel, 
+               tigris, 
+               mapproj, 
+               sf, 
+               geofacet, 
+               glue, 
+               ggrepel,
+               readxl, 
+               here, 
+               stringr) 
+
+```
+
+```{r cache = TRUE}
+
+# Load dataset
+
+tuesdata <- tidytuesdayR::tt_load('2024-03-05')
+
+wheels <- tuesdata$trashwheel
+
+```
+
+
+```{r}
+glimpse(wheels)
+```
+
+```{r}
+
+# create total count field
+
+wheels$Total <- rowSums(wheels[, c(9:15)])
+
+wheels
+
+#wheels <- wheels %>%
+#  mutate
+
+```
+
+
+```{r}
+
+# get records since 2021 (all wheels active) 
+
+wheels_contemp <- wheels %>%
+  filter(Year >= 2021)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
