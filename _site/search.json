@@ -32,63 +32,63 @@
     "href": "index.html",
     "title": "Trash Wheel Collection Comparison",
     "section": "",
-    "text": "Add project abstract here.\n\n\n\n    Downloading file 1 of 1: `trashwheel.csv`\n\n\n\n\nRows: 993\nColumns: 16\n$ ID             &lt;chr&gt; \"mister\", \"mister\", \"mister\", \"mister\", \"mister\", \"mist…\n$ Name           &lt;chr&gt; \"Mister Trash Wheel\", \"Mister Trash Wheel\", \"Mister Tra…\n$ Dumpster       &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, …\n$ Month          &lt;chr&gt; \"May\", \"May\", \"May\", \"May\", \"May\", \"May\", \"May\", \"May\",…\n$ Year           &lt;dbl&gt; 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2…\n$ Date           &lt;chr&gt; \"5/16/2014\", \"5/16/2014\", \"5/16/2014\", \"5/17/2014\", \"5/…\n$ Weight         &lt;dbl&gt; 4.31, 2.74, 3.45, 3.10, 4.06, 2.71, 1.91, 3.70, 2.52, 3…\n$ Volume         &lt;dbl&gt; 18, 13, 15, 15, 18, 13, 8, 16, 14, 18, 15, 19, 15, 15, …\n$ PlasticBottles &lt;dbl&gt; 1450, 1120, 2450, 2380, 980, 1430, 910, 3580, 2400, 134…\n$ Polystyrene    &lt;dbl&gt; 1820, 1030, 3100, 2730, 870, 2140, 1090, 4310, 2790, 17…\n$ CigaretteButts &lt;dbl&gt; 126000, 91000, 105000, 100000, 120000, 90000, 56000, 11…\n$ GlassBottles   &lt;dbl&gt; 72, 42, 50, 52, 72, 46, 32, 58, 49, 75, 38, 45, 58, 62,…\n$ PlasticBags    &lt;dbl&gt; 584, 496, 1080, 896, 368, 672, 416, 1552, 984, 448, 344…\n$ Wrappers       &lt;dbl&gt; 1162, 874, 2032, 1971, 753, 1144, 692, 3015, 1988, 1066…\n$ SportsBalls    &lt;dbl&gt; 7, 5, 6, 6, 7, 5, 3, 6, 6, 7, 6, 8, 6, 6, 6, 6, 5, 6, 6…\n$ HomesPowered   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n\n\n\n\n# A tibble: 993 × 16\n   ID     Name           Dumpster Month  Year Date  Weight Volume PlasticBottles\n   &lt;chr&gt;  &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;          &lt;dbl&gt;\n 1 mister Mister Trash …        1 May    2014 5/16…   4.31     18           1450\n 2 mister Mister Trash …        2 May    2014 5/16…   2.74     13           1120\n 3 mister Mister Trash …        3 May    2014 5/16…   3.45     15           2450\n 4 mister Mister Trash …        4 May    2014 5/17…   3.1      15           2380\n 5 mister Mister Trash …        5 May    2014 5/17…   4.06     18            980\n 6 mister Mister Trash …        6 May    2014 5/20…   2.71     13           1430\n 7 mister Mister Trash …        7 May    2014 5/21…   1.91      8            910\n 8 mister Mister Trash …        8 May    2014 5/28…   3.7      16           3580\n 9 mister Mister Trash …        9 June   2014 6/5/…   2.52     14           2400\n10 mister Mister Trash …       10 June   2014 6/11…   3.76     18           1340\n# ℹ 983 more rows\n# ℹ 7 more variables: Polystyrene &lt;dbl&gt;, CigaretteButts &lt;dbl&gt;,\n#   GlassBottles &lt;dbl&gt;, PlasticBags &lt;dbl&gt;, Wrappers &lt;dbl&gt;, SportsBalls &lt;dbl&gt;,\n#   HomesPowered &lt;dbl&gt;"
+    "text": "Add project abstract here."
   },
   {
     "objectID": "index.html#abstract",
     "href": "index.html#abstract",
     "title": "Trash Wheel Collection Comparison",
     "section": "",
-    "text": "Add project abstract here.\n\n\n\n    Downloading file 1 of 1: `trashwheel.csv`\n\n\n\n\nRows: 993\nColumns: 16\n$ ID             &lt;chr&gt; \"mister\", \"mister\", \"mister\", \"mister\", \"mister\", \"mist…\n$ Name           &lt;chr&gt; \"Mister Trash Wheel\", \"Mister Trash Wheel\", \"Mister Tra…\n$ Dumpster       &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, …\n$ Month          &lt;chr&gt; \"May\", \"May\", \"May\", \"May\", \"May\", \"May\", \"May\", \"May\",…\n$ Year           &lt;dbl&gt; 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2…\n$ Date           &lt;chr&gt; \"5/16/2014\", \"5/16/2014\", \"5/16/2014\", \"5/17/2014\", \"5/…\n$ Weight         &lt;dbl&gt; 4.31, 2.74, 3.45, 3.10, 4.06, 2.71, 1.91, 3.70, 2.52, 3…\n$ Volume         &lt;dbl&gt; 18, 13, 15, 15, 18, 13, 8, 16, 14, 18, 15, 19, 15, 15, …\n$ PlasticBottles &lt;dbl&gt; 1450, 1120, 2450, 2380, 980, 1430, 910, 3580, 2400, 134…\n$ Polystyrene    &lt;dbl&gt; 1820, 1030, 3100, 2730, 870, 2140, 1090, 4310, 2790, 17…\n$ CigaretteButts &lt;dbl&gt; 126000, 91000, 105000, 100000, 120000, 90000, 56000, 11…\n$ GlassBottles   &lt;dbl&gt; 72, 42, 50, 52, 72, 46, 32, 58, 49, 75, 38, 45, 58, 62,…\n$ PlasticBags    &lt;dbl&gt; 584, 496, 1080, 896, 368, 672, 416, 1552, 984, 448, 344…\n$ Wrappers       &lt;dbl&gt; 1162, 874, 2032, 1971, 753, 1144, 692, 3015, 1988, 1066…\n$ SportsBalls    &lt;dbl&gt; 7, 5, 6, 6, 7, 5, 3, 6, 6, 7, 6, 8, 6, 6, 6, 6, 5, 6, 6…\n$ HomesPowered   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n\n\n\n\n# A tibble: 993 × 16\n   ID     Name           Dumpster Month  Year Date  Weight Volume PlasticBottles\n   &lt;chr&gt;  &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;          &lt;dbl&gt;\n 1 mister Mister Trash …        1 May    2014 5/16…   4.31     18           1450\n 2 mister Mister Trash …        2 May    2014 5/16…   2.74     13           1120\n 3 mister Mister Trash …        3 May    2014 5/16…   3.45     15           2450\n 4 mister Mister Trash …        4 May    2014 5/17…   3.1      15           2380\n 5 mister Mister Trash …        5 May    2014 5/17…   4.06     18            980\n 6 mister Mister Trash …        6 May    2014 5/20…   2.71     13           1430\n 7 mister Mister Trash …        7 May    2014 5/21…   1.91      8            910\n 8 mister Mister Trash …        8 May    2014 5/28…   3.7      16           3580\n 9 mister Mister Trash …        9 June   2014 6/5/…   2.52     14           2400\n10 mister Mister Trash …       10 June   2014 6/11…   3.76     18           1340\n# ℹ 983 more rows\n# ℹ 7 more variables: Polystyrene &lt;dbl&gt;, CigaretteButts &lt;dbl&gt;,\n#   GlassBottles &lt;dbl&gt;, PlasticBags &lt;dbl&gt;, Wrappers &lt;dbl&gt;, SportsBalls &lt;dbl&gt;,\n#   HomesPowered &lt;dbl&gt;"
+    "text": "Add project abstract here."
   },
   {
     "objectID": "presentation.html#quarto",
     "href": "presentation.html#quarto",
     "title": "Project title",
-    "section": "",
-    "text": "The presentation is created using the Quarto CLI\n## sets the start of a new slide"
+    "section": "Quarto",
+    "text": "Quarto\n\nThe presentation is created using the Quarto CLI\n## sets the start of a new slide"
   },
   {
     "objectID": "presentation.html#layouts",
     "href": "presentation.html#layouts",
     "title": "Project title",
-    "section": "",
-    "text": "You can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis"
+    "section": "Layouts",
+    "text": "Layouts\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis\n\nAnd add footnotes"
   },
   {
     "objectID": "presentation.html#code",
     "href": "presentation.html#code",
     "title": "Project title",
-    "section": "",
-    "text": "# A tibble: 2 × 5\n  term        estimate std.error statistic       p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;\n1 (Intercept)   25.3      3.08        8.22 0.00000000358\n2 speed         -0.116    0.0642     -1.81 0.0806       \n\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0983        0.0682  5.82      3.27  0.0806     1  -101.  207.  212.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
+    "section": "Code",
+    "text": "Code\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic       p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;\n1 (Intercept)   25.3      3.08        8.22 0.00000000358\n2 speed         -0.116    0.0642     -1.81 0.0806       \n\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0983        0.0682  5.82      3.27  0.0806     1  -101.  207.  212.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
   },
   {
     "objectID": "presentation.html#plots",
     "href": "presentation.html#plots",
     "title": "Project title",
-    "section": "",
-    "text": "Warning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
+    "section": "Plots",
+    "text": "Plots"
   },
   {
     "objectID": "presentation.html#plot-and-text",
     "href": "presentation.html#plot-and-text",
     "title": "Project title",
-    "section": "",
-    "text": "Some text\ngoes here"
+    "section": "Plot and text",
+    "text": "Plot and text\n\n\n\nSome text\ngoes here"
   },
   {
     "objectID": "presentation.html#tables",
     "href": "presentation.html#tables",
     "title": "Project title",
     "section": "Tables",
-    "text": "Tables\nIf you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\nAdelie\nTorgersen\n39.1\n18.7\n181\n3750\nmale\n\n\nAdelie\nTorgersen\n39.5\n17.4\n186\n3800\nfemale\n\n\nAdelie\nTorgersen\n40.3\n18.0\n195\n3250\nfemale\n\n\nAdelie\nTorgersen\nNA\nNA\nNA\nNA\nNA\n\n\nAdelie\nTorgersen\n36.7\n19.3\n193\n3450\nfemale\n\n\nAdelie\nTorgersen\n39.3\n20.6\n190\n3650\nmale"
+    "text": "Tables\nIf you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\nAdelie\nTorgersen\n39.1\n18.7\n181\n3750\nmale\n\n\nAdelie\nTorgersen\n39.5\n17.4\n186\n3800\nfemale\n\n\nAdelie\nTorgersen\n40.3\n18.0\n195\n3250\nfemale\n\n\nAdelie\nTorgersen\nNA\nNA\nNA\nNA\nNA\n\n\nAdelie\nTorgersen\n36.7\n19.3\n193\n3450\nfemale\n\n\nAdelie\nTorgersen\n39.3\n20.6\n190\n3650\nmale"
   },
   {
     "objectID": "presentation.html#images",
     "href": "presentation.html#images",
     "title": "Project title",
     "section": "Images",
-    "text": "Images\n\n\n\nImage credit: Danielle Navarro, Percolate."
+    "text": "Images\n\nImage credit: Danielle Navarro, Percolate."
   },
   {
     "objectID": "presentation.html#math-expressions",
@@ -186,6 +186,55 @@
     "href": "proposal.html#plan-of-attack",
     "title": "Trash Wheel Collection Comparison",
     "section": "Plan of Attack",
-    "text": "Plan of Attack\n*All tasks subject to change / modification as they are undertaken.\n\n\n\n\n\n\n\n\n\n\nTask Name\nStatus\nDue\nPriority\nSummary\n\n\n\n\nGet Proportions\nincomplete\n6/05\nhigh\nGet the proportions of each trash category from each wheel over all records since 2021\n\n\nDecide Categories\nincomplete\n6/05\nhigh\nDecide how many top categories to focus on. This will depend on how they differ between the wheels. May use all categories.\n\n\nDecide Timeframe\nincomplete\n6/05\nhigh\nDecide on a specific timeframe for Plot 2 (could be all years of operation for each wheel)\n\n\nGet Proportion Changes\nincomplete\n6/07\nmoderate\nGet and organize the changes in proportions for each wheel over the chosen timeframe.\n\n\nPerform ANOVA\nincomplete\n6/09\nlow\nPerform an analysis of variance for the chosen hypotheses.\n\n\nExperiment with Formats\nincomplete\n6/10\nlow\nExperiment with different visualization formats and styles to see which conveys the information best.\n\n\nChoose Formats for Plot 1 & 2\nincomplete\n6/10\nlow\nChoose best available visualization styles for both plots 1 and 2.\n\n\nExternal Information\nincomplete\n6/11\nlow\nGet harbor map and experiment with coordinate positions for displaying data in the proper areas.\n\n\nFinalize Plot 1\nincomplete\n6/12\nlow\nPut all information together and finalize the visualization\n\n\nFinalize Plot 2\nincomplete\n6/13\nlow\nPut all information together and finalize the visualization\n\n\nWrite-up\nincomplete\n6/16\nlow\nPut together write-up\n\n\nPresentation\nincomplete\n6/20\nlow\nplan and record presentation"
+    "text": "Plan of Attack\n*All tasks subject to change / modification as they are undertaken.\n\n\n\n\n\n\n\n\n\n\nTask Name\nStatus\nExpected Finish\nPriority\nSummary\n\n\n\n\nGet Proportions\ncomplete\n6/05\nhigh\nGet the proportions of each trash category from each wheel over all records since 2021\n\n\nDecide Categories\ncomplete\n6/05\nhigh\nDecide how many top categories to focus on. This will depend on how they differ between the wheels. May use all categories.\n\n\nDecide Timeframe\ncomplete\n6/05\nhigh\nDecide on a specific timeframe for Plot 2 (could be all years of operation for each wheel)\n\n\nGet Proportion Changes\ncomplete\n6/07\nmoderate\nGet and organize the changes in proportions for each wheel over the chosen timeframe.\n\n\nPerform ANOVA\nincomplete\n6/09\nlow\nPerform an analysis of variance for the chosen hypotheses.\n\n\nExperiment with Formats\ncomplete\n6/10\nlow\nExperiment with different visualization formats and styles to see which conveys the information best.\n\n\nChoose Formats for Plot 1 & 2\nplot 1 complete\n6/10\nlow\nChoose best available visualization styles for both plots 1 and 2.\n\n\nExternal Information\ncomplete\n6/11\nlow\nGet harbor map and experiment with coordinate positions for displaying data in the proper areas.\n\n\nFinalize Plot 1\nincomplete\n6/12\nlow\nPut all information together and finalize the visualization\n\n\nFinalize Plot 2\nincomplete\n6/13\nlow\nPut all information together and finalize the visualization\n\n\nWrite-up\nincomplete\n6/16\nlow\nPut together write-up\n\n\nPresentation\nincomplete\n6/20\nlow\nplan and record presentation"
+  },
+  {
+    "objectID": "index.html#setup",
+    "href": "index.html#setup",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Setup",
+    "text": "Setup"
+  },
+  {
+    "objectID": "index.html#data-summarization",
+    "href": "index.html#data-summarization",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Data Summarization",
+    "text": "Data Summarization\n\n\n\n    Downloading file 1 of 1: `trashwheel.csv`\n\n\nRows: 993\nColumns: 16\n$ ID             &lt;chr&gt; \"mister\", \"mister\", \"mister\", \"mister\", \"mister\", \"mist…\n$ Name           &lt;chr&gt; \"Mister Trash Wheel\", \"Mister Trash Wheel\", \"Mister Tra…\n$ Dumpster       &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, …\n$ Month          &lt;chr&gt; \"May\", \"May\", \"May\", \"May\", \"May\", \"May\", \"May\", \"May\",…\n$ Year           &lt;dbl&gt; 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2…\n$ Date           &lt;chr&gt; \"5/16/2014\", \"5/16/2014\", \"5/16/2014\", \"5/17/2014\", \"5/…\n$ Weight         &lt;dbl&gt; 4.31, 2.74, 3.45, 3.10, 4.06, 2.71, 1.91, 3.70, 2.52, 3…\n$ Volume         &lt;dbl&gt; 18, 13, 15, 15, 18, 13, 8, 16, 14, 18, 15, 19, 15, 15, …\n$ PlasticBottles &lt;dbl&gt; 1450, 1120, 2450, 2380, 980, 1430, 910, 3580, 2400, 134…\n$ Polystyrene    &lt;dbl&gt; 1820, 1030, 3100, 2730, 870, 2140, 1090, 4310, 2790, 17…\n$ CigaretteButts &lt;dbl&gt; 126000, 91000, 105000, 100000, 120000, 90000, 56000, 11…\n$ GlassBottles   &lt;dbl&gt; 72, 42, 50, 52, 72, 46, 32, 58, 49, 75, 38, 45, 58, 62,…\n$ PlasticBags    &lt;dbl&gt; 584, 496, 1080, 896, 368, 672, 416, 1552, 984, 448, 344…\n$ Wrappers       &lt;dbl&gt; 1162, 874, 2032, 1971, 753, 1144, 692, 3015, 1988, 1066…\n$ SportsBalls    &lt;dbl&gt; 7, 5, 6, 6, 7, 5, 3, 6, 6, 7, 6, 8, 6, 6, 6, 6, 5, 6, 6…\n$ HomesPowered   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n\n\n# A tibble: 4 × 2\n  Name                  count\n  &lt;chr&gt;                 &lt;int&gt;\n1 Captain Trash Wheel      13\n2 Gwynnda Trash Wheel     220\n3 Mister Trash Wheel      177\n4 Professor Trash Wheel    44\n\n\n# A tibble: 4 × 8\n  Name        PlasticBottles Polystyrene CigaretteButts GlassBottles PlasticBags\n  &lt;chr&gt;                &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;\n1 Captain Tr…           22.9         5.8           50.2          0          13.2\n2 Gwynnda Tr…           28.3         3.3           44            0          11.3\n3 Mister Tra…           29.5         3.9           48            0.3         3.5\n4 Professor …           25.9         4             37            0.2         4.1\n# ℹ 2 more variables: Wrappers &lt;dbl&gt;, SportsBalls &lt;dbl&gt;"
+  },
+  {
+    "objectID": "index.html#data-transformation-formatting",
+    "href": "index.html#data-transformation-formatting",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Data Transformation / Formatting",
+    "text": "Data Transformation / Formatting\n\n\n# A tibble: 28 × 3\n   Name                Category        Proportion\n   &lt;chr&gt;               &lt;chr&gt;                &lt;dbl&gt;\n 1 Captain Trash Wheel Cigarette Butts       50.2\n 2 Captain Trash Wheel Plastic Bottles       22.9\n 3 Captain Trash Wheel Plastic Bags          13.2\n 4 Captain Trash Wheel Wrappers               7.9\n 5 Captain Trash Wheel Polystyrene            5.8\n 6 Captain Trash Wheel Glass Bottles          0  \n 7 Captain Trash Wheel Sports Balls           0  \n 8 Gwynnda Trash Wheel Cigarette Butts       44  \n 9 Gwynnda Trash Wheel Plastic Bottles       28.3\n10 Gwynnda Trash Wheel Wrappers              13.1\n# ℹ 18 more rows"
+  },
+  {
+    "objectID": "index.html#references",
+    "href": "index.html#references",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "References",
+    "text": "References\npivot_longer() - https://tidyr.tidyverse.org/reference/pivot_longer.html\nggplot2 timeline - https://cran.r-project.org/web/packages/vistime/vignettes/gg_vistime-vignette.html https://benalexkeen.com/creating-a-timeline-graphic-using-r-and-ggplot2/ https://r-graph-gallery.com/279-plotting-time-series-with-ggplot2.html\nBaltimore Harbor shapefile - https://catalog.data.gov/dataset/tiger-line-shapefile-2019-county-baltimore-city-md-topological-faces-polygons-with-all-geocodes\nTrash wheel actual locations - Google Maps"
+  },
+  {
+    "objectID": "index.html#top-categories",
+    "href": "index.html#top-categories",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Top Categories",
+    "text": "Top Categories\n\n\n# A tibble: 20 × 3\n   Name                  Category        Proportion\n   &lt;chr&gt;                 &lt;chr&gt;                &lt;dbl&gt;\n 1 Captain Trash Wheel   Cigarette Butts       50.2\n 2 Captain Trash Wheel   Plastic Bottles       22.9\n 3 Captain Trash Wheel   Plastic Bags          13.2\n 4 Captain Trash Wheel   Wrappers               7.9\n 5 Captain Trash Wheel   Polystyrene            5.8\n 6 Gwynnda Trash Wheel   Cigarette Butts       44  \n 7 Gwynnda Trash Wheel   Plastic Bottles       28.3\n 8 Gwynnda Trash Wheel   Wrappers              13.1\n 9 Gwynnda Trash Wheel   Plastic Bags          11.3\n10 Gwynnda Trash Wheel   Polystyrene            3.3\n11 Mister Trash Wheel    Cigarette Butts       48  \n12 Mister Trash Wheel    Plastic Bottles       29.5\n13 Mister Trash Wheel    Wrappers              14.7\n14 Mister Trash Wheel    Polystyrene            3.9\n15 Mister Trash Wheel    Plastic Bags           3.5\n16 Professor Trash Wheel Cigarette Butts       37  \n17 Professor Trash Wheel Wrappers              28.9\n18 Professor Trash Wheel Plastic Bottles       25.9\n19 Professor Trash Wheel Plastic Bags           4.1\n20 Professor Trash Wheel Polystyrene            4"
+  },
+  {
+    "objectID": "index.html#read-and-prepare-data",
+    "href": "index.html#read-and-prepare-data",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Read and Prepare Data",
+    "text": "Read and Prepare Data"
+  },
+  {
+    "objectID": "index.html#plot",
+    "href": "index.html#plot",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Plot",
+    "text": "Plot"
   }
 ]

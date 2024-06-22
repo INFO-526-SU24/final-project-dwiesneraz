@@ -176,17 +176,17 @@ Plot 2 will most likely be mapped onto some sort of time-line once I decide on t
 
 \*All tasks subject to change / modification as they are undertaken.
 
-|           Task Name           |   Status   | Due  | Priority |                                                           Summary                                                           |
-|:---------:|:---------:|:---------:|:---------:|:--------------------------:|
-|        Get Proportions        | incomplete | 6/05 |   high   |                   Get the proportions of each trash category from each wheel over all records since 2021                    |
-|       Decide Categories       | incomplete | 6/05 |   high   | Decide how many top categories to focus on. This will depend on how they differ between the wheels. May use all categories. |
-|       Decide Timeframe        | incomplete | 6/05 |   high   |                 Decide on a specific timeframe for Plot 2 (could be all years of operation for each wheel)                  |
-|    Get Proportion Changes     | incomplete | 6/07 | moderate |                    Get and organize the changes in proportions for each wheel over the chosen timeframe.                    |
-|         Perform ANOVA         | incomplete | 6/09 |   low    |                                 Perform an analysis of variance for the chosen hypotheses.                                  |
-|    Experiment with Formats    | incomplete | 6/10 |   low    |            Experiment with different visualization formats and styles to see which conveys the information best.            |
-| Choose Formats for Plot 1 & 2 | incomplete | 6/10 |   low    |                             Choose best available visualization styles for both plots 1 and 2.                              |
-|     External Information      | incomplete | 6/11 |   low    |              Get harbor map and experiment with coordinate positions for displaying data in the proper areas.               |
-|        Finalize Plot 1        | incomplete | 6/12 |   low    |                                 Put all information together and finalize the visualization                                 |
-|        Finalize Plot 2        | incomplete | 6/13 |   low    |                                 Put all information together and finalize the visualization                                 |
-|           Write-up            | incomplete | 6/16 |   low    |                                                    Put together write-up                                                    |
-|         Presentation          | incomplete | 6/20 |   low    |                                                plan and record presentation                                                 |
+|           Task Name           |     Status      | Expected Finish | Priority |                                                           Summary                                                           |
+|:-----------:|:-----------:|:-----------:|:-----------:|:--------------------:|
+|        Get Proportions        |    complete     |      6/05       |   high   |                   Get the proportions of each trash category from each wheel over all records since 2021                    |
+|       Decide Categories       |    complete     |      6/05       |   high   | Decide how many top categories to focus on. This will depend on how they differ between the wheels. May use all categories. |
+|       Decide Timeframe        |    complete     |      6/05       |   high   |                 Decide on a specific timeframe for Plot 2 (could be all years of operation for each wheel)                  |
+|    Get Proportion Changes     |    complete     |      6/07       | moderate |                    Get and organize the changes in proportions for each wheel over the chosen timeframe.                    |
+|         Perform ANOVA         |   incomplete    |      6/09       |   low    |                                 Perform an analysis of variance for the chosen hypotheses.                                  |
+|    Experiment with Formats    |    complete     |      6/10       |   low    |            Experiment with different visualization formats and styles to see which conveys the information best.            |
+| Choose Formats for Plot 1 & 2 | plot 1 complete |      6/10       |   low    |                             Choose best available visualization styles for both plots 1 and 2.                              |
+|     External Information      |    complete     |      6/11       |   low    |              Get harbor map and experiment with coordinate positions for displaying data in the proper areas.               |
+|        Finalize Plot 1        |   incomplete    |      6/12       |   low    |                                 Put all information together and finalize the visualization                                 |
+|        Finalize Plot 2        |   incomplete    |      6/13       |   low    |                                 Put all information together and finalize the visualization                                 |
+|           Write-up            |   incomplete    |      6/16       |   low    |                                                    Put together write-up                                                    |
+|         Presentation          |   incomplete    |      6/20       |   low    |                                                plan and record presentation                                                 |
