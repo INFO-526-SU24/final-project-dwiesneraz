@@ -177,7 +177,7 @@ Plot 2 will most likely be mapped onto some sort of time-line once I decide on t
 \*All tasks subject to change / modification as they are undertaken.
 
 |           Task Name           |     Status      | Expected Finish | Priority |                                                           Summary                                                           |
-|:-----------:|:-----------:|:-----------:|:-----------:|:--------------------:|
+|:-----------------------------:|:---------------:|:---------------:|:--------:|:---------------------------------------------------------------------------------------------------------------------------:|
 |        Get Proportions        |    complete     |      6/05       |   high   |                   Get the proportions of each trash category from each wheel over all records since 2021                    |
 |       Decide Categories       |    complete     |      6/05       |   high   | Decide how many top categories to focus on. This will depend on how they differ between the wheels. May use all categories. |
 |       Decide Timeframe        |    complete     |      6/05       |   high   |                 Decide on a specific timeframe for Plot 2 (could be all years of operation for each wheel)                  |

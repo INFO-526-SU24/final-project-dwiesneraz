@@ -52,7 +52,10 @@ pacman::p_load(tidyverse,
                ggrepel,
                readxl, 
                here, 
-               stringr) 
+               stringr,
+               ggnewscale,
+               lubridate,
+               vistime) 
 
 # set theme for ggplot2
 ggplot2::theme_set(ggplot2::theme_minimal(base_size = 12))
@@ -64,17 +67,40 @@ knitr::opts_chunk$set(
 
 ```
 
-## Data Summarization
+
+
+```{r}
+#| fig-width: 12
+#| fig-height: 7
+
+timeline_data <- data.frame(event = mr_wheel_labels$label,
+                            group = "",
+                            start = c("2014-01-01", "2015-01-01", 
+                                      "2016-01-01", "2017-01-01", 
+                                      "2018-01-01", "2019-01-01", 
+                                      "2020-01-01", "2021-01-01", 
+                                      "2022-01-01", "2023-01-01"),
+                            end = c("2015-01-01", "2016-01-01", 
+                                    "2017-01-01", "2018-01-01", 
+                                    "2019-01-01", "2020-01-01", 
+                                    "2021-01-01", "2022-01-01", 
+                                    "2023-01-01", "2024-01-01"))
+
+gg_vistime(timeline_data, linewidth = 100)
+
+```
+
+
 
 ```{r cache = TRUE}
+
+# ----- Data Summarization -----
 
 # Load dataset
 
 tuesdata <- tidytuesdayR::tt_load('2024-03-05')
 
 wheels <- tuesdata$trashwheel
-
-glimpse(wheels)
 
 # get records since 2021 (all wheels active) 
 
@@ -151,7 +177,7 @@ wheels_long <- wheels_perc %>%
   pivot_longer(
     cols = c(PlasticBottles:SportsBalls),
     names_to = "Category", 
-    values_to = "Proportion"
+    values_to = "Percentage"
   )
 
 # reformat Category strings for better 
@@ -175,7 +201,7 @@ wheels_long <- wheels_long %>%
 
 wheels_long <- wheels_long[
   order(wheels_long$Name, 
-  -wheels_long$Proportion),
+  -wheels_long$Percentage),
   ]
 
 wheels_long
@@ -186,20 +212,42 @@ wheels_long
 
 ```{r}
 
-wheels_top <- wheels_long[c(1:5, 8:12, 
-                            15:19, 22:26),]
+# get top 5 trash categories for each wheel
+# wheels order: (Mr, Professor, Captain, Gwynnda)
 
-#wheels_top <- wheels_top %>%
-#  mutate(
-#    Label = 
-#      case_when(
-#        Category
-#      )
-#  )
+wheels_top <- wheels_long[c(15:19, 22:26,
+                            1:5, 8:12),]
 
-wheels_top
+# Create well-formatted strings for each wheel 
+# of the top 5 trash categories for vis. labeling
+
+wheels_labels <- tibble(label = character())
+
+for (i in seq(1, 20, 5)) {
+  wheel_str <- wheels_top[i,1]  # get wheel name
+  k <- 1
+  for (j in c(i:(i+4))) {
+    wheel_str <- 
+      paste0(wheel_str, "\n ", k,   # get wheel info
+             ". " ,wheels_top[j,2], 
+             ": ", wheels_top[j,3], "%")
+    k <- k + 1
+  }
+  wheels_labels <-          # store completed label
+    wheels_labels %>% 
+    add_row(label = wheel_str)
+}
+
+# Change 'Mister' to 'Mr.' for Mr. Trash Wheel
+
+wheels_labels <- wheels_labels %>%
+  mutate(
+    label =
+      ifelse(grepl("Mister", label), paste0("Mr.", substr(label, start = 7, stop = 135)), label)
+  )
 
 ```
+
 
 ## Read and Prepare Data
 
@@ -210,8 +258,8 @@ baltimore <- read_sf(dsn = here("data", "tl_2019_24510_faces.shp"))
 # crop Baltimore to only the harbor
 
 harbor <- baltimore %>%
-  st_crop(xmin = -76.64,
-          xmax = -76.56,
+  st_crop(xmin = -76.636,
+          xmax = -76.565,
           ymin = 39.24,
           ymax = 39.29)
 
@@ -220,41 +268,244 @@ harbor <- baltimore %>%
 
 # order: (Mr, Professor, Captain, Gwynnda)
 
-wheel_points <- tibble(
+wheels_points <- tibble(
   x = c(-76.6035, -76.5805, -76.595, -76.628),
   y = c(39.2825, 39.2795, 39.246, 39.2688),
-  Name = c("Mister Trash Wheel",
-           "Professor Trash Wheel",
-           "Captain Trash Wheel",
-           "Gwynnda Trash Wheel")
+  label = wheels_labels$label
 )
 
-wheels_complete <- merge(wheels_top,
-                         wheel_points,
-                         by = "Name")
+# factorize to preserve order
+
+wheels_points$label <- as.factor(wheels_points$label)
 
 ```
 
 ## Plot
 
 ```{r}
-#| fig-width: 7
-#| fig-height: 7
+#| fig-width: 9
+#| fig-height: 9
+
+
+
+wheels_colors <- c("lightskyblue1", 
+                   "palegreen",
+                   "lightgoldenrod",
+                   "plum1")
 
 harbor %>%
   ggplot() +
-  geom_sf(aes(fill = LWFLAG),   # Baltimore Harbor map
+  geom_sf(aes(fill = LWFLAG),              # Baltimore Harbor map
           alpha = 0.5, 
           show.legend = FALSE) +
-  scale_fill_manual(values = c("tan3", "dodgerblue3")) +  # Land / Water colors
-  geom_point(data = wheels_complete,
+  scale_fill_manual(values =               # Land / Water colors
+                      c("tan3",           
+                        "dodgerblue3")) +  
+  geom_point(data = wheels_points,         # wheel location points
              aes(x = x, y = y),
-             color = "red") #+
-  #geom_label_repel(data = wheels_complete,
-  #                 aes(x = x, y = y))
+             fill = wheels_colors,
+             color = "black",
+             size = 5,
+             shape = 21) +
+  new_scale_fill() +                       # allow new fill for labels
+  geom_label(data = wheels_points,         # wheel labels
+             aes(x = x, y = y, 
+                 label = label),
+             fill = wheels_colors,
+             hjust = 0,
+             vjust = -0.1,
+             size = 3.5,
+             show.legend = FALSE) +
+  geom_label(aes(x = -76.625,              # harbor name label 
+                 y = 39.288,
+                 label = "Map of Baltimore Harbor"),
+             size = 5,
+             show.legend = FALSE) +
+  labs(title = "5 Most Common Types of Trash Collected by Each Wheel",
+       subtitle = "Ranked By Percentage of Total Trash") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5, size = 15),
+        plot.subtitle = element_text(hjust = 0.5, size = 15))
 
 ```
 
+
+## ---- PLOT 2 ----
+
+```{r}
+
+# ----- Mr. Trash Wheel Data -----
+
+wheels <- tuesdata$trashwheel
+
+# get records for Mr.
+
+mr_wheel <- wheels %>%
+  filter(ID == "mister")
+
+# get totals for each trash category for
+# each year of operation
+
+mr_wheel <- mr_wheel %>%
+  group_by(Year) %>%
+  summarize(
+    PlasticBottles = sum(PlasticBottles),
+    Polystyrene = sum(Polystyrene),
+    CigaretteButts = sum(CigaretteButts),
+    GlassBottles = sum(GlassBottles),
+    PlasticBags = sum(PlasticBags),
+    Wrappers = sum(Wrappers),
+    SportsBalls = sum(SportsBalls)
+  )
+
+# get totals of all trash categories 
+# for each wheel
+
+mr_wheel$Total <- rowSums(mr_wheel[, c(2:8)]) 
+
+# convert counts to proportions based 
+# on total counts for each wheel
+
+mr_wheel <- mr_wheel %>%
+  mutate(
+    across(c(PlasticBottles:SportsBalls), 
+           function(x) x / Total)
+  )
+
+# convert proportions to percentages
+# for each wheel
+
+mr_wheel <- mr_wheel %>%
+  mutate(
+    across(c(PlasticBottles:SportsBalls), 
+           function(x) round(x * 100, 1))
+  )
+
+# remove Total column
+
+mr_wheel <- mr_wheel %>%
+  select(-Total)
+
+# pivot longer
+
+mr_wheel <- mr_wheel %>%
+  pivot_longer(
+    cols = c(PlasticBottles:SportsBalls),
+    names_to = "Category", 
+    values_to = "Percentage"
+  )
+
+# reformat Category strings for better 
+# readability
+
+mr_wheel <- mr_wheel %>%
+  mutate(
+    Category = 
+      case_when(
+        Category == "CigaretteButts" ~ "Cigarette Butts",
+        Category == "PlasticBottles" ~ "Plastic Bottles",
+        Category == "PlasticBags" ~ "Plastic Bags",
+        Category == "GlassBottles" ~ "Glass Bottles",
+        Category == "SportsBalls" ~ "Sports Balls",
+        .default = Category
+      )
+  )
+
+# order by proportion (descending)
+# for each wheel
+
+mr_wheel <- mr_wheel[
+  order(mr_wheel$Year, 
+  -mr_wheel$Percentage),
+  ]
+
+mr_wheel
+
+```
+
+```{r}
+
+# get top 5 trash categories
+
+mr_wheel_top <- mr_wheel[c(1:5, 8:12,
+                           15:19, 22:26,
+                           29:33, 36:40,
+                           43:47, 50:54,
+                           57:61, 64:68),]
+
+mr_wheel_top
+
+# Create well-formatted strings for each wheel 
+# of the top 5 trash categories for vis. labeling
+
+mr_wheel_timeline <- tibble(label = character())
+
+for (i in seq(1, 50, 5)) {
+  mr_str <- ""
+  k <- 1
+  for (j in c(i:(i+4))) {
+    mr_str <- 
+      paste0(mr_str, k,   # get wheel info
+             ". " ,mr_wheel_top[j,2], 
+             ": ", mr_wheel_top[j,3], "%\n")
+    k <- k + 1
+  }
+  mr_wheel_timeline <-          # store completed label
+    mr_wheel_timeline %>% 
+    add_row(label = mr_str)
+}
+
+
+
+mr_wheel_timeline$year <- as.character(c(2014:2023))
+
+mr_wheel_timeline$x_position <- c(1:10)
+
+mr_wheel_timeline$line_position <- rep(c(1, -1), 5)
+
+mr_wheel_timeline$year_position <- rep(c(-0.3, 0.3), 5)
+
+mr_wheel_timeline$label_position <- rep(c(2, -2), 5)
+
+
+
+mr_wheel_timeline
+
+```
+
+
+
+```{r}
+#| fig-width: 12
+#| fig-height: 7
+
+mr_wheel_timeline %>%
+  ggplot(aes(x = x_position, y = 0)) +
+  geom_hline(yintercept = 0,            # timeline main line
+             size = 1) +
+  geom_segment(aes(x = x_position,            # alternating vertical lines
+                   y = line_position, 
+                   yend = 0)) +
+  geom_text(aes(x = x_position,               # year label text
+                y = year_position, 
+                label = year)) +
+  geom_label(aes(x = x_position - 0.8,        # category percentage labels
+                 y = label_position, 
+                 label = label, 
+                 fill = year),
+             hjust = 0,
+             show.legend = FALSE) +
+  #scale_fill_brewer(palette = "dark") +
+  scale_x_continuous(limits = c(0, 11)) +
+  coord_cartesian(xlim = c(0.5, 10.5)) +
+  scale_y_continuous(limits = c(-5, 5)) +
+  labs(title = "Mr. Trash Wheel Top 5 Trash Categories Over the Years (2014 - 2023)") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5, size = 15),
+        plot.subtitle = element_text(hjust = 0.5, size = 15))
+  
+
+```
 
 ## References
 
@@ -268,13 +519,15 @@ Baltimore Harbor shapefile - <https://catalog.data.gov/dataset/tiger-line-shapef
 
 Trash wheel actual locations - Google Maps
 
+multiple fill mappings with `ggnewscale` - <https://stackoverflow.com/questions/66873314/how-to-fill-points-from-2-different-sets-of-colours-in-ggplot>
 
+string contains with `grepl` - <https://www.geeksforgeeks.org/how-to-check-if-characters-are-present-in-a-string-in-r/>
 
+`substring()` - <https://www.digitalocean.com/community/tutorials/substring-function-in-r>
 
+bolding part of a substring - <https://www.tutorialspoint.com/how-to-make-a-plot-title-partially-bold-using-ggplot2-in-r>
 
-
-
-
+making a timeline in `ggplot2` - <https://benalexkeen.com/creating-a-timeline-graphic-using-r-and-ggplot2/>
 
 
 
