@@ -69,29 +69,6 @@ knitr::opts_chunk$set(
 
 
 
-```{r}
-#| fig-width: 12
-#| fig-height: 7
-
-timeline_data <- data.frame(event = mr_wheel_labels$label,
-                            group = "",
-                            start = c("2014-01-01", "2015-01-01", 
-                                      "2016-01-01", "2017-01-01", 
-                                      "2018-01-01", "2019-01-01", 
-                                      "2020-01-01", "2021-01-01", 
-                                      "2022-01-01", "2023-01-01"),
-                            end = c("2015-01-01", "2016-01-01", 
-                                    "2017-01-01", "2018-01-01", 
-                                    "2019-01-01", "2020-01-01", 
-                                    "2021-01-01", "2022-01-01", 
-                                    "2023-01-01", "2024-01-01"))
-
-gg_vistime(timeline_data, linewidth = 100)
-
-```
-
-
-
 ```{r cache = TRUE}
 
 # ----- Data Summarization -----
@@ -187,10 +164,10 @@ wheels_long <- wheels_long %>%
   mutate(
     Category = 
       case_when(
-        Category == "CigaretteButts" ~ "Cigarette Butts",
-        Category == "PlasticBottles" ~ "Plastic Bottles",
-        Category == "PlasticBags" ~ "Plastic Bags",
-        Category == "GlassBottles" ~ "Glass Bottles",
+        Category == "CigaretteButts" ~ "Cigarettes",
+        Category == "PlasticBottles" ~ "P. Bottles",
+        Category == "PlasticBags" ~ "P. Bags",
+        Category == "GlassBottles" ~ "G. Bottles",
         Category == "SportsBalls" ~ "Sports Balls",
         .default = Category
       )
@@ -203,6 +180,14 @@ wheels_long <- wheels_long[
   order(wheels_long$Name, 
   -wheels_long$Percentage),
   ]
+
+# append trailing spaces for better printing
+
+wheels_long <- wheels_long %>%
+  mutate(
+    Category =
+      format(Category, width = 11, justify = "left")
+  )
 
 wheels_long
 
@@ -230,7 +215,7 @@ for (i in seq(1, 20, 5)) {
     wheel_str <- 
       paste0(wheel_str, "\n ", k,   # get wheel info
              ". " ,wheels_top[j,2], 
-             ": ", wheels_top[j,3], "%")
+             " - ", wheels_top[j,3], "%")
     k <- k + 1
   }
   wheels_labels <-          # store completed label
@@ -243,13 +228,13 @@ for (i in seq(1, 20, 5)) {
 wheels_labels <- wheels_labels %>%
   mutate(
     label =
-      ifelse(grepl("Mister", label), paste0("Mr.", substr(label, start = 7, stop = 135)), label)
+      ifelse(grepl("Mister", label), paste0("Mr.", substr(label, start = 7, stop = 170)), label)
   )
 
 ```
 
 
-## Read and Prepare Data
+## Read and Prepare Mapping Data
 
 ```{r cache = TRUE}
 
@@ -283,8 +268,8 @@ wheels_points$label <- as.factor(wheels_points$label)
 ## Plot
 
 ```{r}
-#| fig-width: 9
-#| fig-height: 9
+#| fig-width: 6
+#| fig-height: 6
 
 
 
@@ -315,17 +300,28 @@ harbor %>%
              hjust = 0,
              vjust = -0.1,
              size = 3.5,
-             show.legend = FALSE) +
-  geom_label(aes(x = -76.625,              # harbor name label 
+             show.legend = FALSE,
+             family = "mono",
+             fontface = "bold") +
+  geom_label(aes(x = -76.622,              # harbor name label 
                  y = 39.288,
                  label = "Map of Baltimore Harbor"),
              size = 5,
-             show.legend = FALSE) +
+             show.legend = FALSE,
+             family = "mono",
+             fontface = "bold") +
   labs(title = "5 Most Common Types of Trash Collected by Each Wheel",
-       subtitle = "Ranked By Percentage of Total Trash") +
+       subtitle = "Ranked By Percentage of Total Trash (2021-2023)",
+       caption = "*P. - Plastic") +
   theme_void() +
-  theme(plot.title = element_text(hjust = 0.5, size = 15),
-        plot.subtitle = element_text(hjust = 0.5, size = 15))
+  theme(text = element_text(family = "mono"),
+        plot.title = element_text(hjust = 0.5, size = 15, face = "bold"),
+        plot.subtitle = element_text(hjust = 0.5, size = 13),
+        plot.caption = element_text(size = 13))
+
+if (!file.exists(here("images", "harbor_plot.png"))) {
+  ggsave("harbor_plot.png", path = here("images"), bg = "white")
+}
 
 ```
 
@@ -402,10 +398,10 @@ mr_wheel <- mr_wheel %>%
   mutate(
     Category = 
       case_when(
-        Category == "CigaretteButts" ~ "Cigarette Butts",
-        Category == "PlasticBottles" ~ "Plastic Bottles",
-        Category == "PlasticBags" ~ "Plastic Bags",
-        Category == "GlassBottles" ~ "Glass Bottles",
+        Category == "CigaretteButts" ~ "Cigarettes",
+        Category == "PlasticBottles" ~ "P. Bottles",
+        Category == "PlasticBags" ~ "P. Bags",
+        Category == "GlassBottles" ~ "G. Bottles",
         Category == "SportsBalls" ~ "Sports Balls",
         .default = Category
       )
@@ -418,6 +414,12 @@ mr_wheel <- mr_wheel[
   order(mr_wheel$Year, 
   -mr_wheel$Percentage),
   ]
+
+mr_wheel <- mr_wheel %>%
+  mutate(
+    Category =
+      format(Category, width = 11, justify = "left")
+  )
 
 mr_wheel
 
@@ -447,7 +449,7 @@ for (i in seq(1, 50, 5)) {
     mr_str <- 
       paste0(mr_str, k,   # get wheel info
              ". " ,mr_wheel_top[j,2], 
-             ": ", mr_wheel_top[j,3], "%\n")
+             " - ", mr_wheel_top[j,3], "%\n")
     k <- k + 1
   }
   mr_wheel_timeline <-          # store completed label
@@ -461,11 +463,11 @@ mr_wheel_timeline$year <- as.character(c(2014:2023))
 
 mr_wheel_timeline$x_position <- c(1:10)
 
-mr_wheel_timeline$line_position <- rep(c(1, -1), 5)
+mr_wheel_timeline$line_position <- rep(c(2, -2), 5)
 
 mr_wheel_timeline$year_position <- rep(c(-0.3, 0.3), 5)
 
-mr_wheel_timeline$label_position <- rep(c(2, -2), 5)
+mr_wheel_timeline$label_position <- rep(c(3, -3), 5)
 
 
 
@@ -477,33 +479,47 @@ mr_wheel_timeline
 
 ```{r}
 #| fig-width: 12
-#| fig-height: 7
+#| fig-height: 5
 
 mr_wheel_timeline %>%
-  ggplot(aes(x = x_position, y = 0)) +
+  ggplot(aes(x = x_position, 
+             y = 0)) +
   geom_hline(yintercept = 0,            # timeline main line
              size = 1) +
   geom_segment(aes(x = x_position,            # alternating vertical lines
                    y = line_position, 
-                   yend = 0)) +
+                   yend = rep(c(-0.1, 0.1), 5))) +
   geom_text(aes(x = x_position,               # year label text
                 y = year_position, 
-                label = year)) +
-  geom_label(aes(x = x_position - 0.8,        # category percentage labels
+                label = year),
+            family = "mono",
+            size = 5,
+            fontface = "bold") +
+  geom_label(aes(x = x_position - 0.9,        # category percentage labels
                  y = label_position, 
                  label = label, 
                  fill = year),
              hjust = 0,
-             show.legend = FALSE) +
-  #scale_fill_brewer(palette = "dark") +
+             show.legend = FALSE,
+             size = 3.5,
+             family = "mono",
+             fontface = "bold") +
+  scale_fill_brewer(palette = "Set3") +
   scale_x_continuous(limits = c(0, 11)) +
   coord_cartesian(xlim = c(0.5, 10.5)) +
   scale_y_continuous(limits = c(-5, 5)) +
-  labs(title = "Mr. Trash Wheel Top 5 Trash Categories Over the Years (2014 - 2023)") +
+  labs(title = paste0("Mr. Trash Wheel's Top 5 Trash ",
+                      "Categories Over the Years"),
+       subtitle = "(2014 - 2023)",
+       caption = "*P. - Plastic") +
   theme_void() +
-  theme(plot.title = element_text(hjust = 0.5, size = 15),
-        plot.subtitle = element_text(hjust = 0.5, size = 15))
-  
+  theme(text = element_text(family = "mono", size = 15),
+        plot.title = element_text(hjust = 0.5, face = "bold", vjust = -3),
+        plot.subtitle = element_text(hjust = 0.5, vjust = -3))
+
+if (!file.exists(here("images", "mr_wheel.png"))) {
+  ggsave("mr_wheel.png", path = here("images"), bg = "white")
+}
 
 ```
 

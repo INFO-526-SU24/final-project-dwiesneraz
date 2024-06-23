@@ -44,63 +44,63 @@
   {
     "objectID": "presentation.html#quarto",
     "href": "presentation.html#quarto",
-    "title": "Project title",
+    "title": "Trash Wheel Collection Comparison",
     "section": "Quarto",
     "text": "Quarto\n\nThe presentation is created using the Quarto CLI\n## sets the start of a new slide"
   },
   {
     "objectID": "presentation.html#layouts",
     "href": "presentation.html#layouts",
-    "title": "Project title",
+    "title": "Trash Wheel Collection Comparison",
     "section": "Layouts",
     "text": "Layouts\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis\n\nAnd add footnotes"
   },
   {
     "objectID": "presentation.html#code",
     "href": "presentation.html#code",
-    "title": "Project title",
+    "title": "Trash Wheel Collection Comparison",
     "section": "Code",
     "text": "Code\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic       p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;\n1 (Intercept)   25.3      3.08        8.22 0.00000000358\n2 speed         -0.116    0.0642     -1.81 0.0806       \n\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0983        0.0682  5.82      3.27  0.0806     1  -101.  207.  212.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
   },
   {
     "objectID": "presentation.html#plots",
     "href": "presentation.html#plots",
-    "title": "Project title",
+    "title": "Trash Wheel Collection Comparison",
     "section": "Plots",
     "text": "Plots"
   },
   {
     "objectID": "presentation.html#plot-and-text",
     "href": "presentation.html#plot-and-text",
-    "title": "Project title",
+    "title": "Trash Wheel Collection Comparison",
     "section": "Plot and text",
     "text": "Plot and text\n\n\n\nSome text\ngoes here"
   },
   {
     "objectID": "presentation.html#tables",
     "href": "presentation.html#tables",
-    "title": "Project title",
+    "title": "Trash Wheel Collection Comparison",
     "section": "Tables",
-    "text": "Tables\nIf you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\nAdelie\nTorgersen\n39.1\n18.7\n181\n3750\nmale\n\n\nAdelie\nTorgersen\n39.5\n17.4\n186\n3800\nfemale\n\n\nAdelie\nTorgersen\n40.3\n18.0\n195\n3250\nfemale\n\n\nAdelie\nTorgersen\nNA\nNA\nNA\nNA\nNA\n\n\nAdelie\nTorgersen\n36.7\n19.3\n193\n3450\nfemale\n\n\nAdelie\nTorgersen\n39.3\n20.6\n190\n3650\nmale"
+    "text": "Tables\nIf you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\nAdelie\nTorgersen\n39.1\n18.7\n181\n3750\nmale\n\n\nAdelie\nTorgersen\n39.5\n17.4\n186\n3800\nfemale\n\n\nAdelie\nTorgersen\n40.3\n18.0\n195\n3250\nfemale\n\n\nAdelie\nTorgersen\nNA\nNA\nNA\nNA\nNA\n\n\nAdelie\nTorgersen\n36.7\n19.3\n193\n3450\nfemale\n\n\nAdelie\nTorgersen\n39.3\n20.6\n190\n3650\nmale"
   },
   {
     "objectID": "presentation.html#images",
     "href": "presentation.html#images",
-    "title": "Project title",
+    "title": "Trash Wheel Collection Comparison",
     "section": "Images",
-    "text": "Images\n\nImage credit: Danielle Navarro, Percolate."
+    "text": "Images\n{fig-align=“right” width=“500”, height=“500}"
   },
   {
     "objectID": "presentation.html#math-expressions",
     "href": "presentation.html#math-expressions",
-    "title": "Project title",
+    "title": "Trash Wheel Collection Comparison",
     "section": "Math Expressions",
     "text": "Math Expressions\nYou can write LaTeX math expressions inside a pair of dollar signs, e.g. $\\alpha+\\beta$ renders \\(\\alpha + \\beta\\). You can use the display style with double dollar signs:\n$$\\bar{X}=\\frac{1}{n}\\sum_{i=1}^nX_i$$\n\\[\n\\bar{X}=\\frac{1}{n}\\sum_{i=1}^nX_i\n\\]\nLimitations:\n\nThe source code of a LaTeX math expression must be in one line, unless it is inside a pair of double dollar signs, in which case the starting $$ must appear in the very beginning of a line, followed immediately by a non-space character, and the ending $$ must be at the end of a line, led by a non-space character;\nThere should not be spaces after the opening $ or before the closing $."
   },
   {
     "objectID": "presentation.html#feeling-adventurous",
     "href": "presentation.html#feeling-adventurous",
-    "title": "Project title",
+    "title": "Trash Wheel Collection Comparison",
     "section": "Feeling adventurous?",
     "text": "Feeling adventurous?\n\nYou are welcomed to use the default styling of the slides. In fact, that’s what I expect majority of you will do. You will differentiate yourself with the content of your presentation.\nBut some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs."
   },
@@ -193,7 +193,7 @@
     "href": "index.html#setup",
     "title": "Trash Wheel Collection Comparison",
     "section": "Setup",
-    "text": "Setup"
+    "text": "Setup\n\n\n\n    Downloading file 1 of 1: `trashwheel.csv`\n\n\n# A tibble: 4 × 2\n  Name                  count\n  &lt;chr&gt;                 &lt;int&gt;\n1 Captain Trash Wheel      13\n2 Gwynnda Trash Wheel     220\n3 Mister Trash Wheel      177\n4 Professor Trash Wheel    44\n\n\n# A tibble: 4 × 8\n  Name        PlasticBottles Polystyrene CigaretteButts GlassBottles PlasticBags\n  &lt;chr&gt;                &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;\n1 Captain Tr…           22.9         5.8           50.2          0          13.2\n2 Gwynnda Tr…           28.3         3.3           44            0          11.3\n3 Mister Tra…           29.5         3.9           48            0.3         3.5\n4 Professor …           25.9         4             37            0.2         4.1\n# ℹ 2 more variables: Wrappers &lt;dbl&gt;, SportsBalls &lt;dbl&gt;"
   },
   {
     "objectID": "index.html#data-summarization",
@@ -207,21 +207,21 @@
     "href": "index.html#data-transformation-formatting",
     "title": "Trash Wheel Collection Comparison",
     "section": "Data Transformation / Formatting",
-    "text": "Data Transformation / Formatting\n\n\n# A tibble: 28 × 3\n   Name                Category        Proportion\n   &lt;chr&gt;               &lt;chr&gt;                &lt;dbl&gt;\n 1 Captain Trash Wheel Cigarette Butts       50.2\n 2 Captain Trash Wheel Plastic Bottles       22.9\n 3 Captain Trash Wheel Plastic Bags          13.2\n 4 Captain Trash Wheel Wrappers               7.9\n 5 Captain Trash Wheel Polystyrene            5.8\n 6 Captain Trash Wheel Glass Bottles          0  \n 7 Captain Trash Wheel Sports Balls           0  \n 8 Gwynnda Trash Wheel Cigarette Butts       44  \n 9 Gwynnda Trash Wheel Plastic Bottles       28.3\n10 Gwynnda Trash Wheel Wrappers              13.1\n# ℹ 18 more rows"
+    "text": "Data Transformation / Formatting\n\n\n# A tibble: 28 × 3\n   Name                Category       Percentage\n   &lt;chr&gt;               &lt;chr&gt;               &lt;dbl&gt;\n 1 Captain Trash Wheel \"Cigarettes  \"       50.2\n 2 Captain Trash Wheel \"P. Bottles  \"       22.9\n 3 Captain Trash Wheel \"P. Bags     \"       13.2\n 4 Captain Trash Wheel \"Wrappers    \"        7.9\n 5 Captain Trash Wheel \"Polystyrene \"        5.8\n 6 Captain Trash Wheel \"G. Bottles  \"        0  \n 7 Captain Trash Wheel \"Sports Balls\"        0  \n 8 Gwynnda Trash Wheel \"Cigarettes  \"       44  \n 9 Gwynnda Trash Wheel \"P. Bottles  \"       28.3\n10 Gwynnda Trash Wheel \"Wrappers    \"       13.1\n# ℹ 18 more rows"
   },
   {
     "objectID": "index.html#references",
     "href": "index.html#references",
     "title": "Trash Wheel Collection Comparison",
     "section": "References",
-    "text": "References\npivot_longer() - https://tidyr.tidyverse.org/reference/pivot_longer.html\nggplot2 timeline - https://cran.r-project.org/web/packages/vistime/vignettes/gg_vistime-vignette.html https://benalexkeen.com/creating-a-timeline-graphic-using-r-and-ggplot2/ https://r-graph-gallery.com/279-plotting-time-series-with-ggplot2.html\nBaltimore Harbor shapefile - https://catalog.data.gov/dataset/tiger-line-shapefile-2019-county-baltimore-city-md-topological-faces-polygons-with-all-geocodes\nTrash wheel actual locations - Google Maps"
+    "text": "References\npivot_longer() - https://tidyr.tidyverse.org/reference/pivot_longer.html\nggplot2 timeline - https://cran.r-project.org/web/packages/vistime/vignettes/gg_vistime-vignette.html https://benalexkeen.com/creating-a-timeline-graphic-using-r-and-ggplot2/ https://r-graph-gallery.com/279-plotting-time-series-with-ggplot2.html\nBaltimore Harbor shapefile - https://catalog.data.gov/dataset/tiger-line-shapefile-2019-county-baltimore-city-md-topological-faces-polygons-with-all-geocodes\nTrash wheel actual locations - Google Maps\nmultiple fill mappings with ggnewscale - https://stackoverflow.com/questions/66873314/how-to-fill-points-from-2-different-sets-of-colours-in-ggplot\nstring contains with grepl - https://www.geeksforgeeks.org/how-to-check-if-characters-are-present-in-a-string-in-r/\nsubstring() - https://www.digitalocean.com/community/tutorials/substring-function-in-r\nbolding part of a substring - https://www.tutorialspoint.com/how-to-make-a-plot-title-partially-bold-using-ggplot2-in-r\nmaking a timeline in ggplot2 - https://benalexkeen.com/creating-a-timeline-graphic-using-r-and-ggplot2/"
   },
   {
     "objectID": "index.html#top-categories",
     "href": "index.html#top-categories",
     "title": "Trash Wheel Collection Comparison",
     "section": "Top Categories",
-    "text": "Top Categories\n\n\n# A tibble: 20 × 3\n   Name                  Category        Proportion\n   &lt;chr&gt;                 &lt;chr&gt;                &lt;dbl&gt;\n 1 Captain Trash Wheel   Cigarette Butts       50.2\n 2 Captain Trash Wheel   Plastic Bottles       22.9\n 3 Captain Trash Wheel   Plastic Bags          13.2\n 4 Captain Trash Wheel   Wrappers               7.9\n 5 Captain Trash Wheel   Polystyrene            5.8\n 6 Gwynnda Trash Wheel   Cigarette Butts       44  \n 7 Gwynnda Trash Wheel   Plastic Bottles       28.3\n 8 Gwynnda Trash Wheel   Wrappers              13.1\n 9 Gwynnda Trash Wheel   Plastic Bags          11.3\n10 Gwynnda Trash Wheel   Polystyrene            3.3\n11 Mister Trash Wheel    Cigarette Butts       48  \n12 Mister Trash Wheel    Plastic Bottles       29.5\n13 Mister Trash Wheel    Wrappers              14.7\n14 Mister Trash Wheel    Polystyrene            3.9\n15 Mister Trash Wheel    Plastic Bags           3.5\n16 Professor Trash Wheel Cigarette Butts       37  \n17 Professor Trash Wheel Wrappers              28.9\n18 Professor Trash Wheel Plastic Bottles       25.9\n19 Professor Trash Wheel Plastic Bags           4.1\n20 Professor Trash Wheel Polystyrene            4"
+    "text": "Top Categories"
   },
   {
     "objectID": "index.html#read-and-prepare-data",
@@ -236,5 +236,47 @@
     "title": "Trash Wheel Collection Comparison",
     "section": "Plot",
     "text": "Plot"
+  },
+  {
+    "objectID": "index.html#read-and-prepare-mapping-data",
+    "href": "index.html#read-and-prepare-mapping-data",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Read and Prepare Mapping Data",
+    "text": "Read and Prepare Mapping Data"
+  },
+  {
+    "objectID": "index.html#plot-2--",
+    "href": "index.html#plot-2--",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "—- PLOT 2 —-",
+    "text": "—- PLOT 2 —-\n\n\n# A tibble: 70 × 3\n    Year Category       Percentage\n   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;\n 1  2014 \"Cigarettes  \"       93.3\n 2  2014 \"Polystyrene \"        2.3\n 3  2014 \"P. Bottles  \"        1.9\n 4  2014 \"Wrappers    \"        1.6\n 5  2014 \"P. Bags     \"        0.9\n 6  2014 \"G. Bottles  \"        0  \n 7  2014 \"Sports Balls\"        0  \n 8  2015 \"Cigarettes  \"       83.9\n 9  2015 \"Polystyrene \"        5.2\n10  2015 \"P. Bottles  \"        4  \n# ℹ 60 more rows\n\n\n\n\n# A tibble: 50 × 3\n    Year Category       Percentage\n   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;\n 1  2014 \"Cigarettes  \"       93.3\n 2  2014 \"Polystyrene \"        2.3\n 3  2014 \"P. Bottles  \"        1.9\n 4  2014 \"Wrappers    \"        1.6\n 5  2014 \"P. Bags     \"        0.9\n 6  2015 \"Cigarettes  \"       83.9\n 7  2015 \"Polystyrene \"        5.2\n 8  2015 \"P. Bottles  \"        4  \n 9  2015 \"Wrappers    \"        3.9\n10  2015 \"P. Bags     \"        2.9\n# ℹ 40 more rows\n\n\n# A tibble: 10 × 6\n   label             year  x_position line_position year_position label_position\n   &lt;chr&gt;             &lt;chr&gt;      &lt;int&gt;         &lt;dbl&gt;         &lt;dbl&gt;          &lt;dbl&gt;\n 1 \"1. Cigarettes  … 2014           1             2          -0.3              3\n 2 \"1. Cigarettes  … 2015           2            -2           0.3             -3\n 3 \"1. Cigarettes  … 2016           3             2          -0.3              3\n 4 \"1. Cigarettes  … 2017           4            -2           0.3             -3\n 5 \"1. Cigarettes  … 2018           5             2          -0.3              3\n 6 \"1. Cigarettes  … 2019           6            -2           0.3             -3\n 7 \"1. Cigarettes  … 2020           7             2          -0.3              3\n 8 \"1. Cigarettes  … 2021           8            -2           0.3             -3\n 9 \"1. Cigarettes  … 2022           9             2          -0.3              3\n10 \"1. Cigarettes  … 2023          10            -2           0.3             -3"
+  },
+  {
+    "objectID": "presentation.html#plot-1",
+    "href": "presentation.html#plot-1",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Plot 1",
+    "text": "Plot 1"
+  },
+  {
+    "objectID": "presentation.html#plot-2",
+    "href": "presentation.html#plot-2",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Plot 2",
+    "text": "Plot 2"
+  },
+  {
+    "objectID": "presentation.html#section",
+    "href": "presentation.html#section",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "",
+    "text": "{.absolute top = “1”width=“700px” height=“700px”}"
+  },
+  {
+    "objectID": "presentation.html#plot1",
+    "href": "presentation.html#plot1",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "plot1",
+    "text": "plot1\n{fig-alt = “A map of the Baltimore Harbor with color-coded points placed at the real-world locations of each trash collection wheel. Labels containing the name and top five most common trash categories with their percentages are placed near each point with the same color-coding.” fig-align=“center” width = “50%”}"
   }
 ]
