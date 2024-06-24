@@ -377,11 +377,6 @@ mr_wheel <- mr_wheel %>%
            function(x) round(x * 100, 1))
   )
 
-# remove Total column
-
-mr_wheel <- mr_wheel %>%
-  select(-Total)
-
 # pivot longer
 
 mr_wheel <- mr_wheel %>%
@@ -435,7 +430,15 @@ mr_wheel_top <- mr_wheel[c(1:5, 8:12,
                            43:47, 50:54,
                            57:61, 64:68),]
 
-mr_wheel_top
+# format Total well
+
+
+mr_wheel_top$Total <- 
+  format(mr_wheel_top$Total, 
+         big.mark = ",")
+
+mr_wheel_top$Total <- 
+  trimws(mr_wheel_top$Total)
 
 # Create well-formatted strings for each wheel 
 # of the top 5 trash categories for vis. labeling
@@ -448,16 +451,15 @@ for (i in seq(1, 50, 5)) {
   for (j in c(i:(i+4))) {
     mr_str <- 
       paste0(mr_str, k,   # get wheel info
-             ". " ,mr_wheel_top[j,2], 
-             " - ", mr_wheel_top[j,3], "%\n")
+             ". " ,mr_wheel_top[j,3], 
+             " - ", mr_wheel_top[j,4], "%\n")
     k <- k + 1
   }
+  mr_str <- paste0(mr_str, "Total: ", mr_wheel_top[i,2])
   mr_wheel_timeline <-          # store completed label
     mr_wheel_timeline %>% 
     add_row(label = mr_str)
 }
-
-
 
 mr_wheel_timeline$year <- as.character(c(2014:2023))
 
@@ -468,10 +470,6 @@ mr_wheel_timeline$line_position <- rep(c(2, -2), 5)
 mr_wheel_timeline$year_position <- rep(c(-0.3, 0.3), 5)
 
 mr_wheel_timeline$label_position <- rep(c(3, -3), 5)
-
-
-
-mr_wheel_timeline
 
 ```
 
@@ -513,9 +511,13 @@ mr_wheel_timeline %>%
        subtitle = "(2014 - 2023)",
        caption = "*P. - Plastic") +
   theme_void() +
-  theme(text = element_text(family = "mono", size = 15),
-        plot.title = element_text(hjust = 0.5, face = "bold", vjust = -3),
-        plot.subtitle = element_text(hjust = 0.5, vjust = -3))
+  theme(text = element_text(family = "mono", 
+                            size = 15),
+        plot.title = element_text(hjust = 0.5, 
+                                  face = "bold", 
+                                  vjust = -3),
+        plot.subtitle = element_text(hjust = 0.5, 
+                                     vjust = -3))
 
 if (!file.exists(here("images", "mr_wheel.png"))) {
   ggsave("mr_wheel.png", path = here("images"), bg = "white")

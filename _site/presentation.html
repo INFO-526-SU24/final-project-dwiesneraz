@@ -324,7 +324,7 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="images/watercolour_sys02_img34_teacup-ocean.jpg" data-background-opacity="0.7" data-background-size="stretch" data-slide-number="none" class="quarto-title-block center">
+<section id="title-slide" data-background-image="images/all_wheels.png" data-background-opacity="0.7" data-background-size="stretch" data-slide-number="none" class="quarto-title-block center">
   <h1 class="title">Trash Wheel Collection Comparison</h1>
   <p class="subtitle">INFO 526 - Summer 2024 - Final Project</p>
 
@@ -337,21 +337,89 @@ Daniel Wiesner
 </div>
 
 </section>
-<section id="section" class="slide level2 nostretch">
+<section id="the-data" class="slide level2">
+<h2>The Data</h2>
+<ul>
+<li><p>The dataset contains information about trash collected by four semiautonomous trash collection wheels placed around the Inner Harbor in Baltimore, MD.</p></li>
+<li><p>This information largely consists of counts of seven categories of trash for each dumpster load that was examined for each wheel.</p></li>
+<li><p>Overall counts of each dumpster load were extrapolated from a random sample of each load, along with the size of the load and the time it took to be filled.</p></li>
+<li><p>*There were inconsistencies in how often wheels were checked and what types of trash were counted.</p></li>
+<li><p>Source: <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2024/2024-03-05">TidyTuesday 2024-03-05</a></p></li>
+</ul>
+</section>
+<section id="question" class="slide level2">
+<h2>Question</h2>
+<ul>
+<li>How do the proportions of trash categories differ based on location and time?</li>
+</ul>
+<h4 id="motivation">Motivation</h4>
+<ul>
+<li><p>Looking over the data, I became interested in how proportions of trash changed over time and location, and how this information might be used to inform targeted anti-littering policies.</p></li>
+<li><p>I feel that there is potential for the results of this analysis, when combined with information about institutions and businesses located in the areas of the trash collection wheels, to provide actionable information about where different litter might be coming from and why so that systems can be put in place to mitigate further littering in those areas.</p></li>
+</ul>
+</section>
+<section id="section" class="slide level2 nostretch" data-background-image="images/all_wheels_smaller.png">
 <h2></h2>
 <div class="column" style="width:100%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/harbor_plot.png" style="width:66.5%"></p>
+<p><img data-src="images/harbor_plot.png" style="width:66.0%"></p>
 </figure>
 </div>
 </div>
 </section>
-<section id="section-1" class="slide level2 nostretch">
+<section id="location-based-analysis" class="slide level2">
+<h2>Location Based Analysis</h2>
+<ul>
+<li><p>Cigarettes are by far the most prevalent but with a variation of over 10% across wheels.</p></li>
+<li><p>Wrappers are 2-4x as common in the north-eastern side of the harbor.</p></li>
+<li><p>Plastic bottles are slightly more common on the northern and western sides .</p></li>
+<li><p>Polystyrene is slightly more common on the southern side.</p></li>
+<li><p>Plastic bags are significantly more common on the southern and western sides.</p></li>
+</ul>
+<h4 id="notes">Notes</h4>
+<ul>
+<li><p>Only the data from 2021 and on was considered in this plot because that is the earliest that all four wheels have been active.</p></li>
+<li><p>The bottom two categories of trash were omitted due to two wheels not tracking two of the categories and one wheel not tracking one of the categories.</p></li>
+</ul>
+</section>
+<section id="section-1" class="slide level2 nostretch" data-background-image="images/just_mr.png">
 <h2></h2>
 <div class="column" style="width:100%;">
-<p><img data-src="images/mr_wheel.png" class="absolute" style="top: 100px; width: 100%; "></p>
+<p><img data-src="images/mr_wheel.png" class="absolute" style="top: 100px; width: ; "></p>
 </div>
+</section>
+<section id="time-based-analysis" class="slide level2">
+<h2>Time Based Analysis</h2>
+<ul>
+<li><p>Total counts of trash see a steady decline. Extremely fast in the first four years, continuing to decline but stalling mostly every other year after, with an uncharacteristic increase in 2023.</p></li>
+<li><p>Cigarettes also see a steady decline, going from 93.3% to 44.5%, seeing similar stalling points to the overall trash counts.</p></li>
+<li><p>Polystyrene in second for the first three years and continues to climb afterwards until a drop in 2021 and a subsequent decline since.</p></li>
+<li><p>Wrappers only occupy the second spot in 2017 but continue to hover between third and fourth afterwards, with a consistent proportion of ~10% until a jump in 2023 up to ~21%.</p></li>
+<li><p>Plastic bottles remain in second place after 2017, consistently increasing until 2021, where they have stabilized around 30%.</p></li>
+<li><p>Plastic bags have consistently been in fifth place, going from very few in 2014 to a peak of 9.3% in 2017 and decreasing since to 3%.</p></li>
+</ul>
+</section>
+<section id="conclusions" class="slide level2">
+<h2>Conclusions</h2>
+<ul>
+<li><p>There has been a ~90% decrease of litter collected by Mr.&nbsp;Trash Wheel from the harbor since his installment.</p></li>
+<li><p>Trash proportion changes over time are consistent with socio-environmental trends.</p>
+<ul>
+<li>Anti-smoking campaigns.</li>
+<li>Move towards biodegradable packaging.</li>
+<li>Increase in general environmental awareness.</li>
+</ul></li>
+<li><p>While trash category proportions do not, for the most part, vary significantly between the wheels, there is reason to suspect, based on these visualizations, that location-based factors play a role in the kinds of trash seen more frequently.</p></li>
+</ul>
+</section>
+<section id="future-works" class="slide level2">
+<h2>Future Works</h2>
+<ul>
+<li><p>Compare the different businesses that have occupied the area around the harbor over time against the changes in proportions of trash categories in order to see if there might be any correlation between their products and the types of trash most often seen.</p></li>
+<li><p>Analyze the inlets and different water currents within the harbor to see if there might be more effective locations to set up more trash wheels within the harbor.</p></li>
+<li><p>Research how long different types of trash usually float to get a better idea of how much trash is ending up at the bottom of the harbor while waiting to be collected by the wheels.</p></li>
+</ul>
 
 <div class="footer footer-default">
 
@@ -383,13 +451,13 @@ Daniel Wiesner
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
+'smaller': true,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'smaller': false,
+'smaller': true,
  
         // Display controls in the bottom right corner
         controls: false,

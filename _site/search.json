@@ -278,5 +278,68 @@
     "title": "Trash Wheel Collection Comparison",
     "section": "plot1",
     "text": "plot1\n{fig-alt = “A map of the Baltimore Harbor with color-coded points placed at the real-world locations of each trash collection wheel. Labels containing the name and top five most common trash categories with their percentages are placed near each point with the same color-coding.” fig-align=“center” width = “50%”}"
+  },
+  {
+    "objectID": "presentation.html#introduction",
+    "href": "presentation.html#introduction",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Introduction",
+    "text": "Introduction\n\nThe dataset contains information about trash collected by four semiautonomous trash collection wheels placed around the Inner Harbor in Baltimore, MD.\nThis information largely consists of counts of seven categories of trash for each dumpster load that was examined for each wheel.\nThere were inconsistencies in how often wheels were checked and what types of trash were counted.\nSource: TidyTuesday 2024-03-05"
+  },
+  {
+    "objectID": "presentation.html#introduction-smaller-true",
+    "href": "presentation.html#introduction-smaller-true",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Introduction {smaller = true}",
+    "text": "Introduction {smaller = true}\n\nThe dataset contains information about trash collected by four semiautonomous trash collection wheels placed around the Inner Harbor in Baltimore, MD.\nThis information largely consists of counts of seven categories of trash for each dumpster load that was examined for each wheel.\nThere were inconsistencies in how often wheels were checked and what types of trash were counted.\nSource: TidyTuesday 2024-03-05\n\nMotivation\n\nI became interested in how"
+  },
+  {
+    "objectID": "presentation.html#question",
+    "href": "presentation.html#question",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Question",
+    "text": "Question\n\nHow do the proportions of trash categories differ based on location and time?\n\nMotivation\n\nLooking over the data, I became interested in how proportions of trash changed over time and location, and how this information might be used to inform targeted anti-littering policies.\nI feel that there is potential for the results of this analysis, when combined with information about institutions and businesses located in the areas of the trash collection wheels, to provide actionable information about where different litter might be coming from and why so that systems can be put in place to mitigate further littering in those areas."
+  },
+  {
+    "objectID": "presentation.html#the-data",
+    "href": "presentation.html#the-data",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "The Data",
+    "text": "The Data\n\nThe dataset contains information about trash collected by four semiautonomous trash collection wheels placed around the Inner Harbor in Baltimore, MD.\nThis information largely consists of counts of seven categories of trash for each dumpster load that was examined for each wheel.\nOverall counts of each dumpster load were extrapolated from a random sample of each load, along with the size of the load and the time it took to be filled.\n*There were inconsistencies in how often wheels were checked and what types of trash were counted.\nSource: TidyTuesday 2024-03-05"
+  },
+  {
+    "objectID": "presentation.html#location-based-analysis",
+    "href": "presentation.html#location-based-analysis",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Location Based Analysis",
+    "text": "Location Based Analysis\n\nCigarettes are by far the most prevalent but with a variation of over 10% across wheels.\nWrappers are 2-4x as common in the north-eastern side of the harbor.\nPlastic bottles are slightly more common on the northern and western sides .\nPolystyrene is slightly more common on the southern side.\nPlastic bags are significantly more common on the southern and western sides.\n\nNotes\n\nOnly the data from 2021 and on was considered in this plot because that is the earliest that all four wheels have been active.\nThe bottom two categories of trash were omitted due to two wheels not tracking two of the categories and one wheel not tracking one of the categories."
+  },
+  {
+    "objectID": "presentation.html#time-based-analysis",
+    "href": "presentation.html#time-based-analysis",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Time Based Analysis",
+    "text": "Time Based Analysis\n\nTotal counts of trash see a steady decline. Extremely fast in the first four years, continuing to decline but stalling mostly every other year after, with an uncharacteristic increase in 2023.\nCigarettes also see a steady decline, going from 93.3% to 44.5%, seeing similar stalling points to the overall trash counts.\nPolystyrene in second for the first three years and continues to climb afterwards until a drop in 2021 and a subsequent decline since.\nWrappers only occupy the second spot in 2017 but continue to hover between third and fourth afterwards, with a consistent proportion of ~10% until a jump in 2023 up to ~21%.\nPlastic bottles remain in second place after 2017, consistently increasing until 2021, where they have stabilized around 30%.\nPlastic bags have consistently been in fifth place, going from very few in 2014 to a peak of 9.3% in 2017 and decreasing since to 3%."
+  },
+  {
+    "objectID": "presentation.html#conclusions-future-work",
+    "href": "presentation.html#conclusions-future-work",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Conclusions & Future Work",
+    "text": "Conclusions & Future Work\n\nDespite a % population increase in Baltimore, there has been a ~90% decrease of litter collected by these wheels from the harbor. US Census\nTrash proportion changes over time are consistent with socio-environmental trends.\n\nAnti-smoking campaigns\nMove towards biodegradable packaging"
+  },
+  {
+    "objectID": "presentation.html#conclusions",
+    "href": "presentation.html#conclusions",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Conclusions",
+    "text": "Conclusions\n\nThere has been a ~90% decrease of litter collected by Mr. Trash Wheel from the harbor since his installment.\nTrash proportion changes over time are consistent with socio-environmental trends.\n\nAnti-smoking campaigns.\nMove towards biodegradable packaging.\nIncrease in general environmental awareness.\n\nWhile trash category proportions do not, for the most part, vary significantly between the wheels, there is reason to suspect, based on these visualizations, that location-based factors play a role in the kinds of trash seen more frequently."
+  },
+  {
+    "objectID": "presentation.html#future-works",
+    "href": "presentation.html#future-works",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Future Works",
+    "text": "Future Works\n\nCompare the different businesses that have occupied the area around the harbor over time against the changes in proportions of trash categories in order to see if there might be any correlation between their products and the types of trash most often seen.\nAnalyze the inlets and different water currents within the harbor to see if there might be more effective locations to set up more trash wheels within the harbor.\nResearch how long different types of trash usually float to get a better idea of how much trash is ending up at the bottom of the harbor while waiting to be collected by the wheels."
   }
 ]
