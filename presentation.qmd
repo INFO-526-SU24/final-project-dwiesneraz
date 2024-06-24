@@ -22,13 +22,11 @@ execute:
 
 ## The Data
 
-- The dataset contains information about trash collected by four semiautonomous trash collection wheels placed around the Inner Harbor in Baltimore, MD.
+- The dataset contains information about trash collected by four semiautonomous trash collection wheels placed around Baltimore Harbor in Baltimore, MD.
 
 - This information largely consists of counts of seven categories of trash for each dumpster load that was examined for each wheel.
 
 - Overall counts of each dumpster load were extrapolated from a random sample of each load, along with the size of the load and the time it took to be filled.
-
-- *There were inconsistencies in how often wheels were checked and what types of trash were counted.
 
 - Source: [TidyTuesday 2024-03-05](https://github.com/rfordatascience/tidytuesday/tree/master/data/2024/2024-03-05)
 
@@ -64,11 +62,7 @@ execute:
 
 - Plastic bags are significantly more common on the southern and western sides.
 
-#### Notes 
 
-- Only the data from 2021 and on was considered in this plot because that is the earliest that all four wheels have been active.
-
-- The bottom two categories of trash were omitted due to two wheels not tracking two of the categories and one wheel not tracking one of the categories.
 
 
 ## {.nostretch background-image=images/just_mr.png}

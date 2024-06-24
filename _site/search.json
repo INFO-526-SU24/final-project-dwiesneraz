@@ -144,7 +144,7 @@
     "href": "proposal.html#question",
     "title": "Trash Wheel Collection Comparison",
     "section": "Question",
-    "text": "Question\nHow do the proportions of trash categories differ between the four collection wheels during the same time period?"
+    "text": "Question\nHow do the proportions of trash categories differ based on location and over time?"
   },
   {
     "objectID": "presentation.html",
@@ -249,7 +249,7 @@
     "href": "index.html#plot-2--",
     "title": "Trash Wheel Collection Comparison",
     "section": "—- PLOT 2 —-",
-    "text": "—- PLOT 2 —-\n\n\n# A tibble: 70 × 3\n    Year Category       Percentage\n   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;\n 1  2014 \"Cigarettes  \"       93.3\n 2  2014 \"Polystyrene \"        2.3\n 3  2014 \"P. Bottles  \"        1.9\n 4  2014 \"Wrappers    \"        1.6\n 5  2014 \"P. Bags     \"        0.9\n 6  2014 \"G. Bottles  \"        0  \n 7  2014 \"Sports Balls\"        0  \n 8  2015 \"Cigarettes  \"       83.9\n 9  2015 \"Polystyrene \"        5.2\n10  2015 \"P. Bottles  \"        4  \n# ℹ 60 more rows\n\n\n\n\n# A tibble: 50 × 3\n    Year Category       Percentage\n   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;\n 1  2014 \"Cigarettes  \"       93.3\n 2  2014 \"Polystyrene \"        2.3\n 3  2014 \"P. Bottles  \"        1.9\n 4  2014 \"Wrappers    \"        1.6\n 5  2014 \"P. Bags     \"        0.9\n 6  2015 \"Cigarettes  \"       83.9\n 7  2015 \"Polystyrene \"        5.2\n 8  2015 \"P. Bottles  \"        4  \n 9  2015 \"Wrappers    \"        3.9\n10  2015 \"P. Bags     \"        2.9\n# ℹ 40 more rows\n\n\n# A tibble: 10 × 6\n   label             year  x_position line_position year_position label_position\n   &lt;chr&gt;             &lt;chr&gt;      &lt;int&gt;         &lt;dbl&gt;         &lt;dbl&gt;          &lt;dbl&gt;\n 1 \"1. Cigarettes  … 2014           1             2          -0.3              3\n 2 \"1. Cigarettes  … 2015           2            -2           0.3             -3\n 3 \"1. Cigarettes  … 2016           3             2          -0.3              3\n 4 \"1. Cigarettes  … 2017           4            -2           0.3             -3\n 5 \"1. Cigarettes  … 2018           5             2          -0.3              3\n 6 \"1. Cigarettes  … 2019           6            -2           0.3             -3\n 7 \"1. Cigarettes  … 2020           7             2          -0.3              3\n 8 \"1. Cigarettes  … 2021           8            -2           0.3             -3\n 9 \"1. Cigarettes  … 2022           9             2          -0.3              3\n10 \"1. Cigarettes  … 2023          10            -2           0.3             -3"
+    "text": "—- PLOT 2 —-\n\n\n# A tibble: 70 × 4\n    Year   Total Category       Percentage\n   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;\n 1  2014 4459401 \"Cigarettes  \"       93.3\n 2  2014 4459401 \"Polystyrene \"        2.3\n 3  2014 4459401 \"P. Bottles  \"        1.9\n 4  2014 4459401 \"Wrappers    \"        1.6\n 5  2014 4459401 \"P. Bags     \"        0.9\n 6  2014 4459401 \"G. Bottles  \"        0  \n 7  2014 4459401 \"Sports Balls\"        0  \n 8  2015 3403535 \"Cigarettes  \"       83.9\n 9  2015 3403535 \"Polystyrene \"        5.2\n10  2015 3403535 \"P. Bottles  \"        4  \n# ℹ 60 more rows"
   },
   {
     "objectID": "presentation.html#plot-1",
@@ -305,14 +305,14 @@
     "href": "presentation.html#the-data",
     "title": "Trash Wheel Collection Comparison",
     "section": "The Data",
-    "text": "The Data\n\nThe dataset contains information about trash collected by four semiautonomous trash collection wheels placed around the Inner Harbor in Baltimore, MD.\nThis information largely consists of counts of seven categories of trash for each dumpster load that was examined for each wheel.\nOverall counts of each dumpster load were extrapolated from a random sample of each load, along with the size of the load and the time it took to be filled.\n*There were inconsistencies in how often wheels were checked and what types of trash were counted.\nSource: TidyTuesday 2024-03-05"
+    "text": "The Data\n\nThe dataset contains information about trash collected by four semiautonomous trash collection wheels placed around Baltimore Harbor in Baltimore, MD.\nThis information largely consists of counts of seven categories of trash for each dumpster load that was examined for each wheel.\nOverall counts of each dumpster load were extrapolated from a random sample of each load, along with the size of the load and the time it took to be filled.\nSource: TidyTuesday 2024-03-05"
   },
   {
     "objectID": "presentation.html#location-based-analysis",
     "href": "presentation.html#location-based-analysis",
     "title": "Trash Wheel Collection Comparison",
     "section": "Location Based Analysis",
-    "text": "Location Based Analysis\n\nCigarettes are by far the most prevalent but with a variation of over 10% across wheels.\nWrappers are 2-4x as common in the north-eastern side of the harbor.\nPlastic bottles are slightly more common on the northern and western sides .\nPolystyrene is slightly more common on the southern side.\nPlastic bags are significantly more common on the southern and western sides.\n\nNotes\n\nOnly the data from 2021 and on was considered in this plot because that is the earliest that all four wheels have been active.\nThe bottom two categories of trash were omitted due to two wheels not tracking two of the categories and one wheel not tracking one of the categories."
+    "text": "Location Based Analysis\n\nCigarettes are by far the most prevalent but with a variation of over 10% across wheels.\nWrappers are 2-4x as common in the north-eastern side of the harbor.\nPlastic bottles are slightly more common on the northern and western sides .\nPolystyrene is slightly more common on the southern side.\nPlastic bags are significantly more common on the southern and western sides."
   },
   {
     "objectID": "presentation.html#time-based-analysis",
