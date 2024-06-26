@@ -56,7 +56,7 @@ execute:
 
 - Wrappers are 2-4x as common in the north-eastern side of the harbor.
 
-- Plastic bottles are slightly more common on the northern and western sides .
+- Plastic bottles are slightly more common on the northern and western sides.
 
 - Polystyrene is slightly more common on the southern side.
 

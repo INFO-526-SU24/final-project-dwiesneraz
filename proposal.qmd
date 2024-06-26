@@ -41,7 +41,7 @@ trash_data <- tuesdata$trashwheel
 
 ## Dataset
 
-I have chosen the Trash Wheel Collection Dataset. This dataset provides information about four trash collection wheels around the Harbor of Baltimore, Maryland. The trash category counts are extrapolated from samples from periodic manual counts of each category of trash on the wheel's conveyor paddles.
+I have chosen the Trash Wheel Collection dataset. This dataset provides information about four trash collection wheels around the Harbor of Baltimore, Maryland. The trash category counts are extrapolated from samples from periodic manual counts of each category of trash on the wheel's conveyor paddles.
 
 Much of this data is quantitative, providing the counts of the various categories of trash for each collection wheel at each manual check, labeled by date and dumpster load which is a separate count for each wheel.
 
@@ -142,9 +142,7 @@ For time-frames, I plan to focus primarily on years but because all four of the 
 
 Initially, I plan to look at all trash category fields to get an idea of the overall trends, then will likely focus on the top 3 to 5 most common for each trash wheel for the final visualizations.
 
-I plan to use Weight or Volume for my ANOVA testing.
-
-I do not plan to use HomesPowered.
+I do not plan to use HomesPowered, Weight, or Volume.
 
 ID, Name, and Dumpster will be used as grouping fields and Name will likely be used in the final visualizations.
 

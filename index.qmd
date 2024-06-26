@@ -663,7 +663,7 @@ if (!file.exists(here("images", "mr_wheel.png"))) {
 
 ## Tentative Conclusions
 
-There has been a ~90% decrease of litter collected by Mr. Trash Wheel from the harbor since his installment.
+There has been a ~90% decrease of total litter and an almost 50% decrease in cigarette butt proportion collected per year by Mr. Trash Wheel from the harbor since his installment.
 
 Trash proportion changes over time are consistent with socio-environmental trends. Anti-smoking campaigns could account for the drop in cigarette butts, a move towards biodegradable packaging could account for a decrease in plastic bag and polystyrene presence, and all of this combined with an increase in general environmental awareness is reflected in the overall trash counts.
   
