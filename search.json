@@ -1,0 +1,163 @@
+[
+  {
+    "objectID": "proposal.html",
+    "href": "proposal.html",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "",
+    "text": "# install and load packages\n\nif (!require(\"pacman\")) \n  install.packages(\"pacman\")\n\npacman::p_load(tidyverse, readr, dplyr, \n               tidytuesdayR, ggplot2, psych) \n\n# Load dataset\n\ntuesdata &lt;- tidytuesdayR::tt_load('2024-03-05')\n\n\n    Downloading file 1 of 1: `trashwheel.csv`\n\ntrash_data &lt;- tuesdata$trashwheel"
+  },
+  {
+    "objectID": "proposal.html#setup",
+    "href": "proposal.html#setup",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "",
+    "text": "# install and load packages\n\nif (!require(\"pacman\")) \n  install.packages(\"pacman\")\n\npacman::p_load(tidyverse, readr, dplyr, \n               tidytuesdayR, ggplot2, psych) \n\n# Load dataset\n\ntuesdata &lt;- tidytuesdayR::tt_load('2024-03-05')\n\n\n    Downloading file 1 of 1: `trashwheel.csv`\n\ntrash_data &lt;- tuesdata$trashwheel"
+  },
+  {
+    "objectID": "proposal.html#dataset",
+    "href": "proposal.html#dataset",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Dataset",
+    "text": "Dataset\nI have chosen the Trash Wheel Collection dataset. This dataset provides information about four trash collection wheels around the Harbor of Baltimore, Maryland. The trash category counts are extrapolated from samples from periodic manual counts of each category of trash on the wheel’s conveyor paddles.\nMuch of this data is quantitative, providing the counts of the various categories of trash for each collection wheel at each manual check, labeled by date and dumpster load which is a separate count for each wheel.\n\nField Names & Types\n\nglimpse(trash_data)\n\nRows: 993\nColumns: 16\n$ ID             &lt;chr&gt; \"mister\", \"mister\", \"mister\", \"mister\", \"mister\", \"mist…\n$ Name           &lt;chr&gt; \"Mister Trash Wheel\", \"Mister Trash Wheel\", \"Mister Tra…\n$ Dumpster       &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, …\n$ Month          &lt;chr&gt; \"May\", \"May\", \"May\", \"May\", \"May\", \"May\", \"May\", \"May\",…\n$ Year           &lt;dbl&gt; 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2014, 2…\n$ Date           &lt;chr&gt; \"5/16/2014\", \"5/16/2014\", \"5/16/2014\", \"5/17/2014\", \"5/…\n$ Weight         &lt;dbl&gt; 4.31, 2.74, 3.45, 3.10, 4.06, 2.71, 1.91, 3.70, 2.52, 3…\n$ Volume         &lt;dbl&gt; 18, 13, 15, 15, 18, 13, 8, 16, 14, 18, 15, 19, 15, 15, …\n$ PlasticBottles &lt;dbl&gt; 1450, 1120, 2450, 2380, 980, 1430, 910, 3580, 2400, 134…\n$ Polystyrene    &lt;dbl&gt; 1820, 1030, 3100, 2730, 870, 2140, 1090, 4310, 2790, 17…\n$ CigaretteButts &lt;dbl&gt; 126000, 91000, 105000, 100000, 120000, 90000, 56000, 11…\n$ GlassBottles   &lt;dbl&gt; 72, 42, 50, 52, 72, 46, 32, 58, 49, 75, 38, 45, 58, 62,…\n$ PlasticBags    &lt;dbl&gt; 584, 496, 1080, 896, 368, 672, 416, 1552, 984, 448, 344…\n$ Wrappers       &lt;dbl&gt; 1162, 874, 2032, 1971, 753, 1144, 692, 3015, 1988, 1066…\n$ SportsBalls    &lt;dbl&gt; 7, 5, 6, 6, 7, 5, 3, 6, 6, 7, 6, 8, 6, 6, 6, 6, 5, 6, 6…\n$ HomesPowered   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n\n\nID - Shortened name of the trash collection wheel.\nName - Full name of the trash collection wheel.\nDumpster - Number of dumpster load that the record counts were extrapolated from (counted independently for each wheel).\nMonth - Written out month of record.\nYear - Written out year of record.\nDate - Full date in m/dd/yyyy format.\nWeight - Weight in tons.\nVolume - Volume in cubic yards.\nPlasticBottles .. SportsBalls - Number of each of the seven categories of trash respectively.\nHomesPowered - Number of homes powered by burning of the trash (~500 kilowatts per ton of trash).\n\n\nDimensions\n\ndim(trash_data)\n\n[1] 993  16\n\n\n\n\nDescription of Numeric Fields\n\ntrash_data %&gt;%\n  select(-c(ID, Name, Dumpster, \n            Month, Year, Date)) %&gt;%\n  describe()\n\n               vars   n     mean       sd  median trimmed     mad  min\nWeight            1 993     2.97     0.84    3.04    2.99    0.80 0.61\nVolume            2 993    14.92     1.61   15.00   15.00    0.00 5.00\nPlasticBottles    3 992  2219.33  1650.45 1900.00 1988.29 1363.99 0.00\nPolystyrene       4 992  1436.87  1832.43  750.00 1076.12  889.56 0.00\nCigaretteButts    5 992 13728.12 24049.61 4900.00 8012.49 4151.28 0.00\nGlassBottles      6 742    20.96    15.26   18.00   19.19   13.34 0.00\nPlasticBags       7 992   984.00  1412.34  540.00  729.73  555.98 0.00\nWrappers          8 849  2238.76  2712.85 1400.00 1662.33 1008.17 0.00\nSportsBalls       9 629    13.59     9.74   12.00   12.58    8.90 0.00\nHomesPowered     10 993    45.85    18.23   49.00   47.72   14.83 0.00\n                     max     range  skew kurtosis     se\nWeight              5.62      5.01 -0.27     0.11   0.03\nVolume             20.00     15.00 -1.89     8.04   0.05\nPlasticBottles   9830.00   9830.00  1.73     4.08  52.40\nPolystyrene     11528.00  11528.00  2.40     7.04  58.18\nCigaretteButts 310000.00 310000.00  4.28    29.69 763.58\nGlassBottles      110.00    110.00  1.26     2.35   0.56\nPlasticBags     13450.00  13450.00  4.76    30.83  44.84\nWrappers        20100.00  20100.00  3.49    14.17  93.10\nSportsBalls        56.00     56.00  0.91     0.46   0.39\nHomesPowered       94.00     94.00 -0.88     0.69   0.58\n\n\n\n\nRecord Examples\n\nhead(trash_data) # first 6 records\n\n# A tibble: 6 × 16\n  ID     Name            Dumpster Month  Year Date  Weight Volume PlasticBottles\n  &lt;chr&gt;  &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;          &lt;dbl&gt;\n1 mister Mister Trash W…        1 May    2014 5/16…   4.31     18           1450\n2 mister Mister Trash W…        2 May    2014 5/16…   2.74     13           1120\n3 mister Mister Trash W…        3 May    2014 5/16…   3.45     15           2450\n4 mister Mister Trash W…        4 May    2014 5/17…   3.1      15           2380\n5 mister Mister Trash W…        5 May    2014 5/17…   4.06     18            980\n6 mister Mister Trash W…        6 May    2014 5/20…   2.71     13           1430\n# ℹ 7 more variables: Polystyrene &lt;dbl&gt;, CigaretteButts &lt;dbl&gt;,\n#   GlassBottles &lt;dbl&gt;, PlasticBags &lt;dbl&gt;, Wrappers &lt;dbl&gt;, SportsBalls &lt;dbl&gt;,\n#   HomesPowered &lt;dbl&gt;\n\n\n\n\nFirst Records for Each Wheel\n\ntrash_data %&gt;%\n  filter(Dumpster == 1) %&gt;% # all dumpster 1 records\n  select(Name, Year)\n\n# A tibble: 4 × 2\n  Name                   Year\n  &lt;chr&gt;                 &lt;dbl&gt;\n1 Mister Trash Wheel     2014\n2 Professor Trash Wheel  2017\n3 Captain Trash Wheel    2018\n4 Gwynnda Trash Wheel    2021\n\n\nLooking at Dumpster load 1 for each of the four collection wheels we can see that Mister Trash Wheel began operation in 2014, Professor Trash Wheel in 2017, Captain Trash Wheel in 2018, and Gwynnda Trash Wheel in 2021. Because of this, it would be unwise to compare overall results between the wheels due to their differences in operation time.\n\n\nAverage Paddle Checks per Day\n\ntrash_data %&gt;% \n  group_by(Name, Date) %&gt;%\n  summarize(count = n()) %&gt;% # paddle checks per day per wheel\n  group_by(Name) %&gt;%\n  summarize(avg_checks = mean(count)) # avg paddle checks per day per wheel\n\n# A tibble: 4 × 2\n  Name                  avg_checks\n  &lt;chr&gt;                      &lt;dbl&gt;\n1 Captain Trash Wheel         1   \n2 Gwynnda Trash Wheel         1.65\n3 Mister Trash Wheel          1.66\n4 Professor Trash Wheel       1.02\n\n\nLooking at the average number of times the paddles were checked per day for each collection wheel, we also see that Captain and Professor were checked less on average than Gwynnda and Mister. This supports a stance against direct quantitative comparison."
+  },
+  {
+    "objectID": "proposal.html#motivation",
+    "href": "proposal.html#motivation",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Motivation",
+    "text": "Motivation\nI chose this dataset because I am generally interested in waste reduction programs and strategies and would like to evaluate the potential for data collection to improve these strategies and inform public policy on the best ways to combat pollution.\nI felt that there was potential for the results of this analysis, when combined with information about institutions and businesses located in the areas of the trash collection wheels, to provide actionable information about where different litter might be coming from and why so that systems can be put in place to mitigate further littering in those areas."
+  },
+  {
+    "objectID": "proposal.html#question",
+    "href": "proposal.html#question",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Question",
+    "text": "Question\nHow do the proportions of trash categories differ based on location and over time?"
+  },
+  {
+    "objectID": "proposal.html#analysis-plan",
+    "href": "proposal.html#analysis-plan",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Analysis Plan",
+    "text": "Analysis Plan\nBecause the wheels have been operating for different amounts of time, I feel it is likely misguided to compare averages of their entire history so I instead plan to focus primarily on the time period for which they have all been operational (since 2021) and to only compare their relative proportions between the different trash categories.\n\nPlot 1\nComparing proportions of the different trash categories between the wheels for the time in which they have all been operational (since 2021).\n\n\nPlot 2\nComparing if and how the trash category proportions have changed over time.\n\n\nVariables Involved\nFor time-frames, I plan to focus primarily on years but because all four of the wheels have only been operational for a few years, I may choose to focus more granularly on months in the first plot.\nInitially, I plan to look at all trash category fields to get an idea of the overall trends, then will likely focus on the top 3 to 5 most common for each trash wheel for the final visualizations.\nI do not plan to use HomesPowered, Weight, or Volume.\nID, Name, and Dumpster will be used as grouping fields and Name will likely be used in the final visualizations.\n\n\nExternal Data\nI plan to try to map the most common trash categories for each wheel for Plot 1 onto a map of the harbor, which I will pull from outside resources.\nPlot 2 will most likely be mapped onto some sort of time-line once I decide on the period and how much information I plan to include on it per wheel."
+  },
+  {
+    "objectID": "proposal.html#plan-of-attack",
+    "href": "proposal.html#plan-of-attack",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Plan of Attack",
+    "text": "Plan of Attack\n*All tasks subject to change / modification as they are undertaken.\n\n\n\n\n\n\n\n\n\n\nTask Name\nStatus\nExpected Finish\nPriority\nSummary\n\n\n\n\nGet Proportions\ncomplete\n6/05\nhigh\nGet the proportions of each trash category from each wheel over all records since 2021\n\n\nDecide Categories\ncomplete\n6/05\nhigh\nDecide how many top categories to focus on. This will depend on how they differ between the wheels. May use all categories.\n\n\nDecide Timeframe\ncomplete\n6/05\nhigh\nDecide on a specific timeframe for Plot 2 (could be all years of operation for each wheel)\n\n\nGet Proportion Changes\ncomplete\n6/07\nmoderate\nGet and organize the changes in proportions for each wheel over the chosen timeframe.\n\n\nExperiment with Formats\ncomplete\n6/10\nlow\nExperiment with different visualization formats and styles to see which conveys the information best.\n\n\nChoose Formats for Plot 1 & 2\ncomplete\n6/10\nlow\nChoose best available visualization styles for both plots 1 and 2.\n\n\nExternal Information\ncomplete\n6/11\nlow\nGet harbor map and experiment with coordinate positions for displaying data in the proper areas.\n\n\nFinalize Plot 1\ncomplete\n6/12\nlow\nPut all information together and finalize the visualization\n\n\nFinalize Plot 2\ncomplete\n6/13\nlow\nPut all information together and finalize the visualization\n\n\nWrite-up\ncomplete\n6/16\nlow\nPut together write-up\n\n\nPresentation\ncomplete\n6/20\nlow\nplan and record presentation"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "",
+    "text": "The aim of this project was to understand how the types of trash collected by four trash collection wheels in the Baltimore Harbor varied based on time and location.\nFor context, these trash collection wheels are basically semi-submerged conveyor belts powered by water wheels and solar energy which slowly scoop floating trash out of the water of the harbor. The wheels are set up with buoy lines that funnel the trash into the collection area using the harbors currents.\nTo spark community engagement, googly-eyes were added to the wheels and they were given personalities and names: Mr. Trash Wheel, Professor Trash Wheel, Captain Trash Wheel, and Gwynnda The Good Wheel Of The West. We will refer to them as such here.\nThe analysis undertaken in this project was based off of a dataset put together by the group who commissioned and maintain the wheels, Waterfront Partnership of Baltimore, and was cleaned and released by the Data Science Learning Community for Tidy Tuesday 2024-03-05.\nThe dataset primarily tracks the counts of seven different types of trash collected by the wheels, along with date and dumpster load number for each record for each wheel. for each dumpster load, manual counts of each tracked type of trash are taken from what was currently on the conveyor belt. This acts as a sample of the current dumpster load which is used, along with the size of the dumpster load and the time it took to fill to calculate approximations of how much of each trash category is present in the current dumpster load.\ni.e. each record of the data contains the information for one dumpster load, made up of the estimated counts of each trash category within that load, and marked with the date of checking and name of the trash wheel that was checked.\nThere were a number of other fields within the data that were not used in this analysis. Detailed explanations of which can be found in my proposal."
+  },
+  {
+    "objectID": "index.html#introduction",
+    "href": "index.html#introduction",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "",
+    "text": "The aim of this project was to understand how the types of trash collected by four trash collection wheels in the Baltimore Harbor varied based on time and location.\nFor context, these trash collection wheels are basically semi-submerged conveyor belts powered by water wheels and solar energy which slowly scoop floating trash out of the water of the harbor. The wheels are set up with buoy lines that funnel the trash into the collection area using the harbors currents.\nTo spark community engagement, googly-eyes were added to the wheels and they were given personalities and names: Mr. Trash Wheel, Professor Trash Wheel, Captain Trash Wheel, and Gwynnda The Good Wheel Of The West. We will refer to them as such here.\nThe analysis undertaken in this project was based off of a dataset put together by the group who commissioned and maintain the wheels, Waterfront Partnership of Baltimore, and was cleaned and released by the Data Science Learning Community for Tidy Tuesday 2024-03-05.\nThe dataset primarily tracks the counts of seven different types of trash collected by the wheels, along with date and dumpster load number for each record for each wheel. for each dumpster load, manual counts of each tracked type of trash are taken from what was currently on the conveyor belt. This acts as a sample of the current dumpster load which is used, along with the size of the dumpster load and the time it took to fill to calculate approximations of how much of each trash category is present in the current dumpster load.\ni.e. each record of the data contains the information for one dumpster load, made up of the estimated counts of each trash category within that load, and marked with the date of checking and name of the trash wheel that was checked.\nThere were a number of other fields within the data that were not used in this analysis. Detailed explanations of which can be found in my proposal."
+  },
+  {
+    "objectID": "index.html#items-of-note",
+    "href": "index.html#items-of-note",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Items of Note",
+    "text": "Items of Note\nBefore discussing my analysis, it is important to note that there are inconsistencies and vagueness within the data:\n\nOnly records for one of the wheels tracked counts of Sports Balls and only two of the wheels tracked Glass Bottles. These do not impact results as the counts of these two categories were extremely low where tracked.\nThe wheels were installed at different times: 2014, 2017, 2018, 2021.\nSince the installment of the last trash wheel, two of the wheels haven’t been checked very often:\n\nMr. - 177\nProfessor - 44\nCaptain - 13\nGwynnda - 220\n\nWhile volume and weight of each dumpster load were logged, only counts of each category were logged. Because we were not provided the specific criteria used to evaluate more volume-ambiguous categories such as polystyrene and plastic bags, we only have the option of comparing the counts of the different categories, not their weight or volume."
+  },
+  {
+    "objectID": "index.html#trash-through-time-and-space",
+    "href": "index.html#trash-through-time-and-space",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Trash Through Time and Space",
+    "text": "Trash Through Time and Space\n\nQuestion\nHow do the proportions of trash categories differ based on location and time?\n\n\nMotivation\nThis is a point of interest for me because I feel that, when combined with other contextual information, this analysis has the potential to aid existing environmental programs.\nI felt that if we could see how the proportions of different trash types are changing and where we could better inform anti-littering policy and also evaluate whether existing policies have been effective over time.\n\n\nApproach\nI chose to split location-based and time-based differences between my two plots as I felt it would be too much information to force into one plot. For these visualizations, I compared proportions, meaning that I summed up the counts of each category of trash for each wheel for the time periods of interest, and divided each of them by the total amount of trash for each wheel to get the proportional make-up of each category for each wheel. As such, these analyses involved all trash category fields, along with the wheel name fields and date fields for grouping and filtering.\n\n\nPlot 1\nFor my first plot, I chose to visualize the location-based differences in the trash category proportions. I did this by plotting a map of the harbor, then placing points and labels at the locations of the four trash wheels which contain information about the top five most common categories by percentage of total trash counts for each wheel, taking into consideration all records since 2021.\nAs stated above, I found it best to only compare proportions due to the inconsistent checking of the wheels. Because two of the trash categories were not checked for some of the wheels, I focused only on the remaining five. I chose to use only records since 2021 as that is the earliest time at which all four wheels were operational and it provides an overview of recent trends.\nThis plot is a good fit for my research question as it answers the location aspect of how the trash proportions differ. Unlike a 100% stacked bar plot, the map provides an intuitive understanding of the scope of the trash wheel project and the factors that were likely considered when placing these wheels.\n\n\nPlot 2\nFor my second plot, I chose to visualize the time-based differences in trash category proportions. I did this by constructing a timeline of the top five most common categories by percentage similarly to my first plot, but only for Mr. Trash Wheel.\nI only used the information gathered for Mr. Trash Wheel because it is the oldest trash wheel, having operated for over ten years. It is also the only wheel to track all seven categories of trash. As such, it is by far the most documented trash wheel. I omitted the other wheels as I felt it would cause too much clutter on the plot and would harm the interpretability due to the wheels being installed at different times and some being checked very infrequently.\nFocusing on Mr. Trash Wheel also allowed me to include total counts of trash collected by him each year, which helps to provide perspective as to the actual counts of the different types of trash and aids in interpretting the trends we see in the proportions.\nOverall, this plot fulfills the time aspect of my research question, completing my analysis."
+  },
+  {
+    "objectID": "index.html#plot-1-1",
+    "href": "index.html#plot-1-1",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Plot 1",
+    "text": "Plot 1"
+  },
+  {
+    "objectID": "index.html#plot-2-1",
+    "href": "index.html#plot-2-1",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Plot 2",
+    "text": "Plot 2"
+  },
+  {
+    "objectID": "index.html#discussion",
+    "href": "index.html#discussion",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Discussion",
+    "text": "Discussion\n\nLocation\n\nCigarettes are by far the most prevalent but with a variation of over 10% across wheels.\nWrappers are 2-4x as common in the north-eastern side of the harbor.\nPlastic bottles are slightly more common on the northern and western sides.\nPolystyrene is slightly more common on the southern side.\nPlastic bags are significantly more common on the southern and western sides.\n\n\n\nTime\n\nBoth total counts of trash and cigarette butts see a steady and sometimes rapid decline throughout the years with some minor fluctuations throughout.\nPolystyrene, wrappers, and plastic bottles all vied for second throughout the years, with polystyrene falling behind throughout. Wrappers also dropped until 2023, and plastic bottles remained in second, stabilizing around 30%.\nTotal counts of trash see a steady decline. Extremely fast in the first four years, continuing to decline but stalling mostly every other year after, with an uncharacteristic increase in 2023.\nCigarettes also see a steady decline, going from 93.3% to 44.5%, seeing similar stalling points to the overall trash counts.\nPolystyrene is in second for the first three years and continues to climb afterwards until a drop in 2021 and a subsequent decline since.\nWrappers only occupy the second spot in 2017 but continue to hover between third and fourth afterwards, with a consistent proportion of ~10% until a jump in 2023 up to ~21%.\nPlastic bottles remain in second place after 2017, consistently increasing until 2021, where they have stabilized around 30%.\nPlastic bags have consistently been in fifth place, going from very few in 2014 to a peak of 9.3% in 2017 and decreasing since to 3%."
+  },
+  {
+    "objectID": "index.html#tentative-conclusions",
+    "href": "index.html#tentative-conclusions",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Tentative Conclusions",
+    "text": "Tentative Conclusions\nThere has been a ~90% decrease of total litter and an almost 50% decrease in cigarette butt proportion collected per year by Mr. Trash Wheel from the harbor since his installment.\nTrash proportion changes over time are consistent with socio-environmental trends. Anti-smoking campaigns could account for the drop in cigarette butts, a move towards biodegradable packaging could account for a decrease in plastic bag and polystyrene presence, and all of this combined with an increase in general environmental awareness is reflected in the overall trash counts.\nWhile trash category proportions do not, for the most part, vary highly between the wheels, there is reason to suspect, based on these visualizations, that location-based factors play a role in the kinds of trash seen more frequently.\nThere are of course many other factors that could influence these results. For example: people could have started littering more in areas that are not skimmed by the trash wheels. Based on this, I think that a logical next step would be to analyze the water currents within the harbor to see if there might be any more effective locations to install more trash wheels. I also think that it would be interesting to look into the kinds of businesses that have occupied the areas around the trash wheel locations to see if their products might be contributing to the types of litter we see more commonly at each wheel throughout time."
+  },
+  {
+    "objectID": "index.html#references",
+    "href": "index.html#references",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "References",
+    "text": "References\npivot_longer() - https://tidyr.tidyverse.org/reference/pivot_longer.html\nggplot2 timeline - https://cran.r-project.org/web/packages/vistime/vignettes/gg_vistime-vignette.html https://benalexkeen.com/creating-a-timeline-graphic-using-r-and-ggplot2/ https://r-graph-gallery.com/279-plotting-time-series-with-ggplot2.html\nBaltimore Harbor shapefile - https://catalog.data.gov/dataset/tiger-line-shapefile-2019-county-baltimore-city-md-topological-faces-polygons-with-all-geocodes\nTrash wheel actual locations - Google Maps\nmultiple fill mappings with ggnewscale - https://stackoverflow.com/questions/66873314/how-to-fill-points-from-2-different-sets-of-colours-in-ggplot\nstring contains with grepl - https://www.geeksforgeeks.org/how-to-check-if-characters-are-present-in-a-string-in-r/\nsubstring() - https://www.digitalocean.com/community/tutorials/substring-function-in-r\nbolding part of a substring - https://www.tutorialspoint.com/how-to-make-a-plot-title-partially-bold-using-ggplot2-in-r\nmaking a timeline in ggplot2 - https://benalexkeen.com/creating-a-timeline-graphic-using-r-and-ggplot2/\nTrash Wheels data set - https://github.com/rfordatascience/tidytuesday/tree/master/data/2024/2024-03-05\nqmd basics - https://quarto.org/docs/authoring/markdown-basics.html"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This project was developed by Daniel Wiesner for INFO 526 - Data Analysis and Visualization at the University of Arizona, taught by Dr. Greg Chism. The team is comprised of the following team members.\n\nDaniel Wiesner\n\nA first year student in the MS in Data Science program studying data analytics & visualization and machine learning."
+  },
+  {
+    "objectID": "presentation.html#the-data",
+    "href": "presentation.html#the-data",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "The Data",
+    "text": "The Data\n\nThe dataset contains information about trash collected by four semiautonomous trash collection wheels placed around Baltimore Harbor in Baltimore, MD.\nThis information largely consists of counts of seven categories of trash for each dumpster load that was examined for each wheel.\nOverall counts of each dumpster load were extrapolated from a random sample of each load, along with the size of the load and the time it took to be filled.\nSource: TidyTuesday 2024-03-05"
+  },
+  {
+    "objectID": "presentation.html#question",
+    "href": "presentation.html#question",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Question",
+    "text": "Question\n\nHow do the proportions of trash categories differ based on location and time?\n\nMotivation\n\nLooking over the data, I became interested in how proportions of trash changed over time and location, and how this information might be used to inform targeted anti-littering policies.\nI feel that there is potential for the results of this analysis, when combined with information about institutions and businesses located in the areas of the trash collection wheels, to provide actionable information about where different litter might be coming from and why so that systems can be put in place to mitigate further littering in those areas."
+  },
+  {
+    "objectID": "presentation.html#location-based-analysis",
+    "href": "presentation.html#location-based-analysis",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Location Based Analysis",
+    "text": "Location Based Analysis\n\nCigarettes are by far the most prevalent but with a variation of over 10% across wheels.\nWrappers are 2-4x as common in the north-eastern side of the harbor.\nPlastic bottles are slightly more common on the northern and western sides.\nPolystyrene is slightly more common on the southern side.\nPlastic bags are significantly more common on the southern and western sides."
+  },
+  {
+    "objectID": "presentation.html#time-based-analysis",
+    "href": "presentation.html#time-based-analysis",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Time Based Analysis",
+    "text": "Time Based Analysis\n\nTotal counts of trash see a steady decline. Extremely fast in the first four years, continuing to decline but stalling mostly every other year after, with an uncharacteristic increase in 2023.\nCigarettes also see a steady decline, going from 93.3% to 44.5%, seeing similar stalling points to the overall trash counts.\nPolystyrene in second for the first three years and continues to climb afterwards until a drop in 2021 and a subsequent decline since.\nWrappers only occupy the second spot in 2017 but continue to hover between third and fourth afterwards, with a consistent proportion of ~10% until a jump in 2023 up to ~21%.\nPlastic bottles remain in second place after 2017, consistently increasing until 2021, where they have stabilized around 30%.\nPlastic bags have consistently been in fifth place, going from very few in 2014 to a peak of 9.3% in 2017 and decreasing since to 3%."
+  },
+  {
+    "objectID": "presentation.html#conclusions",
+    "href": "presentation.html#conclusions",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Conclusions",
+    "text": "Conclusions\n\nThere has been a ~90% decrease of litter collected by Mr. Trash Wheel from the harbor since his installment.\nTrash proportion changes over time are consistent with socio-environmental trends.\n\nAnti-smoking campaigns.\nMove towards biodegradable packaging.\nIncrease in general environmental awareness.\n\nWhile trash category proportions do not, for the most part, vary significantly between the wheels, there is reason to suspect, based on these visualizations, that location-based factors play a role in the kinds of trash seen more frequently."
+  },
+  {
+    "objectID": "presentation.html#future-works",
+    "href": "presentation.html#future-works",
+    "title": "Trash Wheel Collection Comparison",
+    "section": "Future Works",
+    "text": "Future Works\n\nCompare the different businesses that have occupied the area around the harbor over time against the changes in proportions of trash categories in order to see if there might be any correlation between their products and the types of trash most often seen.\nAnalyze the inlets and different water currents within the harbor to see if there might be more effective locations to set up more trash wheels within the harbor.\nResearch how long different types of trash usually float to get a better idea of how much trash is ending up at the bottom of the harbor while waiting to be collected by the wheels."
+  }
+]
