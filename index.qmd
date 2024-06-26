@@ -18,13 +18,42 @@ execute:
   echo: false
 ---
 
-## Abstract
+## Introduction
 
-Add project abstract here.
+The aim of this project was to understand how the types of trash collected by four trash collection wheels in the Baltimore Harbor varied based on time and location.
 
-## Setup
+For context, these trash collection wheels are basically semi-submerged conveyor belts powered by water wheels and solar energy which slowly scoop floating trash out of the water of the harbor. The wheels are set up with buoy lines that funnel the trash into the collection area using the harbors currents.
+
+To spark community engagement, googly-eyes were added to the wheels and they were given personalities and names: Mr. Trash Wheel, Professor Trash Wheel, Captain Trash Wheel, and Gwynnda The Good Wheel Of The West. We will refer to them as such here.
+
+The analysis undertaken in this project was based off of a dataset put together by the group who commissioned and maintain the wheels, [Waterfront Partnership of Baltimore](https://www.mrtrashwheel.com/trash-wheel-family), and was cleaned and released by the [Data Science Learning Community](https://dslc.io) for [Tidy Tuesday 2024-03-05](https://github.com/rfordatascience/tidytuesday/tree/master/data/2024/2024-03-05).
+
+The dataset primarily tracks the counts of seven different types of trash collected by the wheels, along with date and dumpster load number for each record for each wheel. for each dumpster load, manual counts of each tracked type of trash are taken from what was currently on the conveyor belt. This acts as a sample of the current dumpster load which is used, along with the size of the dumpster load and the time it took to fill to calculate approximations of how much of each trash category is present in the current dumpster load.
+
+i.e. each record of the data contains the information for one dumpster load, made up of the estimated counts of each trash category within that load, and marked with the date of checking and name of the trash wheel that was checked.
+
+There were a number of other fields within the data that were not used in this analysis. Detailed explanations of which can be found in my proposal.
+
+## Items of Note
+
+Before discussing my analysis, it is important to note that there are inconsistencies and vagueness within the data:
+
+-   Only records for one of the wheels tracked counts of `Sports Balls` and only two of the wheels tracked `Glass Bottles`. These do not impact results as the counts of these two categories were extremely low where tracked.
+
+-   The wheels were installed at different times: 2014, 2017, 2018, 2021.
+
+-   Since the installment of the last trash wheel, two of the wheels haven't been checked very often:
+
+    -   Mr. - 177
+    -   Professor - 44
+    -   Captain - 13
+    -   Gwynnda - 220
+
+-   While volume and weight of each dumpster load were logged, only counts of each category were logged. Because we were not provided the specific criteria used to evaluate more volume-ambiguous categories such as `polystyrene` and `plastic bags`, we only have the option of comparing the counts of the different categories, not their weight or volume.
 
 ```{r setup}
+
+# ----- Setup -----
 
 # install and load packages
 
@@ -67,17 +96,33 @@ knitr::opts_chunk$set(
 
 ```
 
-
-
 ```{r cache = TRUE}
+#| echo: false
+#| results: hide
 
-# ----- Data Summarization -----
+# ----- Load Data -----
 
 # Load dataset
 
 tuesdata <- tidytuesdayR::tt_load('2024-03-05')
 
 wheels <- tuesdata$trashwheel
+
+# Save trash wheel data as .csv
+
+if (!file.exists(here("data", "trash_wheels.csv"))) {
+  write.csv(wheels, 
+            here("data", 
+                 "trash_wheels.csv"), 
+            row.names = FALSE)
+}
+
+
+```
+
+```{r}
+
+# ----- Summarize Data of Interest -----
 
 # get records since 2021 (all wheels active) 
 
@@ -87,9 +132,10 @@ wheels_contemp <- wheels %>%
 # number of dumpsters checked since 2021.
 # very low for captain and professor
 
-wheels_contemp %>%
-  group_by(Name) %>%
-  summarize(count = n())
+# Mr.       - 177
+# Professor - 44
+# Captain   - 13
+# Gwynnda   - 220
 
 # convert na's to 0. 
 # (category not recorded for that wheel)
@@ -139,13 +185,11 @@ wheels_perc <- wheels_prop %>%
 wheels_perc <- wheels_perc %>%
   select(-Total)
 
-wheels_perc
-
 ```
 
-## Data Transformation / Formatting
-
 ```{r}
+
+# ----- Pivot Longer and Reformat -----
 
 # pivot trash categories and their 
 # proportions longer
@@ -189,13 +233,11 @@ wheels_long <- wheels_long %>%
       format(Category, width = 11, justify = "left")
   )
 
-wheels_long
-
 ```
 
-## Top Categories
-
 ```{r}
+
+# ----- Get Records of Interest and Create Labels -----
 
 # get top 5 trash categories for each wheel
 # wheels order: (Mr, Professor, Captain, Gwynnda)
@@ -228,15 +270,19 @@ for (i in seq(1, 20, 5)) {
 wheels_labels <- wheels_labels %>%
   mutate(
     label =
-      ifelse(grepl("Mister", label), paste0("Mr.", substr(label, start = 7, stop = 170)), label)
+      ifelse(grepl("Mister", label), 
+             paste0("Mr.", 
+                    substr(label,
+                           start = 7, 
+                           stop = 170)), 
+             label)
   )
 
 ```
 
-
-## Read and Prepare Mapping Data
-
 ```{r cache = TRUE}
+
+# ----- Read and Prepare Mapping Data -----
 
 baltimore <- read_sf(dsn = here("data", "tl_2019_24510_faces.shp"))
 
@@ -263,20 +309,57 @@ wheels_points <- tibble(
 
 wheels_points$label <- as.factor(wheels_points$label)
 
-```
-
-## Plot
-
-```{r}
-#| fig-width: 6
-#| fig-height: 6
-
-
+# store colors of each wheel
 
 wheels_colors <- c("lightskyblue1", 
                    "palegreen",
                    "lightgoldenrod",
                    "plum1")
+
+```
+
+
+## Trash Through Time and Space
+
+#### Question
+
+How do the proportions of trash categories differ based on location and time?
+
+#### Motivation
+
+This is a point of interest for me because I feel that, when combined with other contextual information, this analysis has the potential to aid existing environmental programs.
+
+I felt that if we could see how the proportions of different trash types are changing and where we could better inform anti-littering policy and also evaluate whether existing policies have been effective over time.
+
+#### Approach
+
+I chose to split location-based and time-based differences between my two plots as I felt it would be too much information to force into one plot. For these visualizations, I compared proportions, meaning that I summed up the counts of each category of trash for each wheel for the time periods of interest, and divided each of them by the total amount of trash for each wheel to get the proportional make-up of each category for each wheel. As such, these analyses involved all trash category fields, along with the wheel name fields and date fields for grouping and filtering.
+
+#### Plot 1
+
+For my first plot, I chose to visualize the location-based differences in the trash category proportions. I did this by plotting a map of the harbor, then placing points and labels at the locations of the four trash wheels which contain information about the top five most common categories by percentage of total trash counts for each wheel, taking into consideration all records since 2021. 
+
+As stated above, I found it best to only compare proportions due to the inconsistent checking of the wheels. Because two of the trash categories were not checked for some of the wheels, I focused only on the remaining five. I chose to use only records since 2021 as that is the earliest time at which all four wheels were operational and it provides an overview of recent trends.
+
+This plot is a good fit for my research question as it answers the location aspect of how the trash proportions differ. Unlike a 100% stacked bar plot, the map provides an intuitive understanding of the scope of the trash wheel project and the factors that were likely considered when placing these wheels.
+
+#### Plot 2 
+
+For my second plot, I chose to visualize the time-based differences in trash category proportions. I did this by constructing a timeline of the top five most common categories by percentage similarly to my first plot, but only for Mr. Trash Wheel.
+
+I only used the information gathered for Mr. Trash Wheel because it is the oldest trash wheel, having operated for over ten years. It is also the only wheel to track all seven categories of trash. As such, it is by far the most documented trash wheel. I omitted the other wheels as I felt it would cause too much clutter on the plot and would harm the interpretability due to the wheels being installed at different times and some being checked very infrequently.
+
+Focusing on Mr. Trash Wheel also allowed me to include total counts of trash collected by him each year, which helps to provide perspective as to the actual counts of the different types of trash and aids in interpretting the trends we see in the proportions.
+
+Overall, this plot fulfills the time aspect of my research question, completing my analysis.
+
+## Plot 1
+
+```{r}
+#| fig-width: 6.1
+#| fig-height: 6
+
+# ----- Generate Plot 1 -----
 
 harbor %>%
   ggplot() +
@@ -288,49 +371,61 @@ harbor %>%
                         "dodgerblue3")) +  
   geom_point(data = wheels_points,         # wheel location points
              aes(x = x, y = y),
-             fill = wheels_colors,
+             fill = wheels_colors,         # wheel point colors
              color = "black",
-             size = 5,
+             size = 3,
              shape = 21) +
-  new_scale_fill() +                       # allow new fill for labels
   geom_label(data = wheels_points,         # wheel labels
              aes(x = x, y = y, 
                  label = label),
-             fill = wheels_colors,
+             fill = wheels_colors,         # wheel label colors
              hjust = 0,
              vjust = -0.1,
-             size = 3.5,
+             size = 2.4,
              show.legend = FALSE,
              family = "mono",
              fontface = "bold") +
   geom_label(aes(x = -76.622,              # harbor name label 
                  y = 39.288,
                  label = "Map of Baltimore Harbor"),
-             size = 5,
+             size = 3.5,
              show.legend = FALSE,
              family = "mono",
              fontface = "bold") +
-  labs(title = "5 Most Common Types of Trash Collected by Each Wheel",
-       subtitle = "Ranked By Percentage of Total Trash (2021-2023)",
+  labs(title = paste0("5 Most Common Types of Trash ",
+                      "Collected by Each Wheel"),
+       subtitle = paste0("Ranked By Percentage of ",
+                         "Total Trash (2021-2023)"),
        caption = "*P. - Plastic") +
   theme_void() +
   theme(text = element_text(family = "mono"),
-        plot.title = element_text(hjust = 0.5, size = 15, face = "bold"),
-        plot.subtitle = element_text(hjust = 0.5, size = 13),
-        plot.caption = element_text(size = 13))
+        plot.title = element_text(hjust = 0.5, 
+                                  size = 12, 
+                                  face = "bold"),
+        plot.subtitle = element_text(hjust = 0.5, 
+                                     size = 10),
+        plot.caption = element_text(size = 11))
+
+```
+
+```{r}
+
+# Save ggplot image for presentation
 
 if (!file.exists(here("images", "harbor_plot.png"))) {
-  ggsave("harbor_plot.png", path = here("images"), bg = "white")
+  ggsave("harbor_plot.png", 
+         path = here("images"), 
+         bg = "white")
 }
 
 ```
 
 
-## ---- PLOT 2 ----
-
 ```{r}
 
 # ----- Mr. Trash Wheel Data -----
+
+# --- Perform Much of the Same Cleaning and Summarizing ---
 
 wheels <- tuesdata$trashwheel
 
@@ -416,11 +511,11 @@ mr_wheel <- mr_wheel %>%
       format(Category, width = 11, justify = "left")
   )
 
-mr_wheel
-
 ```
 
 ```{r}
+
+# ----- Get Records of Interest & Create Positional Info -----
 
 # get top 5 trash categories
 
@@ -431,7 +526,6 @@ mr_wheel_top <- mr_wheel[c(1:5, 8:12,
                            57:61, 64:68),]
 
 # format Total well
-
 
 mr_wheel_top$Total <- 
   format(mr_wheel_top$Total, 
@@ -473,16 +567,18 @@ mr_wheel_timeline$label_position <- rep(c(3, -3), 5)
 
 ```
 
-
+## Plot 2
 
 ```{r}
 #| fig-width: 12
 #| fig-height: 5
 
+# ----- Generate Plot 2 -----
+
 mr_wheel_timeline %>%
   ggplot(aes(x = x_position, 
              y = 0)) +
-  geom_hline(yintercept = 0,            # timeline main line
+  geom_hline(yintercept = 0,                  # timeline main line
              size = 1) +
   geom_segment(aes(x = x_position,            # alternating vertical lines
                    y = line_position, 
@@ -499,39 +595,87 @@ mr_wheel_timeline %>%
                  fill = year),
              hjust = 0,
              show.legend = FALSE,
-             size = 3.5,
+             size = 3.7,
              family = "mono",
              fontface = "bold") +
-  scale_fill_brewer(palette = "Set3") +
-  scale_x_continuous(limits = c(0, 11)) +
-  coord_cartesian(xlim = c(0.5, 10.5)) +
-  scale_y_continuous(limits = c(-5, 5)) +
+  scale_fill_brewer(palette = "Set3") +      # label colors
+  scale_x_continuous(limits = c(0, 11)) +    # plot scales
+  coord_cartesian(xlim = c(0.5, 10.5)) +     # ^^
+  scale_y_continuous(limits = c(-5, 5)) +    # ^^
   labs(title = paste0("Mr. Trash Wheel's Top 5 Trash ",
                       "Categories Over the Years"),
        subtitle = "(2014 - 2023)",
        caption = "*P. - Plastic") +
   theme_void() +
   theme(text = element_text(family = "mono", 
-                            size = 15),
+                            size = 16),
         plot.title = element_text(hjust = 0.5, 
                                   face = "bold", 
                                   vjust = -3),
         plot.subtitle = element_text(hjust = 0.5, 
                                      vjust = -3))
 
+```
+
+```{r}
+
+# save plot image for presentation
+
 if (!file.exists(here("images", "mr_wheel.png"))) {
-  ggsave("mr_wheel.png", path = here("images"), bg = "white")
+  ggsave("mr_wheel.png",
+         path = here("images"), 
+         bg = "white")
 }
 
 ```
+
+## Discussion
+
+#### Location
+
+- Cigarettes are by far the most prevalent but with a variation of over 10% across wheels.
+
+- Wrappers are 2-4x as common in the north-eastern side of the harbor.
+
+- Plastic bottles are slightly more common on the northern and western sides.
+
+- Polystyrene is slightly more common on the southern side.
+
+- Plastic bags are significantly more common on the southern and western sides.
+
+#### Time
+
+- Both total counts of trash and cigarette butts see a steady and sometimes rapid decline throughout the years with some minor fluctuations throughout.
+
+- Polystyrene, wrappers, and plastic bottles all vied for second throughout the years, with polystyrene falling behind throughout. Wrappers also dropped until 2023, and plastic bottles remained in second, stabilizing around 30%.
+
+- Total counts of trash see a steady decline. Extremely fast in the first four years, continuing to decline but stalling mostly every other year after, with an uncharacteristic increase in 2023.
+
+- Cigarettes also see a steady decline, going from 93.3% to 44.5%, seeing similar stalling points to the overall trash counts.
+
+- Polystyrene is in second for the first three years and continues to climb afterwards until a drop in 2021 and a subsequent decline since.
+
+- Wrappers only occupy the second spot in 2017 but continue to hover between third and fourth afterwards, with a  consistent proportion of ~10% until a jump in 2023 up to ~21%.
+
+- Plastic bottles remain in second place after 2017, consistently increasing until 2021, where they have stabilized around 30%.
+
+- Plastic bags have consistently been in fifth place, going from very few in 2014 to a peak of 9.3% in 2017 and decreasing since to 3%.
+
+## Tentative Conclusions
+
+There has been a ~90% decrease of litter collected by Mr. Trash Wheel from the harbor since his installment.
+
+Trash proportion changes over time are consistent with socio-environmental trends. Anti-smoking campaigns could account for the drop in cigarette butts, a move towards biodegradable packaging could account for a decrease in plastic bag and polystyrene presence, and all of this combined with an increase in general environmental awareness is reflected in the overall trash counts.
+  
+While trash category proportions do not, for the most part, vary highly between the wheels, there is reason to suspect, based on these visualizations, that location-based factors play a role in the kinds of trash seen more frequently.
+
+There are of course many other factors that could influence these results. For example: people could have started littering more in areas that are not skimmed by the trash wheels. Based on this, I think that a logical next step would be to analyze the water currents within the harbor to see if there might be any more effective locations to install more trash wheels. I also think that it would be interesting to look into the kinds of businesses that have occupied the areas around the trash wheel locations to see if their products might be contributing to the types of litter we see more commonly at each wheel throughout time.
 
 ## References
 
 `pivot_longer()` - <https://tidyr.tidyverse.org/reference/pivot_longer.html>
 
-`ggplot2` timeline - <https://cran.r-project.org/web/packages/vistime/vignettes/gg_vistime-vignette.html>
-                     <https://benalexkeen.com/creating-a-timeline-graphic-using-r-and-ggplot2/>
-                     <https://r-graph-gallery.com/279-plotting-time-series-with-ggplot2.html>
+`ggplot2` timeline - <https://cran.r-project.org/web/packages/vistime/vignettes/gg_vistime-vignette.html> <https://benalexkeen.com/creating-a-timeline-graphic-using-r-and-ggplot2/> <https://r-graph-gallery.com/279-plotting-time-series-with-ggplot2.html>
 
 Baltimore Harbor shapefile - <https://catalog.data.gov/dataset/tiger-line-shapefile-2019-county-baltimore-city-md-topological-faces-polygons-with-all-geocodes>
 
@@ -547,16 +691,6 @@ bolding part of a substring - <https://www.tutorialspoint.com/how-to-make-a-plot
 
 making a timeline in `ggplot2` - <https://benalexkeen.com/creating-a-timeline-graphic-using-r-and-ggplot2/>
 
+Trash Wheels data set - <https://github.com/rfordatascience/tidytuesday/tree/master/data/2024/2024-03-05>
 
-
-
-
-
-
-
-
-
-
-
-
-
+`qmd` basics - <https://quarto.org/docs/authoring/markdown-basics.html>

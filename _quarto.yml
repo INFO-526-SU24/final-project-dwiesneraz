@@ -2,11 +2,11 @@ project:
   type: website
 
 website:
-  title: Project Title
+  title: Trash Wheels
   navbar:
     right:
       - icon: github
-        href: https://github.com/INFO-526-SU24/project-01 # Needs to be changed to your project repo
+        href: https://github.com/INFO-526-SU24/final-project-dwiesneraz # Needs to be changed to your project repo
     left:
       - text: Project
         href: index.qmd
@@ -19,6 +19,7 @@ website:
 
 format:
   html:
+    page-layout: full
     theme:
       light: flatly
       dark: darkly
